@@ -33,8 +33,4 @@ public partial class main : Form
 
     }
 
-    private void button2_Click(object sender, EventArgs e)
-    {
-        //this is affan's button. I didnt add the message box.
-    }
 }
