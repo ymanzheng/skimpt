@@ -30,6 +30,7 @@
             this.components = new System.ComponentModel.Container();
             this.lifeTimer = new System.Windows.Forms.Timer(this.components);
             this.button1 = new System.Windows.Forms.Button();
+            this.messageLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lifeTimer
@@ -46,11 +47,21 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // messageLabel
+            // 
+            this.messageLabel.AutoSize = true;
+            this.messageLabel.Location = new System.Drawing.Point(12, 57);
+            this.messageLabel.Name = "messageLabel";
+            this.messageLabel.Size = new System.Drawing.Size(110, 13);
+            this.messageLabel.TabIndex = 3;
+            this.messageLabel.Text = "dont delete this label. ";
+            // 
             // toastform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 153);
+            this.Controls.Add(this.messageLabel);
             this.Controls.Add(this.button1);
             this.Name = "toastform";
             this.Text = "ScreenShot";
@@ -59,6 +70,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.toastform_FormClosed);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.toastform_FormClosing);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -66,4 +78,5 @@
 
         private System.Windows.Forms.Timer lifeTimer;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label messageLabel;
     }
