@@ -121,7 +121,17 @@ public partial class toastform : Form
 
     private void button1_Click(object sender, EventArgs e)
     {
-        MessageBox.Show("Close All open screenshots");
+        //dosnt work. once the first form is closed, the "collection" is not the orignal
+        //any more and therefore will not work
+
+
+        //toastform temp;
+        //foreach (var f in openForms)
+        //{
+        //    temp = (toastform)f;
+        //    temp.Close();
+        //}
+        //MessageBox.Show("Close All open screenshots");
     }
 
 }
