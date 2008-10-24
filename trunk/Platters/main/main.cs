@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 public partial class main : Form
 {
-
+  
     public main()
     {
         InitializeComponent();
