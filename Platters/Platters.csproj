@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MCLHotkey, Version=1.2.3174.38598, Culture=neutral, PublicKeyToken=926e205f9227c6d3, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -52,6 +53,10 @@
     <Compile Include="classes\ftp.cs" />
     <Compile Include="classes\logger.cs" />
     <Compile Include="classes\screenshot.cs" />
+    <Compile Include="classes\utilities.cs" />
+    <Compile Include="forms\inputbox.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\toastform.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +86,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

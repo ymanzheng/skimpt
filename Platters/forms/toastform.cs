@@ -23,17 +23,26 @@ public partial class toastform : Form
     private FormAnimator m_Animator; 
     //The handle of the window that currently has focus. 
     private IntPtr m_CurrentForegroundWindow; 
-    static int static_ToastForm_Activated_activationCount = 0; 
+    static int static_ToastForm_Activated_activationCount = 0;
+
+
+    private string _FileNameToHandle;
+    public string SetFileName { set { _FileNameToHandle = value; } }
 
     public toastform()
     {
         InitializeComponent();
     }
-  
-    public toastform(int lifeTime, string message) : this() 
+
+    public toastform(string filename) : this()
+    {
+        this._FileNameToHandle = filename;
+    }
+
+    public toastform(int lifeTime, string message, string filename) : this() 
     { 
         //Call primitive constructor. 
-        
+        this._FileNameToHandle = filename;
         //Set the time for which the form should be displayed. 
         this.lifeTimer.Interval = lifeTime; 
         
@@ -64,8 +73,11 @@ public partial class toastform : Form
         } 
         
         //Add this form from the open form list. 
-        toastform.openForms.Add(this); 
-        
+        toastform.openForms.Add(this);
+
+        if (!string.IsNullOrEmpty(_FileNameToHandle))
+            fileNameLabel.Text = _FileNameToHandle;
+
         //Start counting down the form's liftime. 
         //this.lifeTimer.Start(); 
     }

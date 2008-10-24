@@ -31,6 +31,7 @@
             this.lifeTimer = new System.Windows.Forms.Timer(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.messageLabel = new System.Windows.Forms.Label();
+            this.fileNameLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lifeTimer
@@ -56,11 +57,21 @@
             this.messageLabel.TabIndex = 3;
             this.messageLabel.Text = "dont delete this label. ";
             // 
+            // fileNameLabel
+            // 
+            this.fileNameLabel.AutoSize = true;
+            this.fileNameLabel.Location = new System.Drawing.Point(15, 74);
+            this.fileNameLabel.Name = "fileNameLabel";
+            this.fileNameLabel.Size = new System.Drawing.Size(35, 13);
+            this.fileNameLabel.TabIndex = 4;
+            this.fileNameLabel.Text = "label1";
+            // 
             // toastform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 153);
+            this.Controls.Add(this.fileNameLabel);
             this.Controls.Add(this.messageLabel);
             this.Controls.Add(this.button1);
             this.Name = "toastform";
@@ -79,4 +90,5 @@
         private System.Windows.Forms.Timer lifeTimer;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label messageLabel;
+        private System.Windows.Forms.Label fileNameLabel;
     }
