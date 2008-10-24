@@ -97,6 +97,7 @@
     <Content Include="dll\MCLHotkey.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="icons\" />
     <Folder Include="images\" />
     <Folder Include="test-forms\" />
   </ItemGroup>
