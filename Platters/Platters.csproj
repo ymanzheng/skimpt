@@ -52,12 +52,6 @@
     <Compile Include="classes\ftp.cs" />
     <Compile Include="classes\logger.cs" />
     <Compile Include="classes\screenshot.cs" />
-    <Compile Include="forms\toastform.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="forms\toastform.Designer.cs">
-      <DependentUpon>toastform.cs</DependentUpon>
-    </Compile>
     <Compile Include="main\main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,9 +60,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="forms\toastform.resx">
-      <DependentUpon>toastform.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="main\main.resx">
       <DependentUpon>main.cs</DependentUpon>
     </EmbeddedResource>
@@ -97,6 +88,7 @@
     <Content Include="dll\MCLHotkey.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="forms\" />
     <Folder Include="icons\" />
     <Folder Include="images\" />
     <Folder Include="test-forms\" />
