@@ -30,6 +30,7 @@
             this.components = new System.ComponentModel.Container();
             this.lifeTimer = new System.Windows.Forms.Timer(this.components);
             this.messageLabel = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // lifeTimer
@@ -45,11 +46,22 @@
             this.messageLabel.TabIndex = 0;
             this.messageLabel.Text = "label1";
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(116, 23);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(105, 17);
+            this.checkBox1.TabIndex = 1;
+            this.checkBox1.Text = "affans checkbox";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // toastform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 153);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.messageLabel);
             this.Name = "toastform";
             this.Text = "toastform";
@@ -66,4 +78,5 @@
 
         private System.Windows.Forms.Timer lifeTimer;
         private System.Windows.Forms.Label messageLabel;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
