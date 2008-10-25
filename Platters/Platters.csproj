@@ -66,9 +66,6 @@
     <Compile Include="main\main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="main\main.Designer.cs">
-      <DependentUpon>main.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="forms\toastform.resx">
