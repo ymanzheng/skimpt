@@ -50,12 +50,96 @@ namespace Platters.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool showErrorMessages {
+        public bool showErrorMessagesSetting {
             get {
-                return ((bool)(this["showErrorMessages"]));
+                return ((bool)(this["showErrorMessagesSetting"]));
             }
             set {
-                this["showErrorMessages"] = value;
+                this["showErrorMessagesSetting"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ftphostSetting {
+            get {
+                return ((string)(this["ftphostSetting"]));
+            }
+            set {
+                this["ftphostSetting"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ftpusernameSetting {
+            get {
+                return ((string)(this["ftpusernameSetting"]));
+            }
+            set {
+                this["ftpusernameSetting"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ftppasswordSetting {
+            get {
+                return ((string)(this["ftppasswordSetting"]));
+            }
+            set {
+                this["ftppasswordSetting"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ftpdirectorySetting {
+            get {
+                return ((string)(this["ftpdirectorySetting"]));
+            }
+            set {
+                this["ftpdirectorySetting"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ftpportSetting {
+            get {
+                return ((int)(this["ftpportSetting"]));
+            }
+            set {
+                this["ftpportSetting"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool uploadFileSetting {
+            get {
+                return ((bool)(this["uploadFileSetting"]));
+            }
+            set {
+                this["uploadFileSetting"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ftpOKsettings {
+            get {
+                return ((bool)(this["ftpOKsettings"]));
+            }
+            set {
+                this["ftpOKsettings"] = value;
             }
         }
     }
