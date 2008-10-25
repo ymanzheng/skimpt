@@ -85,6 +85,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
@@ -101,10 +102,12 @@
     <Content Include="dll\MCLHotkey.dll" />
     <Content Include="dll\MCLHotkey.pdb" />
     <Content Include="dll\MCLHotkey.xml" />
+    <None Include="Resources\ajax-loader.gif" />
+    <None Include="Resources\loadingpicture.bmp" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="icons\" />
-    <Folder Include="images\" />
+    <Folder Include="NewFolder1\" />
     <Folder Include="test-forms\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
