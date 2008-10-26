@@ -142,5 +142,17 @@ namespace Platters.Properties {
                 this["ftpOKsettings"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool fileasdatesetting {
+            get {
+                return ((bool)(this["fileasdatesetting"]));
+            }
+            set {
+                this["fileasdatesetting"] = value;
+            }
+        }
     }
 }

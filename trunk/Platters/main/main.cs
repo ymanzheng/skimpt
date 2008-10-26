@@ -40,6 +40,7 @@ public class main : Form
     private void InitializeComponent()
     {
         this.components = new System.ComponentModel.Container();
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
         this.tabControl1 = new System.Windows.Forms.TabControl();
         this.tabPage1 = new System.Windows.Forms.TabPage();
         this.mainProgramMessage = new System.Windows.Forms.TextBox();
@@ -67,11 +68,15 @@ public class main : Form
         this.tabPage5 = new System.Windows.Forms.TabPage();
         this.shortcut1 = new MCLHotkey.SystemWideHotkeyComponent(this.components);
         this.systemWideHotkeyComponent2 = new MCLHotkey.SystemWideHotkeyComponent(this.components);
+        this.randomnameoptions = new System.Windows.Forms.GroupBox();
+        this.filenameasdateoption = new System.Windows.Forms.RadioButton();
+        this.filenameasrandomoption = new System.Windows.Forms.RadioButton();
         this.tabControl1.SuspendLayout();
         this.tabPage1.SuspendLayout();
         this.tabPage2.SuspendLayout();
         this.groupBox1.SuspendLayout();
         this.tabPage3.SuspendLayout();
+        this.randomnameoptions.SuspendLayout();
         this.SuspendLayout();
         // 
         // tabControl1
@@ -119,6 +124,7 @@ public class main : Form
         // tabPage2
         // 
         this.tabPage2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+        this.tabPage2.Controls.Add(this.randomnameoptions);
         this.tabPage2.Controls.Add(this.saveFileSettingBtn);
         this.tabPage2.Controls.Add(this.groupBox1);
         this.tabPage2.Controls.Add(this.radioButton2);
@@ -194,6 +200,7 @@ public class main : Form
         this.radioButton1.TabStop = true;
         this.radioButton1.Text = "Randomly name my files";
         this.radioButton1.UseVisualStyleBackColor = true;
+        this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
         // 
         // tabPage3
         // 
@@ -349,6 +356,42 @@ public class main : Form
         // 
         this.systemWideHotkeyComponent2.HotkeyCombination = "SHIFT+P";
         // 
+        // randomnameoptions
+        // 
+        this.randomnameoptions.Controls.Add(this.filenameasrandomoption);
+        this.randomnameoptions.Controls.Add(this.filenameasdateoption);
+        this.randomnameoptions.Location = new System.Drawing.Point(244, 6);
+        this.randomnameoptions.Name = "randomnameoptions";
+        this.randomnameoptions.Size = new System.Drawing.Size(227, 81);
+        this.randomnameoptions.TabIndex = 5;
+        this.randomnameoptions.TabStop = false;
+        this.randomnameoptions.Text = "Random Filenames as";
+        this.randomnameoptions.Visible = false;
+        // 
+        // filenameasdateoption
+        // 
+        this.filenameasdateoption.AutoSize = true;
+        this.filenameasdateoption.Location = new System.Drawing.Point(6, 23);
+        this.filenameasdateoption.Name = "filenameasdateoption";
+        this.filenameasdateoption.Size = new System.Drawing.Size(174, 23);
+        this.filenameasdateoption.TabIndex = 0;
+        this.filenameasdateoption.TabStop = true;
+        this.filenameasdateoption.Text = "Current Date and Time";
+        this.filenameasdateoption.UseVisualStyleBackColor = true;
+        this.filenameasdateoption.CheckedChanged += new System.EventHandler(this.filenameasdateoption_CheckedChanged);
+        // 
+        // filenameasrandomoption
+        // 
+        this.filenameasrandomoption.AutoSize = true;
+        this.filenameasrandomoption.Location = new System.Drawing.Point(6, 52);
+        this.filenameasrandomoption.Name = "filenameasrandomoption";
+        this.filenameasrandomoption.Size = new System.Drawing.Size(129, 23);
+        this.filenameasrandomoption.TabIndex = 1;
+        this.filenameasrandomoption.TabStop = true;
+        this.filenameasrandomoption.Text = "Random Letters";
+        this.filenameasrandomoption.UseVisualStyleBackColor = true;
+        this.filenameasrandomoption.CheckedChanged += new System.EventHandler(this.filenameasrandomoption_CheckedChanged);
+        // 
         // main
         // 
         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -358,6 +401,7 @@ public class main : Form
         this.ClientSize = new System.Drawing.Size(487, 261);
         this.Controls.Add(this.tabControl1);
         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+        this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
         this.MaximizeBox = false;
         this.MinimizeBox = false;
         this.Name = "main";
@@ -376,6 +420,8 @@ public class main : Form
         this.groupBox1.PerformLayout();
         this.tabPage3.ResumeLayout(false);
         this.tabPage3.PerformLayout();
+        this.randomnameoptions.ResumeLayout(false);
+        this.randomnameoptions.PerformLayout();
         this.ResumeLayout(false);
 
     }
@@ -416,6 +462,9 @@ public class main : Form
     //global private variables
     private bool isBusy = false;
     private bool _cameraMode = false;
+    private GroupBox randomnameoptions;
+    private RadioButton filenameasrandomoption;
+    private RadioButton filenameasdateoption;
     private static Platters.Properties.Settings mySettings = new Platters.Properties.Settings();
     
     #endregion
@@ -466,7 +515,17 @@ public class main : Form
                 // OR to have someone input a custom name.
                 if (mySettings.randomFileNameSetting)
                 {
-                    filename = System.IO.Path.GetRandomFileName();
+                    // if user WANTS datetime filename then you 
+                    // use your function
+                    //othewise use the default.
+                    if (mySettings.fileasdatesetting)
+                    {
+                        filename = utilities.GetRandomFileName();
+                    }
+                    else
+                    {
+                        filename = System.IO.Path.GetRandomFileName();
+                    }
                 }
                 else
                 {
@@ -621,6 +680,38 @@ public class main : Form
         LoadSettings();
     } 
     #endregion
+
+    private void radioButton1_CheckedChanged(object sender, EventArgs e)
+    {
+        if (radioButton1.Checked)
+        {
+            randomnameoptions.Visible = true;
+        }
+        else 
+        { 
+            randomnameoptions.Visible = false; 
+        }
+
+    }
+
+    private void filenameasdateoption_CheckedChanged(object sender, EventArgs e)
+    {
+        if (filenameasdateoption.Checked)
+        {
+            mySettings.fileasdatesetting = true;
+        }
+        mySettings.Save();
+    }
+
+    private void filenameasrandomoption_CheckedChanged(object sender, EventArgs e)
+    {
+        if (filenameasrandomoption.Checked)
+        {
+            mySettings.fileasdatesetting = false;
+        }
+
+        mySettings.Save();
+    }
 
  
   
