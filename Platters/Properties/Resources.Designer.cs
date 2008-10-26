@@ -66,5 +66,12 @@ namespace Platters.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        internal static System.Drawing.Icon Habrok {
+            get {
+                object obj = ResourceManager.GetObject("Habrok", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
     }
 }

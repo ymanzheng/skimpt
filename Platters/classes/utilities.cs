@@ -48,10 +48,9 @@ namespace Util
         /// if random file names option is selected.
         /// </summary>
         /// <param name="GetRandomFileName"></param>
-        public static string GetRandomFileName(string name){
-            
+        public static string GetRandomFileName(){
 
-
+            string name;
 
             DateTime systemtime = DateTime.Now; //creates variable as the current date and time
 
@@ -75,7 +74,7 @@ namespace Util
 
             display_time = filename_random2.Split('.'); //split is required here as the time here is HH:MM:SS.(MILI)SSSS, we remove the miliseconds
 
-           
+            display_time[0] = display_time[0].Replace(":", "");
 
             /*
 
