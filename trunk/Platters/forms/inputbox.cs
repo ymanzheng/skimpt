@@ -93,7 +93,7 @@ namespace Util
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
             this.buttonOK.TabIndex = 2;
-            this.buttonOK.Text = "OK";
+            this.buttonOK.Text = "Save";
             this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
             // 
             // buttonCancel
@@ -122,9 +122,9 @@ namespace Util
             this.labelPrompt.AutoSize = true;
             this.labelPrompt.Location = new System.Drawing.Point(15, 15);
             this.labelPrompt.Name = "labelPrompt";
-            this.labelPrompt.Size = new System.Drawing.Size(39, 13);
+            this.labelPrompt.Size = new System.Drawing.Size(289, 13);
             this.labelPrompt.TabIndex = 0;
-            this.labelPrompt.Text = "prompt";
+            this.labelPrompt.Text = "Enter Filename as you would like to save the screenshot as:";
             // 
             // errorProviderText
             // 
@@ -145,7 +145,7 @@ namespace Util
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "InputBox";
-            this.Text = "Title";
+            this.Text = "Save Screenshot As...";
             this.Load += new System.EventHandler(this.InputBox_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderText)).EndInit();
             this.ResumeLayout(false);
