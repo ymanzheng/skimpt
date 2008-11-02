@@ -39,12 +39,14 @@ public class main : Form
     /// </summary>
     private void InitializeComponent()
     {
-        this.components = new System.ComponentModel.Container();
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
         this.tabControl1 = new System.Windows.Forms.TabControl();
         this.tabPage1 = new System.Windows.Forms.TabPage();
         this.mainProgramMessage = new System.Windows.Forms.TextBox();
         this.tabPage2 = new System.Windows.Forms.TabPage();
+        this.randomnameoptions = new System.Windows.Forms.GroupBox();
+        this.filenameasrandomoption = new System.Windows.Forms.RadioButton();
+        this.filenameasdateoption = new System.Windows.Forms.RadioButton();
         this.saveFileSettingBtn = new System.Windows.Forms.Button();
         this.groupBox1 = new System.Windows.Forms.GroupBox();
         this.fileLocationTextBox = new System.Windows.Forms.TextBox();
@@ -66,17 +68,14 @@ public class main : Form
         this.label2 = new System.Windows.Forms.Label();
         this.tabPage4 = new System.Windows.Forms.TabPage();
         this.tabPage5 = new System.Windows.Forms.TabPage();
-        this.shortcut1 = new MCLHotkey.SystemWideHotkeyComponent(this.components);
-        this.systemWideHotkeyComponent2 = new MCLHotkey.SystemWideHotkeyComponent(this.components);
-        this.randomnameoptions = new System.Windows.Forms.GroupBox();
-        this.filenameasdateoption = new System.Windows.Forms.RadioButton();
-        this.filenameasrandomoption = new System.Windows.Forms.RadioButton();
+        this.unhookButton = new System.Windows.Forms.Button();
+        this.toggleCamButton = new System.Windows.Forms.Button();
         this.tabControl1.SuspendLayout();
         this.tabPage1.SuspendLayout();
         this.tabPage2.SuspendLayout();
+        this.randomnameoptions.SuspendLayout();
         this.groupBox1.SuspendLayout();
         this.tabPage3.SuspendLayout();
-        this.randomnameoptions.SuspendLayout();
         this.SuspendLayout();
         // 
         // tabControl1
@@ -101,6 +100,8 @@ public class main : Form
         // tabPage1
         // 
         this.tabPage1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+        this.tabPage1.Controls.Add(this.toggleCamButton);
+        this.tabPage1.Controls.Add(this.unhookButton);
         this.tabPage1.Controls.Add(this.mainProgramMessage);
         this.tabPage1.Location = new System.Drawing.Point(4, 30);
         this.tabPage1.Name = "tabPage1";
@@ -136,6 +137,42 @@ public class main : Form
         this.tabPage2.TabIndex = 1;
         this.tabPage2.Text = "File";
         this.tabPage2.ToolTipText = "change file settings including save path";
+        // 
+        // randomnameoptions
+        // 
+        this.randomnameoptions.Controls.Add(this.filenameasrandomoption);
+        this.randomnameoptions.Controls.Add(this.filenameasdateoption);
+        this.randomnameoptions.Location = new System.Drawing.Point(244, 6);
+        this.randomnameoptions.Name = "randomnameoptions";
+        this.randomnameoptions.Size = new System.Drawing.Size(227, 81);
+        this.randomnameoptions.TabIndex = 5;
+        this.randomnameoptions.TabStop = false;
+        this.randomnameoptions.Text = "Random Filenames as";
+        this.randomnameoptions.Visible = false;
+        // 
+        // filenameasrandomoption
+        // 
+        this.filenameasrandomoption.AutoSize = true;
+        this.filenameasrandomoption.Location = new System.Drawing.Point(6, 52);
+        this.filenameasrandomoption.Name = "filenameasrandomoption";
+        this.filenameasrandomoption.Size = new System.Drawing.Size(129, 23);
+        this.filenameasrandomoption.TabIndex = 1;
+        this.filenameasrandomoption.TabStop = true;
+        this.filenameasrandomoption.Text = "Random Letters";
+        this.filenameasrandomoption.UseVisualStyleBackColor = true;
+        this.filenameasrandomoption.CheckedChanged += new System.EventHandler(this.filenameasrandomoption_CheckedChanged);
+        // 
+        // filenameasdateoption
+        // 
+        this.filenameasdateoption.AutoSize = true;
+        this.filenameasdateoption.Location = new System.Drawing.Point(6, 23);
+        this.filenameasdateoption.Name = "filenameasdateoption";
+        this.filenameasdateoption.Size = new System.Drawing.Size(174, 23);
+        this.filenameasdateoption.TabIndex = 0;
+        this.filenameasdateoption.TabStop = true;
+        this.filenameasdateoption.Text = "Current Date and Time";
+        this.filenameasdateoption.UseVisualStyleBackColor = true;
+        this.filenameasdateoption.CheckedChanged += new System.EventHandler(this.filenameasdateoption_CheckedChanged);
         // 
         // saveFileSettingBtn
         // 
@@ -347,50 +384,25 @@ public class main : Form
         this.tabPage5.ToolTipText = "Check log files";
         this.tabPage5.UseVisualStyleBackColor = true;
         // 
-        // shortcut1
+        // unhookButton
         // 
-        this.shortcut1.HotkeyCombination = "SHIFT+U";
-        this.shortcut1.HotkeyPressed += new System.EventHandler(this.shortcut1_HotkeyPressed);
+        this.unhookButton.Location = new System.Drawing.Point(307, 154);
+        this.unhookButton.Name = "unhookButton";
+        this.unhookButton.Size = new System.Drawing.Size(146, 33);
+        this.unhookButton.TabIndex = 1;
+        this.unhookButton.Text = "unhook prtscr";
+        this.unhookButton.UseVisualStyleBackColor = true;
+        this.unhookButton.Click += new System.EventHandler(this.unhookButton_Click);
         // 
-        // systemWideHotkeyComponent2
+        // toggleCamButton
         // 
-        this.systemWideHotkeyComponent2.HotkeyCombination = "SHIFT+P";
-        // 
-        // randomnameoptions
-        // 
-        this.randomnameoptions.Controls.Add(this.filenameasrandomoption);
-        this.randomnameoptions.Controls.Add(this.filenameasdateoption);
-        this.randomnameoptions.Location = new System.Drawing.Point(244, 6);
-        this.randomnameoptions.Name = "randomnameoptions";
-        this.randomnameoptions.Size = new System.Drawing.Size(227, 81);
-        this.randomnameoptions.TabIndex = 5;
-        this.randomnameoptions.TabStop = false;
-        this.randomnameoptions.Text = "Random Filenames as";
-        this.randomnameoptions.Visible = false;
-        // 
-        // filenameasdateoption
-        // 
-        this.filenameasdateoption.AutoSize = true;
-        this.filenameasdateoption.Location = new System.Drawing.Point(6, 23);
-        this.filenameasdateoption.Name = "filenameasdateoption";
-        this.filenameasdateoption.Size = new System.Drawing.Size(174, 23);
-        this.filenameasdateoption.TabIndex = 0;
-        this.filenameasdateoption.TabStop = true;
-        this.filenameasdateoption.Text = "Current Date and Time";
-        this.filenameasdateoption.UseVisualStyleBackColor = true;
-        this.filenameasdateoption.CheckedChanged += new System.EventHandler(this.filenameasdateoption_CheckedChanged);
-        // 
-        // filenameasrandomoption
-        // 
-        this.filenameasrandomoption.AutoSize = true;
-        this.filenameasrandomoption.Location = new System.Drawing.Point(6, 52);
-        this.filenameasrandomoption.Name = "filenameasrandomoption";
-        this.filenameasrandomoption.Size = new System.Drawing.Size(129, 23);
-        this.filenameasrandomoption.TabIndex = 1;
-        this.filenameasrandomoption.TabStop = true;
-        this.filenameasrandomoption.Text = "Random Letters";
-        this.filenameasrandomoption.UseVisualStyleBackColor = true;
-        this.filenameasrandomoption.CheckedChanged += new System.EventHandler(this.filenameasrandomoption_CheckedChanged);
+        this.toggleCamButton.Location = new System.Drawing.Point(128, 73);
+        this.toggleCamButton.Name = "toggleCamButton";
+        this.toggleCamButton.Size = new System.Drawing.Size(214, 36);
+        this.toggleCamButton.TabIndex = 2;
+        this.toggleCamButton.Text = "Toggle Screen Camera";
+        this.toggleCamButton.UseVisualStyleBackColor = true;
+        this.toggleCamButton.Click += new System.EventHandler(this.toggleCamButton_Click);
         // 
         // main
         // 
@@ -416,12 +428,12 @@ public class main : Form
         this.tabPage1.PerformLayout();
         this.tabPage2.ResumeLayout(false);
         this.tabPage2.PerformLayout();
+        this.randomnameoptions.ResumeLayout(false);
+        this.randomnameoptions.PerformLayout();
         this.groupBox1.ResumeLayout(false);
         this.groupBox1.PerformLayout();
         this.tabPage3.ResumeLayout(false);
         this.tabPage3.PerformLayout();
-        this.randomnameoptions.ResumeLayout(false);
-        this.randomnameoptions.PerformLayout();
         this.ResumeLayout(false);
 
     }
@@ -433,9 +445,7 @@ public class main : Form
     private System.Windows.Forms.TabPage tabPage2;
     private System.Windows.Forms.TabPage tabPage3;
     private System.Windows.Forms.TabPage tabPage4;
-    private System.Windows.Forms.TabPage tabPage5;
-    private MCLHotkey.SystemWideHotkeyComponent shortcut1;
-    private MCLHotkey.SystemWideHotkeyComponent systemWideHotkeyComponent2;
+    private System.Windows.Forms.TabPage tabPage5; 
     private System.Windows.Forms.Button saveFileSettingBtn;
     private System.Windows.Forms.GroupBox groupBox1;
     private System.Windows.Forms.TextBox fileLocationTextBox;
@@ -459,12 +469,17 @@ public class main : Form
     #endregion
 
     #region Global public/private Variables
-    //global private variables
+
+    private KeyboardHook KeyboardHookInstance;
+
+
     private bool isBusy = false;
     private bool _cameraMode = false;
     private GroupBox randomnameoptions;
     private RadioButton filenameasrandomoption;
     private RadioButton filenameasdateoption;
+    private Button unhookButton;
+    private Button toggleCamButton;
     private static Platters.Properties.Settings mySettings = new Platters.Properties.Settings();
     
     #endregion
@@ -486,25 +501,27 @@ public class main : Form
         //dont delete this line. It creates all the GUI stuff.
         //Check the main.designer.cs to see GUI code.
         InitializeComponent();
-    } 
+
+        //The following sets up a hook as soon as the program is launched.
+        KeyboardHookInstance = new KeyboardHook();
+        KeyboardHookInstance.KeyIntercepted += new KeyboardHookCaptureHandler(KeyboardHookInstance_KeyIntercepted);
+
+    }
     #endregion
 
-    #region ShortCut Keys Press Events
-    /// <summary>
-    /// This is what happens when the first shift is pressed. It is created on a seprate thread.
-    /// </summary>
-    /// <param name="sender">the object that invokes this code</param>
-    /// <param name="e">arguments for the object</param>
-    private void shortcut1_HotkeyPressed(object sender, EventArgs e)
+    #region KeyboardShortCut Pressed
+    
+ 
+    void KeyboardHookInstance_KeyIntercepted() 
     {
-
+      
         if (!isBusy)
         {
             isBusy = true;
-
+            //check if its a valid file
             if (!String.IsNullOrEmpty(mySettings.fileLocationSetting.ToString()) || System.IO.Directory.Exists(mySettings.fileLocationSetting.ToString()))
             {
-                //valid file
+                               
 
                 //declare variables only if valid file. 
                 ScreenCapture SC = new ScreenCapture();
@@ -577,8 +594,8 @@ public class main : Form
 
         }
 
-    }
 
+    }
     #endregion
 
     #region Private Functions
@@ -675,10 +692,31 @@ public class main : Form
     #endregion
 
     #region Form Events
+    
     private void main_Load(object sender, EventArgs e)
     {
+        //This function runs when the form is loaded
+        //THIS IS AFTER THE CONSTRUCTOR.
         LoadSettings();
-    } 
+    }
+
+    private void unhookButton_Click(object sender, EventArgs e)
+    {
+        // This function runs when the unhook button (on tabpage 1) is
+        // pressed. It unhooks the printscreen button from the program
+
+        if (KeyboardHookInstance.UnHookKey())
+        {
+            if (mySettings.showErrorMessagesSetting)
+                MessageBox.Show("prtscr unhooked from program");
+        }
+    }
+
+    private void toggleCamButton_Click(object sender, EventArgs e)
+    {
+        _cameraMode = !_cameraMode;
+    }
+
     #endregion
 
     private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -712,6 +750,11 @@ public class main : Form
 
         mySettings.Save();
     }
+
+
+   
+
+
 
  
   

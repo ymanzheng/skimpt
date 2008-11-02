@@ -31,7 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MCLHotkey, Version=1.2.3174.38598, Culture=neutral, PublicKeyToken=926e205f9227c6d3, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -51,6 +50,7 @@
   <ItemGroup>
     <Compile Include="classes\formanimator.cs" />
     <Compile Include="classes\ftp.cs" />
+    <Compile Include="classes\keyboardhook.cs" />
     <Compile Include="classes\logger.cs" />
     <Compile Include="classes\screenshot.cs" />
     <Compile Include="classes\utilities.cs" />
@@ -69,6 +69,9 @@
     <Compile Include="forms\toastform.Designer.cs">
       <DependentUpon>toastform.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\viewfinder.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="main\main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +85,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\toastform.resx">
       <DependentUpon>toastform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\viewfinder.resx">
+      <DependentUpon>viewfinder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="main\main.resx">
       <DependentUpon>main.cs</DependentUpon>
@@ -108,9 +114,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="dll\MCLHotkey.dll" />
-    <Content Include="dll\MCLHotkey.pdb" />
-    <Content Include="dll\MCLHotkey.xml" />
     <None Include="Resources\Habrok.ico" />
     <None Include="Resources\ajax-loader.gif" />
     <None Include="Resources\loadingpicture.bmp" />
