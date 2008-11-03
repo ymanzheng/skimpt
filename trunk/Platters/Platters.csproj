@@ -64,12 +64,6 @@
     <Compile Include="forms\inputbox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\toastform.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="forms\toastform.Designer.cs">
-      <DependentUpon>toastform.cs</DependentUpon>
-    </Compile>
     <Compile Include="forms\viewfinder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,9 +77,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\inputbox.resx">
       <DependentUpon>inputbox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\toastform.resx">
-      <DependentUpon>toastform.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\viewfinder.resx">
       <DependentUpon>viewfinder.cs</DependentUpon>
@@ -118,6 +109,13 @@
     <None Include="Resources\Habrok.ico" />
     <None Include="Resources\ajax-loader.gif" />
     <None Include="Resources\loadingpicture.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\ftp_logo.jpg" />
+    <Content Include="Resources\imageshack.gif" />
+    <Content Include="Resources\imgpurse - Copy.jpg" />
+    <Content Include="Resources\kalleLoad.gif" />
+    <Content Include="Resources\tinypic.gif" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="icons\" />
