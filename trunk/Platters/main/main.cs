@@ -113,7 +113,7 @@ public class main : Form
         // 
         // toggleCamButton
         // 
-        this.toggleCamButton.Location = new System.Drawing.Point(128, 73);
+        this.toggleCamButton.Location = new System.Drawing.Point(8, 73);
         this.toggleCamButton.Name = "toggleCamButton";
         this.toggleCamButton.Size = new System.Drawing.Size(214, 36);
         this.toggleCamButton.TabIndex = 2;
@@ -123,7 +123,7 @@ public class main : Form
         // 
         // unhookButton
         // 
-        this.unhookButton.Location = new System.Drawing.Point(307, 154);
+        this.unhookButton.Location = new System.Drawing.Point(321, 175);
         this.unhookButton.Name = "unhookButton";
         this.unhookButton.Size = new System.Drawing.Size(146, 33);
         this.unhookButton.TabIndex = 1;
@@ -421,6 +421,7 @@ public class main : Form
         this.Text = "Skimpt v 1.01";
         this.TopMost = true;
         this.Load += new System.EventHandler(this.main_Load);
+        this.Shown += new System.EventHandler(this.main_Shown);
         this.tabControl1.ResumeLayout(false);
         this.tabPage1.ResumeLayout(false);
         this.tabPage1.PerformLayout();
@@ -463,21 +464,18 @@ public class main : Form
     private System.Windows.Forms.TextBox ftpUserTxtBox;
     private System.Windows.Forms.Button ftpSettingsBtn;
     private System.Windows.Forms.Button ftptestConnectionbutton;
-
-    #endregion
-
-    #region Global public/private Variables
-
-    private KeyboardHook KeyboardHookInstance;
-
-
-    private bool isBusy = false;
-    private bool _cameraMode = false;
     private GroupBox randomnameoptions;
     private RadioButton filenameasrandomoption;
     private RadioButton filenameasdateoption;
     private Button unhookButton;
     private Button toggleCamButton;
+    #endregion
+
+    #region Global public/private Variables
+
+    private KeyboardHook KeyboardHookInstance;
+    private bool isBusy = false;
+    private bool _cameraMode = false;
     private static Platters.Properties.Settings mySettings = new Platters.Properties.Settings();
     
     #endregion
@@ -525,6 +523,12 @@ public class main : Form
             takeSnapShot();
         }
 
+        if (keyboardEvents.PressedKey == Keys.F2)
+        {
+            this.Visible = !this.Visible;
+        }
+       
+      
     }
  
     #endregion
@@ -544,8 +548,6 @@ public class main : Form
             argE.Message = "Required";
         }
     }
-
-
 
     /// <summary>
     /// This function, when executed, shows the toast form
@@ -723,7 +725,9 @@ public class main : Form
     /// loads. It is run after the constructor.   
     /// </summary>
     private void main_Load(object sender, EventArgs e)
-    {    
+    {
+        if (mySettings.hideOnLoad)
+            this.Hide();
         //When the form loads, load up all settings.
         LoadSettings();
     }
@@ -770,8 +774,19 @@ public class main : Form
         }
 
     }
-    #endregion
 
+    /// <summary>
+    /// This function occurs when the form is first SHOWN. 
+    /// This function happens after the load event.
+    /// </summary>
+     private void main_Shown(object sender, EventArgs e)
+    {
+        if (mySettings.hideOnLoad)
+            this.Hide();
+    }
+
+
+    #endregion
 
      
 
@@ -782,20 +797,7 @@ public class main : Form
 
     //private void button1_Click(object sender, EventArgs e)
     //{
-      //try
-      //  {
-      //      FTP f = new FTP("mynatoronto.com", ".", "mynatoronto.com", "963852", 21);
-      //      string [] infos = f.GetFileList("*");
-      //      f.ChangeDirectory("wwwroot");
-      //      f.UploadFile ("c:\\users\\affan\\desktop\\ss.jpg");
-      //      MessageBox.Show ("Done");
 
-      //  }
-      //  catch (Exception ex)
-      //  {
-      //      MessageBox.Show(ex.Message);
-         
-      //  }
 
     //}
 

@@ -54,6 +54,7 @@
     <Compile Include="classes\logger.cs" />
     <Compile Include="classes\screenshot.cs" />
     <Compile Include="classes\utilities.cs" />
+    <Compile Include="classes\webpost.cs" />
     <Compile Include="forms\AboutBox.cs">
       <SubType>Form</SubType>
     </Compile>

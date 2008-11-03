@@ -33,8 +33,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.uploadingStartBtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -67,11 +65,9 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.pictureBox1);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.uploadingStartBtn);
             this.groupBox1.Location = new System.Drawing.Point(12, 28);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(380, 60);
+            this.groupBox1.Size = new System.Drawing.Size(380, 107);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Upload ";
@@ -79,32 +75,13 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Platters.Properties.Resources.ajax_loader;
-            this.pictureBox1.Location = new System.Drawing.Point(154, 25);
+            this.pictureBox1.Location = new System.Drawing.Point(325, 24);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(32, 16);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Visible = false;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(288, 27);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 18);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "label2";
-            // 
-            // uploadingStartBtn
-            // 
-            this.uploadingStartBtn.Location = new System.Drawing.Point(6, 19);
-            this.uploadingStartBtn.Name = "uploadingStartBtn";
-            this.uploadingStartBtn.Size = new System.Drawing.Size(141, 35);
-            this.uploadingStartBtn.TabIndex = 0;
-            this.uploadingStartBtn.Text = "Start uploading..";
-            this.uploadingStartBtn.UseVisualStyleBackColor = true;
-            this.uploadingStartBtn.Click += new System.EventHandler(this.uploadingStartBtn_Click);
             // 
             // toastform
             // 
@@ -137,7 +114,5 @@
         private System.Windows.Forms.Label fileNameLabel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button uploadingStartBtn;
         private System.Windows.Forms.PictureBox pictureBox1;
     }

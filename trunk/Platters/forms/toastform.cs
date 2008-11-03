@@ -83,6 +83,21 @@ public partial class toastform : Form
     private void uploadingStartBtn_Click(object sender, EventArgs e)
     {
         pictureBox1.Visible = true;
+
+        try
+        {
+            FTP f = new FTP("mynatoronto.com", ".", "mynatoronto.com", "963852", 21);
+            string[] infos = f.GetFileList("*");
+            f.ChangeDirectory("wwwroot");
+            f.UploadFile("c:\\users\\affan\\desktop\\ss.jpg");
+            MessageBox.Show("Done");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+
+        }
+
     }
 
 
