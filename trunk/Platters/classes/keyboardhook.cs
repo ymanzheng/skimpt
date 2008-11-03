@@ -4,13 +4,40 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 
 
-public delegate void KeyboardHookCaptureHandler();
+public delegate void KeyboardHookCaptureHandler(KeyboardHookEventArgs keyboardEvents);
 
+public class KeyboardHookEventArgs : EventArgs
+{
+    private Keys _pressedKey;
+    private int _pressedKeyCode;
+    public Keys PressedKey
+    {        
+        get
+        {
+            return _pressedKey;
+        }
+    }
+
+    public int PressedKeyCode
+    {
+        get
+        {
+            return _pressedKeyCode;
+        }
+    }
+    public KeyboardHookEventArgs(int vkCode)
+    {
+        _pressedKey = (Keys)vkCode;
+        _pressedKeyCode = vkCode;
+    }
+}
 
 public class KeyboardHook
 {
     public event KeyboardHookCaptureHandler KeyIntercepted;
 
+    private delegate IntPtr LowLevelKeyboardProc(
+        int nCode, IntPtr wParam, IntPtr lParam);
     private const int WH_KEYBOARD_LL = 13;
     private const int WM_KEYDOWN = 0x0100;
     private LowLevelKeyboardProc _proc;
@@ -36,8 +63,7 @@ public class KeyboardHook
         }
     }
 
-    private delegate IntPtr LowLevelKeyboardProc(
-    int nCode, IntPtr wParam, IntPtr lParam);
+  
 
     private IntPtr HookCallback(
         int nCode, IntPtr wParam, IntPtr lParam)
@@ -46,19 +72,12 @@ public class KeyboardHook
         {
             int vkCode = Marshal.ReadInt32(lParam);
             //Console.WriteLine((Keys)vkCode);
-            if ((Keys)vkCode == Keys.PrintScreen)
-            {
-                RaiseEvent();
-            }                
+            KeyboardHookEventArgs keyHook = new KeyboardHookEventArgs(vkCode);
+            KeyIntercepted(keyHook);                        
         }
         return CallNextHookEx(_hookID, nCode, wParam, lParam);
     }
 
-    private void RaiseEvent()
-    {
-        KeyIntercepted();
-
-    }
 
     [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
     private static extern IntPtr SetWindowsHookEx(int idHook,

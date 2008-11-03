@@ -42,6 +42,8 @@ public class main : Form
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
         this.tabControl1 = new System.Windows.Forms.TabControl();
         this.tabPage1 = new System.Windows.Forms.TabPage();
+        this.toggleCamButton = new System.Windows.Forms.Button();
+        this.unhookButton = new System.Windows.Forms.Button();
         this.mainProgramMessage = new System.Windows.Forms.TextBox();
         this.tabPage2 = new System.Windows.Forms.TabPage();
         this.randomnameoptions = new System.Windows.Forms.GroupBox();
@@ -68,8 +70,6 @@ public class main : Form
         this.label2 = new System.Windows.Forms.Label();
         this.tabPage4 = new System.Windows.Forms.TabPage();
         this.tabPage5 = new System.Windows.Forms.TabPage();
-        this.unhookButton = new System.Windows.Forms.Button();
-        this.toggleCamButton = new System.Windows.Forms.Button();
         this.tabControl1.SuspendLayout();
         this.tabPage1.SuspendLayout();
         this.tabPage2.SuspendLayout();
@@ -93,7 +93,7 @@ public class main : Form
         this.tabControl1.Name = "tabControl1";
         this.tabControl1.SelectedIndex = 0;
         this.tabControl1.ShowToolTips = true;
-        this.tabControl1.Size = new System.Drawing.Size(487, 261);
+        this.tabControl1.Size = new System.Drawing.Size(483, 250);
         this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
         this.tabControl1.TabIndex = 0;
         // 
@@ -106,10 +106,30 @@ public class main : Form
         this.tabPage1.Location = new System.Drawing.Point(4, 30);
         this.tabPage1.Name = "tabPage1";
         this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-        this.tabPage1.Size = new System.Drawing.Size(479, 227);
+        this.tabPage1.Size = new System.Drawing.Size(475, 216);
         this.tabPage1.TabIndex = 0;
         this.tabPage1.Text = "Main";
         this.tabPage1.ToolTipText = "Main screen";
+        // 
+        // toggleCamButton
+        // 
+        this.toggleCamButton.Location = new System.Drawing.Point(128, 73);
+        this.toggleCamButton.Name = "toggleCamButton";
+        this.toggleCamButton.Size = new System.Drawing.Size(214, 36);
+        this.toggleCamButton.TabIndex = 2;
+        this.toggleCamButton.Text = "Toggle Screen Camera";
+        this.toggleCamButton.UseVisualStyleBackColor = true;
+        this.toggleCamButton.Click += new System.EventHandler(this.toggleCamButton_Click);
+        // 
+        // unhookButton
+        // 
+        this.unhookButton.Location = new System.Drawing.Point(307, 154);
+        this.unhookButton.Name = "unhookButton";
+        this.unhookButton.Size = new System.Drawing.Size(146, 33);
+        this.unhookButton.TabIndex = 1;
+        this.unhookButton.Text = "unhook prtscr";
+        this.unhookButton.UseVisualStyleBackColor = true;
+        this.unhookButton.Click += new System.EventHandler(this.unhookButton_Click);
         // 
         // mainProgramMessage
         // 
@@ -133,7 +153,7 @@ public class main : Form
         this.tabPage2.Location = new System.Drawing.Point(4, 30);
         this.tabPage2.Name = "tabPage2";
         this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-        this.tabPage2.Size = new System.Drawing.Size(479, 227);
+        this.tabPage2.Size = new System.Drawing.Size(487, 194);
         this.tabPage2.TabIndex = 1;
         this.tabPage2.Text = "File";
         this.tabPage2.ToolTipText = "change file settings including save path";
@@ -160,7 +180,6 @@ public class main : Form
         this.filenameasrandomoption.TabStop = true;
         this.filenameasrandomoption.Text = "Random Letters";
         this.filenameasrandomoption.UseVisualStyleBackColor = true;
-        this.filenameasrandomoption.CheckedChanged += new System.EventHandler(this.filenameasrandomoption_CheckedChanged);
         // 
         // filenameasdateoption
         // 
@@ -172,7 +191,6 @@ public class main : Form
         this.filenameasdateoption.TabStop = true;
         this.filenameasdateoption.Text = "Current Date and Time";
         this.filenameasdateoption.UseVisualStyleBackColor = true;
-        this.filenameasdateoption.CheckedChanged += new System.EventHandler(this.filenameasdateoption_CheckedChanged);
         // 
         // saveFileSettingBtn
         // 
@@ -256,7 +274,7 @@ public class main : Form
         this.tabPage3.Controls.Add(this.label2);
         this.tabPage3.Location = new System.Drawing.Point(4, 30);
         this.tabPage3.Name = "tabPage3";
-        this.tabPage3.Size = new System.Drawing.Size(479, 227);
+        this.tabPage3.Size = new System.Drawing.Size(487, 194);
         this.tabPage3.TabIndex = 2;
         this.tabPage3.Text = "Upload";
         this.tabPage3.ToolTipText = "Set upload settings to remote server";
@@ -368,7 +386,7 @@ public class main : Form
         // 
         this.tabPage4.Location = new System.Drawing.Point(4, 30);
         this.tabPage4.Name = "tabPage4";
-        this.tabPage4.Size = new System.Drawing.Size(479, 227);
+        this.tabPage4.Size = new System.Drawing.Size(487, 194);
         this.tabPage4.TabIndex = 3;
         this.tabPage4.Text = "Settings";
         this.tabPage4.ToolTipText = "Set global application settings";
@@ -378,31 +396,11 @@ public class main : Form
         // 
         this.tabPage5.Location = new System.Drawing.Point(4, 30);
         this.tabPage5.Name = "tabPage5";
-        this.tabPage5.Size = new System.Drawing.Size(479, 227);
+        this.tabPage5.Size = new System.Drawing.Size(487, 194);
         this.tabPage5.TabIndex = 4;
         this.tabPage5.Text = "Log";
         this.tabPage5.ToolTipText = "Check log files";
         this.tabPage5.UseVisualStyleBackColor = true;
-        // 
-        // unhookButton
-        // 
-        this.unhookButton.Location = new System.Drawing.Point(307, 154);
-        this.unhookButton.Name = "unhookButton";
-        this.unhookButton.Size = new System.Drawing.Size(146, 33);
-        this.unhookButton.TabIndex = 1;
-        this.unhookButton.Text = "unhook prtscr";
-        this.unhookButton.UseVisualStyleBackColor = true;
-        this.unhookButton.Click += new System.EventHandler(this.unhookButton_Click);
-        // 
-        // toggleCamButton
-        // 
-        this.toggleCamButton.Location = new System.Drawing.Point(128, 73);
-        this.toggleCamButton.Name = "toggleCamButton";
-        this.toggleCamButton.Size = new System.Drawing.Size(214, 36);
-        this.toggleCamButton.TabIndex = 2;
-        this.toggleCamButton.Text = "Toggle Screen Camera";
-        this.toggleCamButton.UseVisualStyleBackColor = true;
-        this.toggleCamButton.Click += new System.EventHandler(this.toggleCamButton_Click);
         // 
         // main
         // 
@@ -410,7 +408,7 @@ public class main : Form
         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         this.AutoSize = true;
         this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-        this.ClientSize = new System.Drawing.Size(487, 261);
+        this.ClientSize = new System.Drawing.Size(483, 250);
         this.Controls.Add(this.tabControl1);
         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
         this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -507,95 +505,28 @@ public class main : Form
         KeyboardHookInstance.KeyIntercepted += new KeyboardHookCaptureHandler(KeyboardHookInstance_KeyIntercepted);
 
     }
+
+
     #endregion
 
     #region KeyboardShortCut Pressed
-    
+  
  
-    void KeyboardHookInstance_KeyIntercepted() 
+    /// <summary>
+    /// This function is an event handler for the KeyIntercepted.
+    /// It intercepts ALL keys from the keyboard input from the buffer.
+    /// </summary>
+    /// <param name="keyboardEvents">Contains the Key Enum, and the Key Code</param>
+    void KeyboardHookInstance_KeyIntercepted(KeyboardHookEventArgs keyboardEvents)
     {
-      
-        if (!isBusy)
+        if (keyboardEvents.PressedKey == Keys.PrintScreen)
         {
-            isBusy = true;
-            //check if its a valid file
-            if (!String.IsNullOrEmpty(mySettings.fileLocationSetting.ToString()) || System.IO.Directory.Exists(mySettings.fileLocationSetting.ToString()))
-            {
-                               
-
-                //declare variables only if valid file. 
-                ScreenCapture SC = new ScreenCapture();
-                string filename;
-
-
-                //code block to either get random filename
-                // OR to have someone input a custom name.
-                if (mySettings.randomFileNameSetting)
-                {
-                    // if user WANTS datetime filename then you 
-                    // use your function
-                    //othewise use the default.
-                    if (mySettings.fileasdatesetting)
-                    {
-                        filename = utilities.GetRandomFileName();
-                    }
-                    else
-                    {
-                        filename = System.IO.Path.GetRandomFileName();
-                    }
-                }
-                else
-                {
-                    InputBoxResult result = InputBox.Show("Enter Filename", "Filename Entry", String.Empty, new InputBoxValidatingHandler(inputBox_Validating));
-                    if (result.OK)
-                        filename = result.Text;
-                    else
-                        filename = System.IO.Path.GetRandomFileName();
-                }
-
-                //clean the input
-                filename = System.IO.Path.GetFileNameWithoutExtension(filename);
-
-                if (_cameraMode)
-                {
-                    //do camera mode code
-                }
-                else
-                {
-                    try
-                    {
-                        SC.CaptureScreenToFile(System.IO.Path.Combine(mySettings.fileLocationSetting.ToString(), filename) + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
-                        utilities.SetProgramMessage("Picture Saved", mainProgramMessage);
-                        this.Invoke(new ShowToastFormInvoker(ShowToastForm), filename);
-
-                    }
-                    catch (Exception ex)
-                    {
-                        if (mySettings.showErrorMessagesSetting)
-                            MessageBox.Show("Unable to save file", "Error", MessageBoxButtons.OK);
-
-                        isBusy = false;
-                        utilities.SetProgramMessage(ex.Message, mainProgramMessage);
-                    }
-                }
-
-
-            }
-            else
-            {
-                //filepath is not valid
-                if (mySettings.showErrorMessagesSetting)
-                    MessageBox.Show("File location not found", "Error", MessageBoxButtons.OK);
-
-                isBusy = false;
-                utilities.SetProgramMessage("File location not found", mainProgramMessage);
-
-            }
-
+            //print screen pressed, so take snapshot.
+            takeSnapShot();
         }
 
-
     }
+ 
     #endregion
 
     #region Private Functions
@@ -604,12 +535,11 @@ public class main : Form
     /// The inputbox is shown when the user chooses to specify a filename
     /// rather then randomly renaming it.
     /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
     private void inputBox_Validating(object sender, InputBoxValidatingArgs argE)
     {
         if (argE.Text.Trim().Length == 0)
         {
+            //if the text is not valid, cancel the event. 
             argE.Cancel = true;
             argE.Message = "Required";
         }
@@ -624,11 +554,106 @@ public class main : Form
     /// <param name="filename">Full path needed to send to toast form</param>
     private void ShowToastForm(string filename)
     {
+        //create a new random instance.
         Random rand = new Random();
+        //create a new toastform instance.
         toastform slice = new toastform(System.IO.Path.Combine(mySettings.fileLocationSetting.ToString(), filename) + ".jpg");
         slice.Show();
         isBusy = false;
-    } 
+    }
+
+    /// <summary>
+    /// This function takes a snapshop. 
+    /// If the camera is on, it only takes a specified window area.
+    /// </summary>
+    private void takeSnapShot()
+    {
+        if (!isBusy)
+        {
+            isBusy = true;
+            //check if its a valid file
+            if (!String.IsNullOrEmpty(mySettings.fileLocationSetting.ToString()) || System.IO.Directory.Exists(mySettings.fileLocationSetting.ToString()))
+            {
+
+
+                //declare variables only if valid file. 
+                ScreenCapture SC = new ScreenCapture();
+                string filename;
+
+
+                //Check if user wants random filename
+                if (mySettings.randomFileNameSetting)
+                {
+                    //check to see if they want randomized letters
+                    //or current date and time.
+                    if (mySettings.fileasdatesetting)
+                    {
+                        filename = utilities.GetRandomFileName();
+                    }
+                    else
+                    {
+                        filename = System.IO.Path.GetRandomFileName();
+                    }
+                }
+                else
+                {
+                    //user has chosen to specify their own filename.
+                    //Show the input box to get data.
+                    InputBoxResult result = InputBox.Show("Enter Filename", "Filename Entry", String.Empty, new InputBoxValidatingHandler(inputBox_Validating));
+                    if (result.OK)
+                        filename = result.Text;
+                    else
+                        //if the input box fails, randomize the filename.
+                        filename = System.IO.Path.GetRandomFileName();
+                }
+
+                //clean the input
+                filename = System.IO.Path.GetFileNameWithoutExtension(filename);
+
+                if (_cameraMode)
+                {
+                    //do camera mode code
+                }
+                else
+                {
+                    //Camera mode is turned off, so we do the whole screen.
+                    try
+                    {
+                        //Call the CaptureScreentoFile method of the SC instance.
+                        SC.CaptureScreenToFile(System.IO.Path.Combine(mySettings.fileLocationSetting.ToString(), filename) + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                        utilities.SetProgramMessage("Picture Saved", mainProgramMessage);
+                        //this invokes a new toast form to display options.
+                        this.Invoke(new ShowToastFormInvoker(ShowToastForm), filename);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        //we were unable to save file.                        
+                        if (mySettings.showErrorMessagesSetting)
+                            MessageBox.Show("Unable to save file", "Error", MessageBoxButtons.OK);
+
+                        isBusy = false;
+                        utilities.SetProgramMessage(ex.Message, mainProgramMessage);
+                    }
+                }
+
+                isBusy = false; //last of the code is executed. 
+            }
+            else
+            {
+                //filepath is not valid
+                if (mySettings.showErrorMessagesSetting)
+                    MessageBox.Show("File location not found", "Error", MessageBoxButtons.OK);
+
+                isBusy = false;
+                utilities.SetProgramMessage("File location not found", mainProgramMessage);
+
+            }
+
+        }
+    }
+
+
     #endregion
 
     #region Settings Related Functions
@@ -693,66 +718,62 @@ public class main : Form
 
     #region Form Events
     
+    /// <summary>
+    /// This function is an event handler for when the form 
+    /// loads. It is run after the constructor.   
+    /// </summary>
     private void main_Load(object sender, EventArgs e)
-    {
-        //This function runs when the form is loaded
-        //THIS IS AFTER THE CONSTRUCTOR.
+    {    
+        //When the form loads, load up all settings.
         LoadSettings();
     }
 
+    /// <summary>
+    /// This function is an event handler which unhooks the 
+    /// Keyboard Intercepting. Clicking this will not cause the
+    /// event to fire in the future.
+    /// </summary>
     private void unhookButton_Click(object sender, EventArgs e)
     {
-        // This function runs when the unhook button (on tabpage 1) is
-        // pressed. It unhooks the printscreen button from the program
-
+       
+        //run the UnHookKey method. If it returns true,
+        //display message to user.
         if (KeyboardHookInstance.UnHookKey())
         {
             if (mySettings.showErrorMessagesSetting)
                 MessageBox.Show("prtscr unhooked from program");
         }
     }
-
+    /// <summary>
+    /// This function is an event handler for when the toggle camera 
+    /// button is clicked.
+    /// </summary>
     private void toggleCamButton_Click(object sender, EventArgs e)
     {
         _cameraMode = !_cameraMode;
     }
 
-    #endregion
-
+    /// <summary>
+    /// This function is an event handler for the Radiobutton1_Checkchanged
+    /// If its changed, and if its true, then show the
+    /// options for random file renaming.
+    /// </summary>
     private void radioButton1_CheckedChanged(object sender, EventArgs e)
     {
         if (radioButton1.Checked)
         {
             randomnameoptions.Visible = true;
         }
-        else 
-        { 
-            randomnameoptions.Visible = false; 
-        }
-
-    }
-
-    private void filenameasdateoption_CheckedChanged(object sender, EventArgs e)
-    {
-        if (filenameasdateoption.Checked)
+        else
         {
-            mySettings.fileasdatesetting = true;
-        }
-        mySettings.Save();
-    }
-
-    private void filenameasrandomoption_CheckedChanged(object sender, EventArgs e)
-    {
-        if (filenameasrandomoption.Checked)
-        {
-            mySettings.fileasdatesetting = false;
+            randomnameoptions.Visible = false;
         }
 
-        mySettings.Save();
     }
+    #endregion
 
 
-   
+     
 
 
 
