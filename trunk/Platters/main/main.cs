@@ -451,7 +451,7 @@ public class main : Form
     private System.Windows.Forms.Label label1;
     private System.Windows.Forms.RadioButton radioButton2;
     private System.Windows.Forms.RadioButton radioButton1;
-    public System.Windows.Forms.TextBox mainProgramMessage;
+    public  System.Windows.Forms.TextBox mainProgramMessage;
     private System.Windows.Forms.TextBox ftpHostTxtBox;
     private System.Windows.Forms.Label label6;
     private System.Windows.Forms.Label label5;
@@ -523,7 +523,7 @@ public class main : Form
             takeSnapShot();
         }
 
-        if (keyboardEvents.PressedKey == Keys.F2)
+        if (keyboardEvents.PressedKey == Keys.F11)
         {
             this.Visible = !this.Visible;
         }
@@ -786,19 +786,5 @@ public class main : Form
     }
 
 
-    #endregion
-
-     
-
-
-
- 
-  
-
-    //private void button1_Click(object sender, EventArgs e)
-    //{
-
-
-    //}
-
+    #endregion 
 }
