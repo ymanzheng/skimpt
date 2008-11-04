@@ -31,10 +31,10 @@
         this.fileNameLabel = new System.Windows.Forms.Label();
         this.label1 = new System.Windows.Forms.Label();
         this.groupBox1 = new System.Windows.Forms.GroupBox();
+        this.uploadtoFtpBtn = new System.Windows.Forms.Button();
         this.uploadBtn = new System.Windows.Forms.Button();
         this.hostingChoicesComboBox = new System.Windows.Forms.ComboBox();
         this.hostingPictureList = new System.Windows.Forms.ImageList(this.components);
-        this.uploadtoFtpBtn = new System.Windows.Forms.Button();
         this.groupBox2 = new System.Windows.Forms.GroupBox();
         this.applyEffectsButton = new System.Windows.Forms.Button();
         this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -79,6 +79,16 @@
         this.groupBox1.TabStop = false;
         this.groupBox1.Text = "Upload ";
         // 
+        // uploadtoFtpBtn
+        // 
+        this.uploadtoFtpBtn.Location = new System.Drawing.Point(217, 23);
+        this.uploadtoFtpBtn.Name = "uploadtoFtpBtn";
+        this.uploadtoFtpBtn.Size = new System.Drawing.Size(66, 26);
+        this.uploadtoFtpBtn.TabIndex = 2;
+        this.uploadtoFtpBtn.Text = "ftp";
+        this.uploadtoFtpBtn.UseVisualStyleBackColor = true;
+        this.uploadtoFtpBtn.Click += new System.EventHandler(this.uploadtoFtpBtn_Click);
+        // 
         // uploadBtn
         // 
         this.uploadBtn.Location = new System.Drawing.Point(145, 24);
@@ -108,16 +118,6 @@
         this.hostingPictureList.ImageSize = new System.Drawing.Size(16, 16);
         this.hostingPictureList.TransparentColor = System.Drawing.Color.Transparent;
         // 
-        // uploadtoFtpBtn
-        // 
-        this.uploadtoFtpBtn.Location = new System.Drawing.Point(217, 23);
-        this.uploadtoFtpBtn.Name = "uploadtoFtpBtn";
-        this.uploadtoFtpBtn.Size = new System.Drawing.Size(66, 26);
-        this.uploadtoFtpBtn.TabIndex = 2;
-        this.uploadtoFtpBtn.Text = "ftp";
-        this.uploadtoFtpBtn.UseVisualStyleBackColor = true;
-        this.uploadtoFtpBtn.Click += new System.EventHandler(this.uploadtoFtpBtn_Click);
-        // 
         // groupBox2
         // 
         this.groupBox2.Controls.Add(this.applyEffectsButton);
@@ -137,6 +137,7 @@
         this.applyEffectsButton.TabIndex = 1;
         this.applyEffectsButton.Text = "apply";
         this.applyEffectsButton.UseVisualStyleBackColor = true;
+        this.applyEffectsButton.Click += new System.EventHandler(this.applyEffectsButton_Click_1);
         // 
         // comboBox1
         // 
