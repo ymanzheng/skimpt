@@ -37,7 +37,7 @@
         this.hostingPictureList = new System.Windows.Forms.ImageList(this.components);
         this.groupBox2 = new System.Windows.Forms.GroupBox();
         this.applyEffectsButton = new System.Windows.Forms.Button();
-        this.comboBox1 = new System.Windows.Forms.ComboBox();
+        this.effectsComboBox = new System.Windows.Forms.ComboBox();
         this.groupBox1.SuspendLayout();
         this.groupBox2.SuspendLayout();
         this.SuspendLayout();
@@ -121,7 +121,7 @@
         // groupBox2
         // 
         this.groupBox2.Controls.Add(this.applyEffectsButton);
-        this.groupBox2.Controls.Add(this.comboBox1);
+        this.groupBox2.Controls.Add(this.effectsComboBox);
         this.groupBox2.Location = new System.Drawing.Point(3, 91);
         this.groupBox2.Name = "groupBox2";
         this.groupBox2.Size = new System.Drawing.Size(302, 57);
@@ -139,18 +139,18 @@
         this.applyEffectsButton.UseVisualStyleBackColor = true;
         this.applyEffectsButton.Click += new System.EventHandler(this.applyEffectsButton_Click_1);
         // 
-        // comboBox1
+        // effectsComboBox
         // 
-        this.comboBox1.FormattingEnabled = true;
-        this.comboBox1.Items.AddRange(new object[] {
+        this.effectsComboBox.FormattingEnabled = true;
+        this.effectsComboBox.Items.AddRange(new object[] {
             "grayscale",
             "invert",
             "flip",
             "watermark"});
-        this.comboBox1.Location = new System.Drawing.Point(18, 23);
-        this.comboBox1.Name = "comboBox1";
-        this.comboBox1.Size = new System.Drawing.Size(121, 26);
-        this.comboBox1.TabIndex = 0;
+        this.effectsComboBox.Location = new System.Drawing.Point(18, 23);
+        this.effectsComboBox.Name = "effectsComboBox";
+        this.effectsComboBox.Size = new System.Drawing.Size(121, 26);
+        this.effectsComboBox.TabIndex = 0;
         // 
         // toastform
         // 
@@ -195,6 +195,6 @@
     private System.Windows.Forms.Button uploadtoFtpBtn;
     private System.Windows.Forms.GroupBox groupBox2;
     private System.Windows.Forms.Button applyEffectsButton;
-    private System.Windows.Forms.ComboBox comboBox1;
+    private System.Windows.Forms.ComboBox effectsComboBox;
 }
 
