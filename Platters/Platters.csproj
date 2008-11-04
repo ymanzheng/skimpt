@@ -127,7 +127,9 @@
     <Content Include="Resources\imageshack.gif" />
     <Content Include="Resources\imgpurse - Copy.jpg" />
     <Content Include="Resources\kalleLoad.gif" />
-    <Content Include="Resources\Skimpt.ico" />
+    <Content Include="Resources\Skimpt.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\tinypic.gif" />
   </ItemGroup>
   <ItemGroup>
