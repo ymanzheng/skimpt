@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platters", "Platters\Platters.csproj", "{01EB0992-27F5-40A9-ADF4-28E81C926F83}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Skimpt Setup", "Skimpt Setup\Skimpt Setup.vdproj", "{158567F6-DA05-478B-8EEC-4CC13A0F89C1}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -17,6 +19,8 @@ Global
 		{01EB0992-27F5-40A9-ADF4-28E81C926F83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01EB0992-27F5-40A9-ADF4-28E81C926F83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01EB0992-27F5-40A9-ADF4-28E81C926F83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{158567F6-DA05-478B-8EEC-4CC13A0F89C1}.Debug|Any CPU.ActiveCfg = Debug
+		{158567F6-DA05-478B-8EEC-4CC13A0F89C1}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
