@@ -167,8 +167,8 @@ public partial class toastform : Form
                 form.setField("progress", "1");
                 form.setField("markurl", "http://www.clantemplates.com/v5/html/images/gametracker.gif");
                 form.setField("MAX_UPLOAD_SIZE", "16777216");
-                form.sendFile(_FileNameToHandle);          
-                MessageBox.Show (form.ResponseText.ToString());
+                form.sendFile(_FileNameToHandle);
+                Clipboard.SetText(utilities.parsePOSTData("kalleload", form.ResponseText.ToString()), TextDataFormat.Text);
                 break;
                 
             case "imgpurse.com":
@@ -177,7 +177,7 @@ public partial class toastform : Form
                 form.InputBoxName = "file";
                 form.setField("upload", "1");
                 form.sendFile(_FileNameToHandle);
-                MessageBox.Show (form.ResponseText.ToString());
+                Clipboard.SetText(utilities.parsePOSTData("imgpurse", form.ResponseText.ToString()), TextDataFormat.Text);
                 break;
             case "tinypic.com":
                 form = new MultipartForm("http://s4.tinypic.com/upload.php");                
@@ -187,7 +187,8 @@ public partial class toastform : Form
                 form.setField("upk", "e8bd19dfda564c710e602341ed9ffdec");
                 form.setField("action", "upload");
                 form.sendFile(_FileNameToHandle);
-                MessageBox.Show (form.ResponseText.ToString());
+                Console.WriteLine (form.ResponseText.ToString());
+                Clipboard.SetText(utilities.parsePOSTData("tinypic", form.ResponseText.ToString()), TextDataFormat.Text);
                 break;
             case "imageshack.us":
                 form = new MultipartForm("http://imageshack.us");
@@ -195,7 +196,7 @@ public partial class toastform : Form
                 form.InputBoxName = "fileupload";
                 form.setField("swfbutan", "1");
                 form.sendFile(_FileNameToHandle);
-                MessageBox.Show (form.ResponseText.ToString());
+                Clipboard.SetText(utilities.parsePOSTData("imageshack", form.ResponseText.ToString()), TextDataFormat.Text);
                 break;
             default:
                 break;
@@ -224,7 +225,6 @@ public partial class toastform : Form
         catch (Exception ex)
         {
             MessageBox.Show(ex.Message);
-
         }
     }
 
