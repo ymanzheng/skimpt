@@ -67,9 +67,9 @@ namespace Platters.Properties {
             }
         }
         
-        internal static System.Drawing.Icon Habrok {
+        internal static System.Drawing.Icon Skimpt {
             get {
-                object obj = ResourceManager.GetObject("Habrok", resourceCulture);
+                object obj = ResourceManager.GetObject("Skimpt", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
