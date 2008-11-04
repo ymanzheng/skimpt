@@ -52,7 +52,7 @@ public partial class toastform : Form
     {
         this._FileNameToHandle = filename;
         //Set the time for which the form should be displayed. 
-        this.lifeTimer.Interval = 5000;
+        this.lifeTimer.Interval = 10000;
         //Display the form by sliding up. 
         this.m_Animator = new FormAnimator(this, FormAnimator.AnimationMethod.Slide, FormAnimator.AnimationDirection.Up, 400);
         
@@ -87,9 +87,10 @@ public partial class toastform : Form
         if (!string.IsNullOrEmpty(_FileNameToHandle))
             fileNameLabel.Text = _FileNameToHandle;
 
+        //set the initial values for both comobo boxes
         hostingChoicesComboBox.SelectedIndex = 0;
-
-
+        effectsComboBox.SelectedIndex = 0;
+        
         //Start counting down the form's liftime. 
         this.lifeTimer.Start();
  
@@ -207,6 +208,7 @@ public partial class toastform : Form
 
     private void uploadtoFtpBtn_Click(object sender, EventArgs e)
     {
+        this.lifeTimer.Enabled = false;
         try
         {
             if (mySettings.ftpOKsettings)
@@ -226,19 +228,64 @@ public partial class toastform : Form
         {
             MessageBox.Show(ex.Message);
         }
+        this.lifeTimer.Enabled = true;
     }
 
 
     private void applyEffectsButton_Click_1(object sender, EventArgs e)
     {
-
-        Bitmap p = (Bitmap)Bitmap.FromFile(_FileNameToHandle);
-        if (BitmapFilter.GrayScale(p))
+        this.lifeTimer.Enabled = false;
+        try
         {
-           
-            p.Save("c:\\users\\affan\\desktop\\s.jpg");
-        }
+            Bitmap p = (Bitmap)Bitmap.FromFile(_FileNameToHandle);
+            Bitmap bpicture = new Bitmap(p);
+            
+            p.Dispose();
+            System.IO.File.Delete(_FileNameToHandle);
 
+            switch (effectsComboBox.SelectedItem.ToString().ToLower())
+            {
+                case "grayscale":
+                    if (BitmapFilter.GrayScale(bpicture))
+                    {
+                        bpicture.Save(_FileNameToHandle);
+                        MessageBox.Show("image grayscaled");
+                    }
+                    else
+                    {
+                        MessageBox.Show("unable to grayscale");                        
+                    }
+                    break;
+                case "invert":
+                    if (BitmapFilter.Invert(bpicture))
+                    {
+                        bpicture.Save(_FileNameToHandle);
+                        MessageBox.Show("image inverted");
+                    }
+                    else
+                    {
+                        MessageBox.Show("unable to invert");                        
+                    }
+                    break;
+                case "watermark":
+                    MessageBox.Show("not supported");
+                    break;
+                case "flip":
+                    MessageBox.Show("not supported");
+                    break;
+                default:
+                    break;
+            }
+
+            bpicture.Dispose();
+            bpicture = null;
+            p = null;          
+        }
+        catch (Exception)
+        {
+            MessageBox.Show("unable to apply effect");
+        }
+        this.lifeTimer.Enabled = true; 
     }
 
 
