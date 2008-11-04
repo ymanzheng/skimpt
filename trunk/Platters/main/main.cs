@@ -710,9 +710,24 @@ public class main : Form
 
     private void ftptestConnectionbutton_Click(object sender, EventArgs e)
     {
-        //test connection here
-        //code to be implemented
-        mySettings.ftpOKsettings = true;
+        //simulate save button so settings are stored in xml file
+        ftpSettingsBtn.PerformClick();
+        try
+        {
+            FTP f = new FTP(mySettings.ftphostSetting.ToString(), ".", mySettings.ftpusernameSetting, mySettings.ftppasswordSetting, mySettings.ftpportSetting);
+            f.ChangeDirectory(mySettings.ftpdirectorySetting);
+            mySettings.ftpOKsettings = true;
+            mySettings.Save();
+            MessageBox.Show("Test Successfull");
+        }
+        catch (Exception ex)
+        {
+            mySettings.ftpOKsettings = false;
+            mySettings.Save();
+            MessageBox.Show(ex.Message + Environment.NewLine + "Test Failed");
+        }
+
+        
     }
 
 

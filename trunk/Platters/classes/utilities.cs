@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace Util
 {
@@ -98,7 +99,53 @@ namespace Util
             return name;
         }
 
+        public static string parsePOSTData(string host, string data)
+        {
+            string d = string.Empty;
+            switch (host)
+            {
+                case "kalleload":
+                    d = data.Substring(data.IndexOf("box_upload_success_"));
+                    d = d.Substring(0, d.IndexOf(">"));
+                    d = d.Substring(0, d.Length - 1);
+                    d = d.Substring(19, d.Length - 19);                        
+                    d = d.Trim();
+                    Console.WriteLine(d);
+                    break;
+                case "imgpurse":
+                    d = data.Substring(data.IndexOf("<input type='text'"));
+                    d = d.Substring(0, d.IndexOf("/>"));
+                    d = d.Substring(34, d.Length - 36);
+                    d = d.Trim();
+                    Console.WriteLine(d);
+                    break;
+                case "imageshack":
+                    d = data.Substring(data.IndexOf("track('direct')"));
+                    d = d.Substring(0, d.IndexOf("/>"));
+                    d = d.Substring(71, d.Length - 72);
+                    d = d.Trim();
+                    Console.WriteLine(d);                   
+                    break;
+                case "tinypic":
+                    d = data.Substring(data.IndexOf("<strong>"));
+                    d = d.Substring(0, d.IndexOf("target"));
+                    d = d.Substring(17, d.Length - 18);
+                    d = d.Trim();
+                    Console.WriteLine (d);
+                    break;
+                default:
+                    break;
+            }
+            
+            if (!string.IsNullOrEmpty(d))
+                return d;
+            else
+                return string.Empty;
+        }
+
     }
+
+    
 
 
 
