@@ -155,13 +155,19 @@ public partial class toastform : Form
     {
         this.lifeTimer.Enabled = false;
         //declare the form.
-        MultipartForm form;       
+        MultipartForm form;
 
+        //define the inputbox as readonly, output only.
+        InputBox i = new InputBox("Your URL", "Your URL is also copied to the clipboard automatically", false, true);
+        uploadBtn.Enabled = false;
+        uploadtoFtpBtn.Enabled = false;
+        applyEffectsButton.Enabled = false;
+        string returnValue; 
         //see what option they chose.
         switch (hostingChoicesComboBox.SelectedItem.ToString().ToLower())
         {
             case "kalleload.com":
-               // textBox2.Clear();
+                uploadBtn.Enabled = false;
                 form = new MultipartForm("http://kalleload.net");
                 form.FileContentType = "image/jpeg";
                 form.InputBoxName = "selector";
@@ -169,7 +175,10 @@ public partial class toastform : Form
                 form.setField("markurl", "http://www.clantemplates.com/v5/html/images/gametracker.gif");
                 form.setField("MAX_UPLOAD_SIZE", "16777216");
                 form.sendFile(_FileNameToHandle);
-                Clipboard.SetText(utilities.parsePOSTData("kalleload", form.ResponseText.ToString()), TextDataFormat.Text);
+                returnValue = utilities.parsePOSTData("kalleload", form.ResponseText.ToString());
+                Clipboard.SetText(returnValue, TextDataFormat.Text);
+                i.SetTextbox(returnValue);                
+                i.Show();
                 break;
                 
             case "imgpurse.com":
@@ -178,7 +187,10 @@ public partial class toastform : Form
                 form.InputBoxName = "file";
                 form.setField("upload", "1");
                 form.sendFile(_FileNameToHandle);
-                Clipboard.SetText(utilities.parsePOSTData("imgpurse", form.ResponseText.ToString()), TextDataFormat.Text);
+                returnValue = utilities.parsePOSTData ("imgpurse", form.ResponseText.ToString());
+                Clipboard.SetText(returnValue, TextDataFormat.Text);
+                i.SetTextbox(returnValue);
+                i.Show();
                 break;
             case "tinypic.com":
                 form = new MultipartForm("http://s4.tinypic.com/upload.php");                
@@ -188,8 +200,10 @@ public partial class toastform : Form
                 form.setField("upk", "e8bd19dfda564c710e602341ed9ffdec");
                 form.setField("action", "upload");
                 form.sendFile(_FileNameToHandle);
-                Console.WriteLine (form.ResponseText.ToString());
-                Clipboard.SetText(utilities.parsePOSTData("tinypic", form.ResponseText.ToString()), TextDataFormat.Text);
+                returnValue = utilities.parsePOSTData("tinypic", form.ResponseText.ToString());
+                Clipboard.SetText(returnValue, TextDataFormat.Text);
+                i.SetTextbox(returnValue);
+                i.Show();
                 break;
             case "imageshack.us":
                 form = new MultipartForm("http://imageshack.us");
@@ -197,17 +211,26 @@ public partial class toastform : Form
                 form.InputBoxName = "fileupload";
                 form.setField("swfbutan", "1");
                 form.sendFile(_FileNameToHandle);
-                Clipboard.SetText(utilities.parsePOSTData("imageshack", form.ResponseText.ToString()), TextDataFormat.Text);
+                returnValue = utilities.parsePOSTData("imageshack", form.ResponseText.ToString());
+                Clipboard.SetText(returnValue, TextDataFormat.Text);
+                i.SetTextbox(returnValue);
+                i.Show();
                 break;
             default:
                 break;
         }
         this.lifeTimer.Enabled = true;
+        this.applyEffectsButton.Enabled = true;
+        this.uploadBtn.Enabled = true;
+        this.uploadtoFtpBtn.Enabled = true;
 
     }
 
     private void uploadtoFtpBtn_Click(object sender, EventArgs e)
     {
+        uploadBtn.Enabled = false;
+        uploadtoFtpBtn.Enabled = false;
+        applyEffectsButton.Enabled = false;
         this.lifeTimer.Enabled = false;
         try
         {
@@ -228,12 +251,19 @@ public partial class toastform : Form
         {
             MessageBox.Show(ex.Message);
         }
+       
+        this.applyEffectsButton.Enabled = true;
+        this.uploadBtn.Enabled = true;
+        this.uploadtoFtpBtn.Enabled = true;
         this.lifeTimer.Enabled = true;
     }
 
 
     private void applyEffectsButton_Click_1(object sender, EventArgs e)
     {
+        uploadBtn.Enabled = false;
+        uploadtoFtpBtn.Enabled = false;
+        applyEffectsButton.Enabled = false;
         this.lifeTimer.Enabled = false;
         try
         {
@@ -285,6 +315,9 @@ public partial class toastform : Form
         {
             MessageBox.Show("unable to apply effect");
         }
+        this.applyEffectsButton.Enabled = true;
+        this.uploadBtn.Enabled = true;
+        this.uploadtoFtpBtn.Enabled = true;
         this.lifeTimer.Enabled = true; 
     }
 

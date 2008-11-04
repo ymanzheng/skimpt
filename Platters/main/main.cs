@@ -153,7 +153,7 @@ public class main : Form
         this.tabPage2.Location = new System.Drawing.Point(4, 30);
         this.tabPage2.Name = "tabPage2";
         this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-        this.tabPage2.Size = new System.Drawing.Size(487, 194);
+        this.tabPage2.Size = new System.Drawing.Size(475, 216);
         this.tabPage2.TabIndex = 1;
         this.tabPage2.Text = "File";
         this.tabPage2.ToolTipText = "change file settings including save path";
@@ -164,7 +164,7 @@ public class main : Form
         this.randomnameoptions.Controls.Add(this.filenameasdateoption);
         this.randomnameoptions.Location = new System.Drawing.Point(244, 6);
         this.randomnameoptions.Name = "randomnameoptions";
-        this.randomnameoptions.Size = new System.Drawing.Size(227, 81);
+        this.randomnameoptions.Size = new System.Drawing.Size(227, 78);
         this.randomnameoptions.TabIndex = 5;
         this.randomnameoptions.TabStop = false;
         this.randomnameoptions.Text = "Random Filenames as";
@@ -199,7 +199,7 @@ public class main : Form
         this.saveFileSettingBtn.ForeColor = System.Drawing.Color.DarkGreen;
         this.saveFileSettingBtn.Location = new System.Drawing.Point(133, 177);
         this.saveFileSettingBtn.Name = "saveFileSettingBtn";
-        this.saveFileSettingBtn.Size = new System.Drawing.Size(221, 42);
+        this.saveFileSettingBtn.Size = new System.Drawing.Size(221, 31);
         this.saveFileSettingBtn.TabIndex = 4;
         this.saveFileSettingBtn.Text = "Save File Settings";
         this.saveFileSettingBtn.UseVisualStyleBackColor = false;
@@ -209,9 +209,9 @@ public class main : Form
         // 
         this.groupBox1.Controls.Add(this.fileLocationTextBox);
         this.groupBox1.Controls.Add(this.label1);
-        this.groupBox1.Location = new System.Drawing.Point(10, 77);
+        this.groupBox1.Location = new System.Drawing.Point(10, 75);
         this.groupBox1.Name = "groupBox1";
-        this.groupBox1.Size = new System.Drawing.Size(463, 90);
+        this.groupBox1.Size = new System.Drawing.Size(463, 92);
         this.groupBox1.TabIndex = 3;
         this.groupBox1.TabStop = false;
         this.groupBox1.Text = "File Location";
@@ -274,7 +274,7 @@ public class main : Form
         this.tabPage3.Controls.Add(this.label2);
         this.tabPage3.Location = new System.Drawing.Point(4, 30);
         this.tabPage3.Name = "tabPage3";
-        this.tabPage3.Size = new System.Drawing.Size(487, 194);
+        this.tabPage3.Size = new System.Drawing.Size(475, 216);
         this.tabPage3.TabIndex = 2;
         this.tabPage3.Text = "Upload";
         this.tabPage3.ToolTipText = "Set upload settings to remote server";
@@ -386,7 +386,7 @@ public class main : Form
         // 
         this.tabPage4.Location = new System.Drawing.Point(4, 30);
         this.tabPage4.Name = "tabPage4";
-        this.tabPage4.Size = new System.Drawing.Size(487, 194);
+        this.tabPage4.Size = new System.Drawing.Size(475, 216);
         this.tabPage4.TabIndex = 3;
         this.tabPage4.Text = "Settings";
         this.tabPage4.ToolTipText = "Set global application settings";
@@ -396,7 +396,7 @@ public class main : Form
         // 
         this.tabPage5.Location = new System.Drawing.Point(4, 30);
         this.tabPage5.Name = "tabPage5";
-        this.tabPage5.Size = new System.Drawing.Size(487, 194);
+        this.tabPage5.Size = new System.Drawing.Size(475, 216);
         this.tabPage5.TabIndex = 4;
         this.tabPage5.Text = "Log";
         this.tabPage5.ToolTipText = "Check log files";

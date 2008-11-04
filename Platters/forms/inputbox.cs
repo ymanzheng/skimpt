@@ -42,7 +42,7 @@ namespace Util
         /// </summary>
         private InputBoxValidatingHandler _validator;
 
-        private InputBox()
+        public InputBox(string title, string label, bool buttons, bool readonlyText)
         {
             //
             // Required for Windows Form Designer support
@@ -52,6 +52,25 @@ namespace Util
             //
             // TODO: Add any constructor code after InitializeComponent call
             //
+
+            this.Text = title;
+            this.labelPrompt.Text = label;
+            if (buttons)
+            {
+                buttonOK.Enabled = true;
+                buttonCancel.Enabled = true;
+                buttonOK.Visible = true;
+                buttonCancel.Visible = true;
+            }
+            else
+            {
+                buttonOK.Enabled = false;
+                buttonCancel.Enabled = false;
+                buttonOK.Visible = false;
+                buttonCancel.Visible = false;            
+            }
+
+            textBoxText.ReadOnly = readonlyText;
         }
 
         /// <summary>
@@ -165,6 +184,11 @@ namespace Util
             this.Close();
         }
 
+        public void SetTextbox(string value)
+        {
+            this.textBoxText.Text = value;
+        }
+
         /// <summary>
         /// Displays a prompt in a dialog box, waits for the user to input text or click a button.
         /// </summary>
@@ -177,7 +201,7 @@ namespace Util
         /// <returns>An InputBoxResult object with the Text and the OK property set to true when OK was clicked.</returns>
         public static InputBoxResult Show(string prompt, string title, string defaultResponse, InputBoxValidatingHandler validator, int xpos, int ypos)
         {
-            using (InputBox form = new InputBox())
+            using (InputBox form = new InputBox("Enter Filename", "Please enter your filename:", true, false))
             {
                 form.labelPrompt.Text = prompt;
                 form.Text = title;
