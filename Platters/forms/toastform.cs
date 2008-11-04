@@ -229,6 +229,19 @@ public partial class toastform : Form
     }
 
 
+    private void applyEffectsButton_Click_1(object sender, EventArgs e)
+    {
+
+        Bitmap p = (Bitmap)Bitmap.FromFile(_FileNameToHandle);
+        if (BitmapFilter.GrayScale(p))
+        {
+           
+            p.Save("c:\\users\\affan\\desktop\\s.jpg");
+        }
+
+    }
+
+
 
 
 
