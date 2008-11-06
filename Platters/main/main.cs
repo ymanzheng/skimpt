@@ -1,20 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using System.Configuration;
 using ScreenShot;
 using Util;
+using Microsoft.Win32;
+
+
 
 public class main : Form
 {
 
 
     public Rectangle CameraCoords;
+    private CheckBox AllowPluginsCheckbox;
+    private CheckBox HideUponLaunchCheckbox;
+    private CheckBox startOnWindowsLoadCheckBox;
+    private Button saveGlobalSettingsBtn;
+    private CheckBox KillCheckbox;
+    private CheckBox ShowMessagesCheckbox;
 
     #region GUI CODE - DO NOT CHANGE
     /// <summary>
@@ -74,12 +77,19 @@ public class main : Form
         this.label2 = new System.Windows.Forms.Label();
         this.tabPage4 = new System.Windows.Forms.TabPage();
         this.tabPage5 = new System.Windows.Forms.TabPage();
+        this.startOnWindowsLoadCheckBox = new System.Windows.Forms.CheckBox();
+        this.HideUponLaunchCheckbox = new System.Windows.Forms.CheckBox();
+        this.AllowPluginsCheckbox = new System.Windows.Forms.CheckBox();
+        this.ShowMessagesCheckbox = new System.Windows.Forms.CheckBox();
+        this.KillCheckbox = new System.Windows.Forms.CheckBox();
+        this.saveGlobalSettingsBtn = new System.Windows.Forms.Button();
         this.tabControl1.SuspendLayout();
         this.tabPage1.SuspendLayout();
         this.tabPage2.SuspendLayout();
         this.randomnameoptions.SuspendLayout();
         this.groupBox1.SuspendLayout();
         this.tabPage3.SuspendLayout();
+        this.tabPage4.SuspendLayout();
         this.SuspendLayout();
         // 
         // tabControl1
@@ -388,13 +398,19 @@ public class main : Form
         // 
         // tabPage4
         // 
+        this.tabPage4.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+        this.tabPage4.Controls.Add(this.saveGlobalSettingsBtn);
+        this.tabPage4.Controls.Add(this.KillCheckbox);
+        this.tabPage4.Controls.Add(this.ShowMessagesCheckbox);
+        this.tabPage4.Controls.Add(this.AllowPluginsCheckbox);
+        this.tabPage4.Controls.Add(this.HideUponLaunchCheckbox);
+        this.tabPage4.Controls.Add(this.startOnWindowsLoadCheckBox);
         this.tabPage4.Location = new System.Drawing.Point(4, 30);
         this.tabPage4.Name = "tabPage4";
         this.tabPage4.Size = new System.Drawing.Size(475, 216);
         this.tabPage4.TabIndex = 3;
         this.tabPage4.Text = "Settings";
         this.tabPage4.ToolTipText = "Set global application settings";
-        this.tabPage4.UseVisualStyleBackColor = true;
         // 
         // tabPage5
         // 
@@ -405,6 +421,69 @@ public class main : Form
         this.tabPage5.Text = "Log";
         this.tabPage5.ToolTipText = "Check log files";
         this.tabPage5.UseVisualStyleBackColor = true;
+        // 
+        // startOnWindowsLoadCheckBox
+        // 
+        this.startOnWindowsLoadCheckBox.AutoSize = true;
+        this.startOnWindowsLoadCheckBox.Location = new System.Drawing.Point(23, 30);
+        this.startOnWindowsLoadCheckBox.Name = "startOnWindowsLoadCheckBox";
+        this.startOnWindowsLoadCheckBox.Size = new System.Drawing.Size(307, 23);
+        this.startOnWindowsLoadCheckBox.TabIndex = 0;
+        this.startOnWindowsLoadCheckBox.Text = "Start this program when Windows boots up";
+        this.startOnWindowsLoadCheckBox.UseVisualStyleBackColor = true;
+         // 
+        // HideUponLaunchCheckbox
+        // 
+        this.HideUponLaunchCheckbox.AutoSize = true;
+        this.HideUponLaunchCheckbox.Location = new System.Drawing.Point(23, 59);
+        this.HideUponLaunchCheckbox.Name = "HideUponLaunchCheckbox";
+        this.HideUponLaunchCheckbox.Size = new System.Drawing.Size(284, 23);
+        this.HideUponLaunchCheckbox.TabIndex = 1;
+        this.HideUponLaunchCheckbox.Text = "Hide instantly upon launch of program. ";
+        this.HideUponLaunchCheckbox.UseVisualStyleBackColor = true;
+        // 
+        // AllowPluginsCheckbox
+        // 
+        this.AllowPluginsCheckbox.AutoSize = true;
+        this.AllowPluginsCheckbox.Location = new System.Drawing.Point(23, 88);
+        this.AllowPluginsCheckbox.Name = "AllowPluginsCheckbox";
+        this.AllowPluginsCheckbox.Size = new System.Drawing.Size(380, 23);
+        this.AllowPluginsCheckbox.TabIndex = 2;
+        this.AllowPluginsCheckbox.Text = "Allow plugins to gather information about your system";
+        this.AllowPluginsCheckbox.UseVisualStyleBackColor = true;
+        // 
+        // ShowMessagesCheckbox
+        // 
+        this.ShowMessagesCheckbox.AutoSize = true;
+        this.ShowMessagesCheckbox.Location = new System.Drawing.Point(23, 117);
+        this.ShowMessagesCheckbox.Name = "ShowMessagesCheckbox";
+        this.ShowMessagesCheckbox.Size = new System.Drawing.Size(294, 23);
+        this.ShowMessagesCheckbox.TabIndex = 3;
+        this.ShowMessagesCheckbox.Text = "Show program essages in a message box";
+        this.ShowMessagesCheckbox.UseVisualStyleBackColor = true;
+        // 
+        // KillCheckbox
+        // 
+        this.KillCheckbox.AutoSize = true;
+        this.KillCheckbox.Location = new System.Drawing.Point(23, 146);
+        this.KillCheckbox.Name = "KillCheckbox";
+        this.KillCheckbox.Size = new System.Drawing.Size(48, 23);
+        this.KillCheckbox.TabIndex = 4;
+        this.KillCheckbox.Text = "Kill";
+        this.KillCheckbox.UseVisualStyleBackColor = true;
+        // 
+        // saveGlobalSettingsBtn
+        // 
+        this.saveGlobalSettingsBtn.BackColor = System.Drawing.SystemColors.ControlLight;
+        this.saveGlobalSettingsBtn.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        this.saveGlobalSettingsBtn.ForeColor = System.Drawing.Color.DarkGreen;
+        this.saveGlobalSettingsBtn.Location = new System.Drawing.Point(125, 177);
+        this.saveGlobalSettingsBtn.Name = "saveGlobalSettingsBtn";
+        this.saveGlobalSettingsBtn.Size = new System.Drawing.Size(221, 31);
+        this.saveGlobalSettingsBtn.TabIndex = 5;
+        this.saveGlobalSettingsBtn.Text = "Save File Settings";
+        this.saveGlobalSettingsBtn.UseVisualStyleBackColor = false;
+        this.saveGlobalSettingsBtn.Click += new System.EventHandler(this.saveGlobalSettingsBtn_Click);
         // 
         // main
         // 
@@ -437,6 +516,8 @@ public class main : Form
         this.groupBox1.PerformLayout();
         this.tabPage3.ResumeLayout(false);
         this.tabPage3.PerformLayout();
+        this.tabPage4.ResumeLayout(false);
+        this.tabPage4.PerformLayout();
         this.ResumeLayout(false);
 
     }
@@ -448,14 +529,14 @@ public class main : Form
     private System.Windows.Forms.TabPage tabPage2;
     private System.Windows.Forms.TabPage tabPage3;
     private System.Windows.Forms.TabPage tabPage4;
-    private System.Windows.Forms.TabPage tabPage5; 
+    private System.Windows.Forms.TabPage tabPage5;
     private System.Windows.Forms.Button saveFileSettingBtn;
     private System.Windows.Forms.GroupBox groupBox1;
     private System.Windows.Forms.TextBox fileLocationTextBox;
     private System.Windows.Forms.Label label1;
     private System.Windows.Forms.RadioButton radioButton2;
     private System.Windows.Forms.RadioButton radioButton1;
-    public  System.Windows.Forms.TextBox mainProgramMessage;
+    public System.Windows.Forms.TextBox mainProgramMessage;
     private System.Windows.Forms.TextBox ftpHostTxtBox;
     private System.Windows.Forms.Label label6;
     private System.Windows.Forms.Label label5;
@@ -479,19 +560,19 @@ public class main : Form
 
     private KeyboardHook KeyboardHookInstance;
     private bool isBusy = false;
-    private bool _cameraMode = false;
-    private static Platters.Properties.Settings mySettings = new Platters.Properties.Settings();
-    
+    public bool _cameraMode = false;
+    private static Skimpt.Properties.Settings mySettings = new Skimpt.Properties.Settings();
+
     #endregion
 
     #region Delegates
     private delegate void ShowToastFormInvoker(string filename);
-    
+
     #endregion
 
     #region Properties
     public bool ToggleCameraMode { get { return _cameraMode; } set { _cameraMode = value; } }
-    
+
     #endregion
 
     #region Construtor
@@ -512,8 +593,8 @@ public class main : Form
     #endregion
 
     #region KeyboardShortCut Pressed
-  
- 
+
+
     /// <summary>
     /// This function is an event handler for the KeyIntercepted.
     /// It intercepts ALL keys from the keyboard input from the buffer.
@@ -522,20 +603,21 @@ public class main : Form
     void KeyboardHookInstance_KeyIntercepted(KeyboardHookEventArgs keyboardEvents)
     {
         if (keyboardEvents.PressedKey == Keys.PrintScreen)
-        {       
-                takeSnapShot();
+        {
+            takeSnapShot();
         }
 
         if (keyboardEvents.PressedKey == Keys.F11)
         {
             this.Visible = !this.Visible;
+            // takeSnapShot();
         }
 
-     
-       
-      
+
+
+
     }
- 
+
     #endregion
 
     #region Private Functions
@@ -626,12 +708,12 @@ public class main : Form
                         utilities.SetProgramMessage("Picture Saved", mainProgramMessage);
                         //this invokes a new toast form to display options.
                         this.Invoke(new ShowToastFormInvoker(ShowToastForm), filename);
-                
+
                     }
                     catch (Exception ex)
                     {
-                        
-                       //we were unable to save file.                        
+
+                        //we were unable to save file.                        
                         if (mySettings.showErrorMessagesSetting)
                             MessageBox.Show("Unable to save file", "Error", MessageBoxButtons.OK);
 
@@ -694,12 +776,12 @@ public class main : Form
             this.radioButton2.Checked = true;
 
         this.fileLocationTextBox.Text = mySettings.fileLocationSetting;
-        this.ftpHostTxtBox.Text  = mySettings.ftphostSetting;
+        this.ftpHostTxtBox.Text = mySettings.ftphostSetting;
         this.ftpPassTxtBox.Text = mySettings.ftppasswordSetting;
         this.ftpUserTxtBox.Text = mySettings.ftpusernameSetting;
         this.ftpDirTxtBox.Text = mySettings.ftpdirectorySetting;
         this.ftpPortTxtBox.Text = mySettings.ftpportSetting.ToString();
-        
+
     }
     /// <summary>
     /// The file SaveSettings button is clicked
@@ -750,14 +832,14 @@ public class main : Form
             MessageBox.Show(ex.Message + Environment.NewLine + "Test Failed");
         }
 
-        
+
     }
 
 
     #endregion
 
     #region Form Events
-    
+
     /// <summary>
     /// This function is an event handler for when the form 
     /// loads. It is run after the constructor.   
@@ -777,7 +859,7 @@ public class main : Form
     /// </summary>
     private void unhookButton_Click(object sender, EventArgs e)
     {
-       
+
         //run the UnHookKey method. If it returns true,
         //display message to user.
         if (KeyboardHookInstance.UnHookKey())
@@ -793,15 +875,27 @@ public class main : Form
     private void toggleCamButton_Click(object sender, EventArgs e)
     {
 
-        MainCropForm mc = new MainCropForm(this);
-        mc.Show();
         _cameraMode = !_cameraMode;
+        bool _alreadyopen = false;
 
         if (_cameraMode)
         {
-            this.Hide();
+            foreach (var item in Application.OpenForms)
+            {
+                if (item is MainCropForm)
+                    _alreadyopen = true;
+
+
+            }
+            if (!_alreadyopen)
+            {
+                MainCropForm mc = new MainCropForm(this);
+                mc.Show();
+                this.Hide();
+            }
+
         }
-   
+
     }
 
     /// <summary>
@@ -821,22 +915,48 @@ public class main : Form
         }
 
     }
+    /// <summary>
+    /// This function is an event handler for the SaveGlobalSettings 
+    /// button click. If its pressed it saves the global settings 
+    /// to the XML file.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void saveGlobalSettingsBtn_Click(object sender, EventArgs e)
+    {
+        mySettings.hideOnLoad = HideUponLaunchCheckbox.Checked;
+        mySettings.showErrorMessagesSetting = ShowMessagesCheckbox.Checked;
+
+
+        //set or delete the registry key upon Windows Startup.
+        RegistryKey rkApp = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+        if (startOnWindowsLoadCheckBox.Checked)
+        {
+            rkApp.SetValue("Skimpt", Application.ExecutablePath.ToString());
+        }
+        else
+        {
+            rkApp.DeleteValue("MyApp", false);
+        }
+
+        mySettings.Save();
+    }
 
     /// <summary>
     /// This function occurs when the form is first SHOWN. 
     /// This function happens after the load event.
     /// </summary>
-     private void main_Shown(object sender, EventArgs e)
+    private void main_Shown(object sender, EventArgs e)
     {
         if (mySettings.hideOnLoad)
             this.Hide();
     }
 
 
-    #endregion 
+    #endregion
 
-     private void button1_Click(object sender, EventArgs e)
-     {
-      
-     }
+
+
+   
+
 }

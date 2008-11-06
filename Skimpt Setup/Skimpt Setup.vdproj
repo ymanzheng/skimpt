@@ -15,19 +15,13 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_5C73D7519C984799AFB13B4A23065A90"
+        "MsmKey" = "8:_044F6E7284704D048CEDD4087AF2343C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_8D5FB24BB96549E7BE49959085434E38"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_AA23443188FA4026B4A76695EFF882A9"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -142,29 +136,9 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5C73D7519C984799AFB13B4A23065A90"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_044F6E7284704D048CEDD4087AF2343C"
             {
-            "SourcePath" = "8:..\\..\\..\\..\\..\\Pictures\\habrok\\logo\\habrok_logo.jpg"
-            "TargetName" = "8:habrok_logo.jpg"
-            "Tag" = "8:"
-            "Folder" = "8:_9703DFD998C846A6B6C362DDD3B8F351"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:TRUE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AA23443188FA4026B4A76695EFF882A9"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\..\\Pictures\\habrok\\logo\\Habrok.ico"
+            "SourcePath" = "8:..\\Platters\\Resources\\Habrok.ico"
             "TargetName" = "8:Habrok.ico"
             "Tag" = "8:"
             "Folder" = "8:_9703DFD998C846A6B6C362DDD3B8F351"
@@ -255,7 +229,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:"
+        "ARPPRODUCTICON" = "8:_044F6E7284704D048CEDD4087AF2343C"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -270,118 +244,12 @@
             {
                 "Keys"
                 {
-                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_A7F76A351CC949FAB29A3ABA976723E9"
-                    {
-                    "Name" = "8:Software"
-                    "Condition" = "8:"
-                    "AlwaysCreate" = "11:FALSE"
-                    "DeleteAtUninstall" = "11:FALSE"
-                    "Transitive" = "11:FALSE"
-                        "Keys"
-                        {
-                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_1BEE9F714B934F84B996109D6520D618"
-                            {
-                            "Name" = "8:[Manufacturer]"
-                            "Condition" = "8:"
-                            "AlwaysCreate" = "11:FALSE"
-                            "DeleteAtUninstall" = "11:FALSE"
-                            "Transitive" = "11:FALSE"
-                                "Keys"
-                                {
-                                }
-                                "Values"
-                                {
-                                }
-                            }
-                        }
-                        "Values"
-                        {
-                        }
-                    }
                 }
             }
             "HKCU"
             {
                 "Keys"
                 {
-                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_80CA464A599A42D9AB0307CAA5C2CDD7"
-                    {
-                    "Name" = "8:Software"
-                    "Condition" = "8:"
-                    "AlwaysCreate" = "11:FALSE"
-                    "DeleteAtUninstall" = "11:FALSE"
-                    "Transitive" = "11:FALSE"
-                        "Keys"
-                        {
-                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_43AAA920CEF940FD99F27905BA215A30"
-                            {
-                            "Name" = "8:Microsoft"
-                            "Condition" = "8:"
-                            "AlwaysCreate" = "11:FALSE"
-                            "DeleteAtUninstall" = "11:FALSE"
-                            "Transitive" = "11:FALSE"
-                                "Keys"
-                                {
-                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_82CBCAA801744C6681E0288BE9FDFC26"
-                                    {
-                                    "Name" = "8:Windows"
-                                    "Condition" = "8:"
-                                    "AlwaysCreate" = "11:FALSE"
-                                    "DeleteAtUninstall" = "11:FALSE"
-                                    "Transitive" = "11:FALSE"
-                                        "Keys"
-                                        {
-                                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_8587F1B92481404AA1D411167CE572FA"
-                                            {
-                                            "Name" = "8:CurrentVersion"
-                                            "Condition" = "8:"
-                                            "AlwaysCreate" = "11:FALSE"
-                                            "DeleteAtUninstall" = "11:FALSE"
-                                            "Transitive" = "11:FALSE"
-                                                "Keys"
-                                                {
-                                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_F82D67173DD94424B6410BA1C34BAB79"
-                                                    {
-                                                    "Name" = "8:Run"
-                                                    "Condition" = "8:"
-                                                    "AlwaysCreate" = "11:FALSE"
-                                                    "DeleteAtUninstall" = "11:FALSE"
-                                                    "Transitive" = "11:FALSE"
-                                                        "Keys"
-                                                        {
-                                                        }
-                                                        "Values"
-                                                        {
-                                                            "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_485F7635299D4C7D9CE723A8E341E444"
-                                                            {
-                                                            "Name" = "8:Skimpt"
-                                                            "Condition" = "8:"
-                                                            "Transitive" = "11:FALSE"
-                                                            "ValueTypes" = "3:1"
-                                                            "Value" = "8:%TARGETDIR%\\Platters.exe"
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                                "Values"
-                                                {
-                                                }
-                                            }
-                                        }
-                                        "Values"
-                                        {
-                                        }
-                                    }
-                                }
-                                "Values"
-                                {
-                                }
-                            }
-                        }
-                        "Values"
-                        {
-                        }
-                    }
                 }
             }
             "HKCR"
@@ -408,21 +276,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_12F830CFFCF949BAA974D89AD97D1865"
-            {
-            "Name" = "8:Skimpt"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_8D5FB24BB96549E7BE49959085434E38"
-            "Folder" = "8:_027DDD8E1CF4431FB1009C0DC203F28D"
-            "WorkingFolder" = "8:_9703DFD998C846A6B6C362DDD3B8F351"
-            "Icon" = "8:_AA23443188FA4026B4A76695EFF882A9"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_4C60E353D037438B87A143675E6E23BF"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_2E33EA14B8B745A1943E87AFE4BF7FAE"
             {
             "Name" = "8:Skimpt"
             "Arguments" = "8:"
@@ -433,7 +287,21 @@
             "Target" = "8:_8D5FB24BB96549E7BE49959085434E38"
             "Folder" = "8:_30058C400D374F32844DA2B5524752F1"
             "WorkingFolder" = "8:_9703DFD998C846A6B6C362DDD3B8F351"
-            "Icon" = "8:_AA23443188FA4026B4A76695EFF882A9"
+            "Icon" = "8:_044F6E7284704D048CEDD4087AF2343C"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_DBFFBCDCB32049E3A6518C1D06BE3BDE"
+            {
+            "Name" = "8:Skimpt"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_8D5FB24BB96549E7BE49959085434E38"
+            "Folder" = "8:_027DDD8E1CF4431FB1009C0DC203F28D"
+            "WorkingFolder" = "8:_9703DFD998C846A6B6C362DDD3B8F351"
+            "Icon" = "8:_044F6E7284704D048CEDD4087AF2343C"
             "Feature" = "8:"
             }
         }
@@ -551,7 +419,7 @@
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
                             "Setting" = "3:2"
-                            "Value" = "8:_5C73D7519C984799AFB13B4A23065A90"
+                            "Value" = "8:"
                             "UsePlugInResources" = "11:TRUE"
                             }
                             "CopyrightWarning"
@@ -838,7 +706,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_8D5FB24BB96549E7BE49959085434E38"
             {
-            "SourcePath" = "8:..\\Platters\\obj\\Debug\\Platters.exe"
+            "SourcePath" = "8:..\\Platters\\obj\\Debug\\Skimpt.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_9703DFD998C846A6B6C362DDD3B8F351"

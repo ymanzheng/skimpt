@@ -8,8 +8,8 @@
     <ProjectGuid>{01EB0992-27F5-40A9-ADF4-28E81C926F83}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Platters</RootNamespace>
-    <AssemblyName>Platters</AssemblyName>
+    <RootNamespace>Skimpt</RootNamespace>
+    <AssemblyName>Skimpt</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ApplicationIcon>Resources\Skimpt.ico</ApplicationIcon>
@@ -142,19 +142,19 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Habrok.ico" />
+    <None Include="Resources\Habrok.ico">
+    </None>
     <None Include="Resources\ajax-loader.gif" />
     <None Include="Resources\loadingpicture.bmp" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\ftp_logo.jpg" />
-    <Content Include="Resources\imageshack.gif" />
-    <Content Include="Resources\imgpurse - Copy.jpg" />
-    <Content Include="Resources\kalleLoad.gif" />
+    <None Include="Resources\imageshack.gif" />
+    <None Include="Resources\imgpurse - Copy.jpg" />
+    <None Include="Resources\kalleLoad.gif" />
     <None Include="Resources\Skimpt.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <Content Include="Resources\tinypic.gif" />
+    <None Include="Resources\tinypic.gif" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
