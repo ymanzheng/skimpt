@@ -38,7 +38,7 @@ public partial class toastform : Form
     public string SetFileName { set { _FileNameToHandle = value; } }
 
     //the private static reference to the settings object
-    private static Platters.Properties.Settings mySettings = new Platters.Properties.Settings();
+    private static Skimpt.Properties.Settings mySettings = new Skimpt.Properties.Settings();
 
 
     //private constructor
