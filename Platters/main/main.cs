@@ -12,6 +12,10 @@ using Util;
 
 public class main : Form
 {
+
+
+    public Rectangle CameraCoords;
+
     #region GUI CODE - DO NOT CHANGE
     /// <summary>
     /// Required designer variable.
@@ -518,15 +522,16 @@ public class main : Form
     void KeyboardHookInstance_KeyIntercepted(KeyboardHookEventArgs keyboardEvents)
     {
         if (keyboardEvents.PressedKey == Keys.PrintScreen)
-        {
-            //print screen pressed, so take snapshot.
-            takeSnapShot();
+        {       
+                takeSnapShot();
         }
 
         if (keyboardEvents.PressedKey == Keys.F11)
         {
             this.Visible = !this.Visible;
         }
+
+     
        
       
     }
@@ -614,7 +619,25 @@ public class main : Form
 
                 if (_cameraMode)
                 {
-                    //do camera mode code
+                    try
+                    {
+                        Bitmap bCropped = SC.CaptureDeskTopRectangle(CameraCoords, CameraCoords.Width, CameraCoords.Height);
+                        bCropped.Save(System.IO.Path.Combine(mySettings.fileLocationSetting.ToString(), filename) + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                        utilities.SetProgramMessage("Picture Saved", mainProgramMessage);
+                        //this invokes a new toast form to display options.
+                        this.Invoke(new ShowToastFormInvoker(ShowToastForm), filename);
+                
+                    }
+                    catch (Exception ex)
+                    {
+                        
+                       //we were unable to save file.                        
+                        if (mySettings.showErrorMessagesSetting)
+                            MessageBox.Show("Unable to save file", "Error", MessageBoxButtons.OK);
+
+                        isBusy = false;
+                        utilities.SetProgramMessage(ex.Message, mainProgramMessage);
+                    }
                 }
                 else
                 {
@@ -769,7 +792,16 @@ public class main : Form
     /// </summary>
     private void toggleCamButton_Click(object sender, EventArgs e)
     {
+
+        MainCropForm mc = new MainCropForm(this);
+        mc.Show();
         _cameraMode = !_cameraMode;
+
+        if (_cameraMode)
+        {
+            this.Hide();
+        }
+   
     }
 
     /// <summary>
@@ -802,4 +834,9 @@ public class main : Form
 
 
     #endregion 
+
+     private void button1_Click(object sender, EventArgs e)
+     {
+      
+     }
 }
