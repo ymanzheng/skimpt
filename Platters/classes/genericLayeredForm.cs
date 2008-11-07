@@ -1,4 +1,21 @@
-﻿using System;
+﻿#region "License Agreement"
+/* Skimpt, an open source screenshot utility.
+      Copyright (C) <year>  <name of author>
+
+      This program is free software: you can redistribute it and/or modify
+      it under the terms of the GNU General Public License as published by
+      the Free Software Foundation, either version 3 of the License, or
+      (at your option) any later version.
+
+      this program is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU General Public License for more details.
+
+      You should have received a copy of the GNU General Public License
+      along with this program.  If not, see <http://www.gnu.org/licenses/>. */
+#endregion
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -267,6 +284,28 @@ public class PaintLayerEventArgs : EventArgs, IDisposable
 
 internal sealed class NativeMethods
 {
+    //============== GDI32 CONSTANTS =============== 
+    public const Int32 CAPTUREBLT = 0x40000000;
+    public const Int32 BLACKNESS = 0x42;
+    public const Int32 DSTINVERT = 0x550009;
+    public const Int32 MERGECOPY = 0xc000ca;
+    public const Int32 MERGEPAINT = 0xbb0226;
+    public const Int32 NOTSRCCOPY = 0x330008;
+    public const Int32 NOTSRCERASE = 0x1100a6;
+    public const Int32 PATCOPY = 0xf00021;
+    public const Int32 PATINVERT = 0x5a0049;
+    public const Int32 PATPAINT = 0xfb0a09;
+    public const Int32 SRCAND = 0x8800c6;
+    public const Int32 SRCCOPY = 0xcc0020;
+    public const Int32 SRCERASE = 0x440328;
+    public const Int32 SRCINVERT = 0x660046;
+    public const Int32 SRCPAINT = 0xee0086;
+    public const Int32 WHITENESS = 0xff0062;
+
+    public const Int32 HORZRES = 8;
+    public const Int32 VERTRES = 10;
+    //=========================================== 
+
     private NativeMethods() { }
 
     [DllImport("user32.dll", CharSet = CharSet.Ansi, ExactSpelling = true, SetLastError = true)]
@@ -315,6 +354,10 @@ internal sealed class NativeMethods
     [DllImport("gdi32.dll", CharSet = CharSet.Ansi, ExactSpelling = true, SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]
     internal static extern bool DeleteObject(IntPtr hObject);
+
+    [DllImport("gdi32", SetLastError = true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public static extern bool BitBlt(IntPtr hdcDest, Int32 nXDest, Int32 nYDest, Int32 nWidth, Int32 nHeight, IntPtr hdcSrc, Int32 nXSrc, Int32 nYSrc, Int32 dwRop); 
 
 
     internal const Int32 WM_SETICON = 0x80;
