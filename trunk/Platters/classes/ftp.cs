@@ -1,4 +1,21 @@
-﻿using System;
+﻿#region "License Agreement"
+/* Skimpt, an open source screenshot utility.
+      Copyright (C) <year>  <name of author>
+
+      This program is free software: you can redistribute it and/or modify
+      it under the terms of the GNU General Public License as published by
+      the Free Software Foundation, either version 3 of the License, or
+      (at your option) any later version.
+
+      this program is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU General Public License for more details.
+
+      You should have received a copy of the GNU General Public License
+      along with this program.  If not, see <http://www.gnu.org/licenses/>. */
+#endregion
+using System;
 using System.Net;
 using System.IO;
 using System.Text;
@@ -8,12 +25,10 @@ using System.Collections;
 
 
 /// <summary>
-/// Based on Microsofts article that you can find here
-/// http://support.microsoft.com/default.aspx?scid=kb;en-us;832679
 /// converted to C# and Modified by Andy Bonner - andybonner@lycos.com
 /// Modified on October 24th 2008 by Affan Shoukat to improve performance.
-/// If you try & sell it then I'll track you down & do unspeakable things to you
 /// </summary>
+/// 
 public class FTP
 {
     #region "Class Variable Declarations"
@@ -1012,7 +1027,6 @@ public class DirFile : IComparable
         return this.IsDir.CompareTo(df.IsDir);
     }
 }
-
 
 public class DirList : CollectionBase
 {

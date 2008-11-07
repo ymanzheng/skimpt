@@ -1,5 +1,6 @@
-﻿/* ====================================================================
-*
+﻿#region "License Agreement"
+/* ====================================================================
+* 
 * The Apache Software License, Version 1.1
 *
 * Copyright (c) 2003 Validity Systems Inc.  All rights
@@ -57,7 +58,7 @@
  *  Author: Athony La Forge (Validity Systems Inc.) 
  *  Author2: Affan S from Toronto Canada contributing minor changes to code
  */
-
+#endregion
 using System;
 using System.ComponentModel; 
 using System.IO; 

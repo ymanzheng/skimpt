@@ -75,6 +75,7 @@
     <Compile Include="classes\screenshot.cs" />
     <Compile Include="classes\utilities.cs" />
     <Compile Include="classes\webpost.cs" />
+    <Compile Include="classes\win32.cs" />
     <Compile Include="forms\AboutBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,6 +149,7 @@
     <None Include="Resources\loadingpicture.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="License\GNUv3.txt" />
     <Content Include="Resources\ftp_logo.jpg" />
     <None Include="Resources\imageshack.gif" />
     <None Include="Resources\imgpurse - Copy.jpg" />
@@ -187,9 +189,6 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="icons\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

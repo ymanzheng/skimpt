@@ -1,24 +1,29 @@
-﻿using System;
+﻿#region "License Agreement"
+/* Skimpt, an open source screenshot utility.
+      Copyright (C) <year>  <name of author>
+
+      This program is free software: you can redistribute it and/or modify
+      it under the terms of the GNU General Public License as published by
+      the Free Software Foundation, either version 3 of the License, or
+      (at your option) any later version.
+
+      this program is distributed in the hope that it will be useful,
+      but WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+      GNU General Public License for more details.
+
+      You should have received a copy of the GNU General Public License
+      along with this program.  If not, see <http://www.gnu.org/licenses/>. */
+#endregion
+
+using System;
 using System.Drawing;
 using System.Windows.Forms;
-using ScreenShot;
 using Util;
 using Microsoft.Win32;
 
-
-
 public class main : Form
 {
-
-
-    public Rectangle CameraCoords;
-    private CheckBox AllowPluginsCheckbox;
-    private CheckBox HideUponLaunchCheckbox;
-    private CheckBox startOnWindowsLoadCheckBox;
-    private Button saveGlobalSettingsBtn;
-    private CheckBox KillCheckbox;
-    private CheckBox ShowMessagesCheckbox;
-
     #region GUI CODE - DO NOT CHANGE
     /// <summary>
     /// Required designer variable.
@@ -554,6 +559,13 @@ public class main : Form
     private RadioButton filenameasdateoption;
     private Button unhookButton;
     private Button toggleCamButton;
+    public Rectangle CameraCoords;
+    private CheckBox AllowPluginsCheckbox;
+    private CheckBox HideUponLaunchCheckbox;
+    private CheckBox startOnWindowsLoadCheckBox;
+    private Button saveGlobalSettingsBtn;
+    private CheckBox KillCheckbox;
+    private CheckBox ShowMessagesCheckbox;
     #endregion
 
     #region Global public/private Variables
@@ -649,6 +661,7 @@ public class main : Form
         toastform slice = new toastform(System.IO.Path.Combine(mySettings.fileLocationSetting.ToString(), filename) + ".jpg");
         slice.Show();
         isBusy = false;
+        rand = null;
     }
 
     /// <summary>
@@ -665,11 +678,7 @@ public class main : Form
             {
 
 
-                //declare variables only if valid file. 
-                ScreenCapture SC = new ScreenCapture();
                 string filename;
-
-
                 //Check if user wants random filename
                 if (mySettings.randomFileNameSetting)
                 {
@@ -703,7 +712,8 @@ public class main : Form
                 {
                     try
                     {
-                        Bitmap bCropped = SC.CaptureDeskTopRectangle(CameraCoords, CameraCoords.Width, CameraCoords.Height);
+
+                        Bitmap bCropped = ScreenCapture.CaptureDeskTopRectangle(CameraCoords, CameraCoords.Width, CameraCoords.Height);
                         bCropped.Save(System.IO.Path.Combine(mySettings.fileLocationSetting.ToString(), filename) + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
                         utilities.SetProgramMessage("Picture Saved", mainProgramMessage);
                         //this invokes a new toast form to display options.
@@ -726,8 +736,8 @@ public class main : Form
                     //Camera mode is turned off, so we do the whole screen.
                     try
                     {
-                        //Call the CaptureScreentoFile method of the SC instance.
-                        SC.CaptureScreenToFile(System.IO.Path.Combine(mySettings.fileLocationSetting.ToString(), filename) + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                        Bitmap bFull = ScreenCapture.GetDesktopWindowCaptureAsBitmap();
+                        bFull.Save(System.IO.Path.Combine(mySettings.fileLocationSetting.ToString(), filename) + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg);                       
                         utilities.SetProgramMessage("Picture Saved", mainProgramMessage);
                         //this invokes a new toast form to display options.
                         this.Invoke(new ShowToastFormInvoker(ShowToastForm), filename);
@@ -954,9 +964,4 @@ public class main : Form
 
 
     #endregion
-
-
-
-   
-
 }
