@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
-
-#region "License Agreement"	
-   /* Skimpt, an open source screenshot utility.
+﻿#region "License Agreement"
+/* Skimpt, an open source screenshot utility.
       Copyright (C) <year>  <name of author>
 
       This program is free software: you can redistribute it and/or modify
@@ -21,19 +16,41 @@ using System.Windows.Forms;
       along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #endregion
 
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
+using Microsoft.VisualBasic;
+using System.Threading;
+
+
 namespace Platters
 {
-    static class Program
+    static class Program 
     {
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new main());
+
+            bool firstInstance;
+            Mutex mutex = new Mutex(false, "Local\\" + "SkimptProgramRunning", out firstInstance);
+
+            if (firstInstance)
+            {
+                MessageBox.Show("Program started!");
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new main());
+            }
+            else
+            {
+                MessageBox.Show("This program is already running!");
+            }
+
+           
 
 
          //   Logger logger = new Logger(3, "test.txt");
@@ -54,5 +71,6 @@ namespace Platters
          //   //System.Console.ReadLine();
          //   logger.shutdown();
         }
+    
     }
 }
