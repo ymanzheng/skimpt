@@ -124,4 +124,7 @@
   <data name="Skimpt" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Skimpt.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="background copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\background copy.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
