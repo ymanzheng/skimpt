@@ -150,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="License\GNUv3.txt" />
+    <None Include="Resources\background copy.jpg" />
     <Content Include="Resources\ftp_logo.jpg" />
     <None Include="Resources\imageshack.gif" />
     <None Include="Resources\imgpurse - Copy.jpg" />

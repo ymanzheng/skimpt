@@ -63,6 +63,7 @@ public class main : Form
         this.filenameasdateoption = new System.Windows.Forms.RadioButton();
         this.saveFileSettingBtn = new System.Windows.Forms.Button();
         this.groupBox1 = new System.Windows.Forms.GroupBox();
+        this.browseButton = new System.Windows.Forms.Button();
         this.fileLocationTextBox = new System.Windows.Forms.TextBox();
         this.label1 = new System.Windows.Forms.Label();
         this.radioButton2 = new System.Windows.Forms.RadioButton();
@@ -81,13 +82,13 @@ public class main : Form
         this.label3 = new System.Windows.Forms.Label();
         this.label2 = new System.Windows.Forms.Label();
         this.tabPage4 = new System.Windows.Forms.TabPage();
-        this.tabPage5 = new System.Windows.Forms.TabPage();
-        this.startOnWindowsLoadCheckBox = new System.Windows.Forms.CheckBox();
-        this.HideUponLaunchCheckbox = new System.Windows.Forms.CheckBox();
-        this.AllowPluginsCheckbox = new System.Windows.Forms.CheckBox();
-        this.ShowMessagesCheckbox = new System.Windows.Forms.CheckBox();
-        this.KillCheckbox = new System.Windows.Forms.CheckBox();
         this.saveGlobalSettingsBtn = new System.Windows.Forms.Button();
+        this.KillCheckbox = new System.Windows.Forms.CheckBox();
+        this.ShowMessagesCheckbox = new System.Windows.Forms.CheckBox();
+        this.AllowPluginsCheckbox = new System.Windows.Forms.CheckBox();
+        this.HideUponLaunchCheckbox = new System.Windows.Forms.CheckBox();
+        this.startOnWindowsLoadCheckBox = new System.Windows.Forms.CheckBox();
+        this.tabPage5 = new System.Windows.Forms.TabPage();
         this.tabControl1.SuspendLayout();
         this.tabPage1.SuspendLayout();
         this.tabPage2.SuspendLayout();
@@ -132,12 +133,13 @@ public class main : Form
         // 
         // toggleCamButton
         // 
+        this.toggleCamButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
         this.toggleCamButton.Location = new System.Drawing.Point(8, 73);
         this.toggleCamButton.Name = "toggleCamButton";
         this.toggleCamButton.Size = new System.Drawing.Size(214, 36);
         this.toggleCamButton.TabIndex = 2;
         this.toggleCamButton.Text = "Toggle Screen Camera";
-        this.toggleCamButton.UseVisualStyleBackColor = true;
+        this.toggleCamButton.UseVisualStyleBackColor = false;
         this.toggleCamButton.Click += new System.EventHandler(this.toggleCamButton_Click);
         // 
         // unhookButton
@@ -181,7 +183,7 @@ public class main : Form
         // 
         this.randomnameoptions.Controls.Add(this.filenameasrandomoption);
         this.randomnameoptions.Controls.Add(this.filenameasdateoption);
-        this.randomnameoptions.Location = new System.Drawing.Point(244, 6);
+        this.randomnameoptions.Location = new System.Drawing.Point(240, 3);
         this.randomnameoptions.Name = "randomnameoptions";
         this.randomnameoptions.Size = new System.Drawing.Size(227, 78);
         this.randomnameoptions.TabIndex = 5;
@@ -216,7 +218,7 @@ public class main : Form
         this.saveFileSettingBtn.BackColor = System.Drawing.SystemColors.ControlLight;
         this.saveFileSettingBtn.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         this.saveFileSettingBtn.ForeColor = System.Drawing.Color.DarkGreen;
-        this.saveFileSettingBtn.Location = new System.Drawing.Point(133, 177);
+        this.saveFileSettingBtn.Location = new System.Drawing.Point(136, 179);
         this.saveFileSettingBtn.Name = "saveFileSettingBtn";
         this.saveFileSettingBtn.Size = new System.Drawing.Size(221, 31);
         this.saveFileSettingBtn.TabIndex = 4;
@@ -226,23 +228,34 @@ public class main : Form
         // 
         // groupBox1
         // 
+        this.groupBox1.Controls.Add(this.browseButton);
         this.groupBox1.Controls.Add(this.fileLocationTextBox);
         this.groupBox1.Controls.Add(this.label1);
-        this.groupBox1.Location = new System.Drawing.Point(10, 75);
+        this.groupBox1.Location = new System.Drawing.Point(9, 84);
         this.groupBox1.Name = "groupBox1";
         this.groupBox1.Size = new System.Drawing.Size(463, 92);
         this.groupBox1.TabIndex = 3;
         this.groupBox1.TabStop = false;
         this.groupBox1.Text = "File Location";
         // 
+        // browseButton
+        // 
+        this.browseButton.Location = new System.Drawing.Point(416, 49);
+        this.browseButton.Name = "browseButton";
+        this.browseButton.Size = new System.Drawing.Size(32, 27);
+        this.browseButton.TabIndex = 2;
+        this.browseButton.Text = "...";
+        this.browseButton.UseVisualStyleBackColor = true;
+        this.browseButton.Click += new System.EventHandler(this.browseButton_Click);
+        // 
         // fileLocationTextBox
         // 
         this.fileLocationTextBox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         this.fileLocationTextBox.Location = new System.Drawing.Point(17, 50);
         this.fileLocationTextBox.Name = "fileLocationTextBox";
-        this.fileLocationTextBox.Size = new System.Drawing.Size(426, 27);
+        this.fileLocationTextBox.ReadOnly = true;
+        this.fileLocationTextBox.Size = new System.Drawing.Size(393, 27);
         this.fileLocationTextBox.TabIndex = 1;
-        this.fileLocationTextBox.Text = "enter";
         // 
         // label1
         // 
@@ -256,7 +269,7 @@ public class main : Form
         // radioButton2
         // 
         this.radioButton2.AutoSize = true;
-        this.radioButton2.Location = new System.Drawing.Point(25, 46);
+        this.radioButton2.Location = new System.Drawing.Point(26, 56);
         this.radioButton2.Name = "radioButton2";
         this.radioButton2.Size = new System.Drawing.Size(213, 23);
         this.radioButton2.TabIndex = 1;
@@ -267,7 +280,7 @@ public class main : Form
         // radioButton1
         // 
         this.radioButton1.AutoSize = true;
-        this.radioButton1.Location = new System.Drawing.Point(25, 16);
+        this.radioButton1.Location = new System.Drawing.Point(26, 26);
         this.radioButton1.Name = "radioButton1";
         this.radioButton1.Size = new System.Drawing.Size(185, 23);
         this.radioButton1.TabIndex = 0;
@@ -417,55 +430,18 @@ public class main : Form
         this.tabPage4.Text = "Settings";
         this.tabPage4.ToolTipText = "Set global application settings";
         // 
-        // tabPage5
+        // saveGlobalSettingsBtn
         // 
-        this.tabPage5.Location = new System.Drawing.Point(4, 30);
-        this.tabPage5.Name = "tabPage5";
-        this.tabPage5.Size = new System.Drawing.Size(475, 216);
-        this.tabPage5.TabIndex = 4;
-        this.tabPage5.Text = "Log";
-        this.tabPage5.ToolTipText = "Check log files";
-        this.tabPage5.UseVisualStyleBackColor = true;
-        // 
-        // startOnWindowsLoadCheckBox
-        // 
-        this.startOnWindowsLoadCheckBox.AutoSize = true;
-        this.startOnWindowsLoadCheckBox.Location = new System.Drawing.Point(23, 30);
-        this.startOnWindowsLoadCheckBox.Name = "startOnWindowsLoadCheckBox";
-        this.startOnWindowsLoadCheckBox.Size = new System.Drawing.Size(307, 23);
-        this.startOnWindowsLoadCheckBox.TabIndex = 0;
-        this.startOnWindowsLoadCheckBox.Text = "Start this program when Windows boots up";
-        this.startOnWindowsLoadCheckBox.UseVisualStyleBackColor = true;
-         // 
-        // HideUponLaunchCheckbox
-        // 
-        this.HideUponLaunchCheckbox.AutoSize = true;
-        this.HideUponLaunchCheckbox.Location = new System.Drawing.Point(23, 59);
-        this.HideUponLaunchCheckbox.Name = "HideUponLaunchCheckbox";
-        this.HideUponLaunchCheckbox.Size = new System.Drawing.Size(284, 23);
-        this.HideUponLaunchCheckbox.TabIndex = 1;
-        this.HideUponLaunchCheckbox.Text = "Hide instantly upon launch of program. ";
-        this.HideUponLaunchCheckbox.UseVisualStyleBackColor = true;
-        // 
-        // AllowPluginsCheckbox
-        // 
-        this.AllowPluginsCheckbox.AutoSize = true;
-        this.AllowPluginsCheckbox.Location = new System.Drawing.Point(23, 88);
-        this.AllowPluginsCheckbox.Name = "AllowPluginsCheckbox";
-        this.AllowPluginsCheckbox.Size = new System.Drawing.Size(380, 23);
-        this.AllowPluginsCheckbox.TabIndex = 2;
-        this.AllowPluginsCheckbox.Text = "Allow plugins to gather information about your system";
-        this.AllowPluginsCheckbox.UseVisualStyleBackColor = true;
-        // 
-        // ShowMessagesCheckbox
-        // 
-        this.ShowMessagesCheckbox.AutoSize = true;
-        this.ShowMessagesCheckbox.Location = new System.Drawing.Point(23, 117);
-        this.ShowMessagesCheckbox.Name = "ShowMessagesCheckbox";
-        this.ShowMessagesCheckbox.Size = new System.Drawing.Size(294, 23);
-        this.ShowMessagesCheckbox.TabIndex = 3;
-        this.ShowMessagesCheckbox.Text = "Show program essages in a message box";
-        this.ShowMessagesCheckbox.UseVisualStyleBackColor = true;
+        this.saveGlobalSettingsBtn.BackColor = System.Drawing.SystemColors.ControlLight;
+        this.saveGlobalSettingsBtn.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        this.saveGlobalSettingsBtn.ForeColor = System.Drawing.Color.DarkGreen;
+        this.saveGlobalSettingsBtn.Location = new System.Drawing.Point(125, 177);
+        this.saveGlobalSettingsBtn.Name = "saveGlobalSettingsBtn";
+        this.saveGlobalSettingsBtn.Size = new System.Drawing.Size(221, 31);
+        this.saveGlobalSettingsBtn.TabIndex = 5;
+        this.saveGlobalSettingsBtn.Text = "Save Global Settings";
+        this.saveGlobalSettingsBtn.UseVisualStyleBackColor = false;
+        this.saveGlobalSettingsBtn.Click += new System.EventHandler(this.saveGlobalSettingsBtn_Click);
         // 
         // KillCheckbox
         // 
@@ -477,18 +453,55 @@ public class main : Form
         this.KillCheckbox.Text = "Kill";
         this.KillCheckbox.UseVisualStyleBackColor = true;
         // 
-        // saveGlobalSettingsBtn
+        // ShowMessagesCheckbox
         // 
-        this.saveGlobalSettingsBtn.BackColor = System.Drawing.SystemColors.ControlLight;
-        this.saveGlobalSettingsBtn.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-        this.saveGlobalSettingsBtn.ForeColor = System.Drawing.Color.DarkGreen;
-        this.saveGlobalSettingsBtn.Location = new System.Drawing.Point(125, 177);
-        this.saveGlobalSettingsBtn.Name = "saveGlobalSettingsBtn";
-        this.saveGlobalSettingsBtn.Size = new System.Drawing.Size(221, 31);
-        this.saveGlobalSettingsBtn.TabIndex = 5;
-        this.saveGlobalSettingsBtn.Text = "Save File Settings";
-        this.saveGlobalSettingsBtn.UseVisualStyleBackColor = false;
-        this.saveGlobalSettingsBtn.Click += new System.EventHandler(this.saveGlobalSettingsBtn_Click);
+        this.ShowMessagesCheckbox.AutoSize = true;
+        this.ShowMessagesCheckbox.Location = new System.Drawing.Point(23, 117);
+        this.ShowMessagesCheckbox.Name = "ShowMessagesCheckbox";
+        this.ShowMessagesCheckbox.Size = new System.Drawing.Size(294, 23);
+        this.ShowMessagesCheckbox.TabIndex = 3;
+        this.ShowMessagesCheckbox.Text = "Show program essages in a message box";
+        this.ShowMessagesCheckbox.UseVisualStyleBackColor = true;
+        // 
+        // AllowPluginsCheckbox
+        // 
+        this.AllowPluginsCheckbox.AutoSize = true;
+        this.AllowPluginsCheckbox.Location = new System.Drawing.Point(23, 88);
+        this.AllowPluginsCheckbox.Name = "AllowPluginsCheckbox";
+        this.AllowPluginsCheckbox.Size = new System.Drawing.Size(380, 23);
+        this.AllowPluginsCheckbox.TabIndex = 2;
+        this.AllowPluginsCheckbox.Text = "Allow plugins to gather information about your system";
+        this.AllowPluginsCheckbox.UseVisualStyleBackColor = true;
+        // 
+        // HideUponLaunchCheckbox
+        // 
+        this.HideUponLaunchCheckbox.AutoSize = true;
+        this.HideUponLaunchCheckbox.Location = new System.Drawing.Point(23, 59);
+        this.HideUponLaunchCheckbox.Name = "HideUponLaunchCheckbox";
+        this.HideUponLaunchCheckbox.Size = new System.Drawing.Size(284, 23);
+        this.HideUponLaunchCheckbox.TabIndex = 1;
+        this.HideUponLaunchCheckbox.Text = "Hide instantly upon launch of program. ";
+        this.HideUponLaunchCheckbox.UseVisualStyleBackColor = true;
+        // 
+        // startOnWindowsLoadCheckBox
+        // 
+        this.startOnWindowsLoadCheckBox.AutoSize = true;
+        this.startOnWindowsLoadCheckBox.Location = new System.Drawing.Point(23, 30);
+        this.startOnWindowsLoadCheckBox.Name = "startOnWindowsLoadCheckBox";
+        this.startOnWindowsLoadCheckBox.Size = new System.Drawing.Size(307, 23);
+        this.startOnWindowsLoadCheckBox.TabIndex = 0;
+        this.startOnWindowsLoadCheckBox.Text = "Start this program when Windows boots up";
+        this.startOnWindowsLoadCheckBox.UseVisualStyleBackColor = true;
+        // 
+        // tabPage5
+        // 
+        this.tabPage5.Location = new System.Drawing.Point(4, 30);
+        this.tabPage5.Name = "tabPage5";
+        this.tabPage5.Size = new System.Drawing.Size(475, 216);
+        this.tabPage5.TabIndex = 4;
+        this.tabPage5.Text = "Log";
+        this.tabPage5.ToolTipText = "Check log files";
+        this.tabPage5.UseVisualStyleBackColor = true;
         // 
         // main
         // 
@@ -573,6 +586,7 @@ public class main : Form
     private KeyboardHook KeyboardHookInstance;
     private bool isBusy = false;
     public bool _cameraMode = false;
+    private Button browseButton;
     private static Skimpt.Properties.Settings mySettings = new Skimpt.Properties.Settings();
 
     #endregion
@@ -619,15 +633,10 @@ public class main : Form
             takeSnapShot();
         }
 
-        if (keyboardEvents.PressedKey == Keys.F11)
+        if (keyboardEvents.PressedKey == Keys.F8)
         {
             this.Visible = !this.Visible;
-            // takeSnapShot();
         }
-
-
-
-
     }
 
     #endregion
@@ -670,28 +679,24 @@ public class main : Form
     /// </summary>
     private void takeSnapShot()
     {
+        Bitmap PictureTaken = null; //local variable for the captured Bitmap
+        string filename = string.Empty; //local variable for filename
         if (!isBusy)
         {
             isBusy = true;
-            //check if its a valid file
+            //check if its a valid file and that the directory exists
             if (!String.IsNullOrEmpty(mySettings.fileLocationSetting.ToString()) || System.IO.Directory.Exists(mySettings.fileLocationSetting.ToString()))
             {
-
-
-                string filename;
+                
                 //Check if user wants random filename
                 if (mySettings.randomFileNameSetting)
                 {
                     //check to see if they want randomized letters
                     //or current date and time.
                     if (mySettings.fileasdatesetting)
-                    {
                         filename = utilities.GetRandomFileName();
-                    }
                     else
-                    {
                         filename = System.IO.Path.GetRandomFileName();
-                    }
                 }
                 else
                 {
@@ -701,34 +706,45 @@ public class main : Form
                     if (result.OK)
                         filename = result.Text;
                     else
-                        //if the input box fails, randomize the filename.
-                        filename = System.IO.Path.GetRandomFileName();
+                        filename = System.IO.Path.GetRandomFileName(); //if the input box fails, randomize the filename.                    
+                    result = null;
                 }
 
-                //clean the input
+                //clean the input incase it has an extension.
                 filename = System.IO.Path.GetFileNameWithoutExtension(filename);
 
+                //if camera mode is on
                 if (_cameraMode)
                 {
+                    //try block to prevent errors
                     try
                     {
-
-                        Bitmap bCropped = ScreenCapture.CaptureDeskTopRectangle(CameraCoords, CameraCoords.Width, CameraCoords.Height);
-                        bCropped.Save(System.IO.Path.Combine(mySettings.fileLocationSetting.ToString(), filename) + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                        //take picture
+                        PictureTaken = ScreenCapture.CaptureDeskTopRectangle(CameraCoords, CameraCoords.Width, CameraCoords.Height);
+                        //save the file
+                        PictureTaken.Save(System.IO.Path.Combine(mySettings.fileLocationSetting.ToString(), filename) + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                        //set the program message.
                         utilities.SetProgramMessage("Picture Saved", mainProgramMessage);
-                        //this invokes a new toast form to display options.
+                        //invoke toast form to display picture options
                         this.Invoke(new ShowToastFormInvoker(ShowToastForm), filename);
-
                     }
                     catch (Exception ex)
                     {
-
+                        //image capture failed.
                         //we were unable to save file.                        
                         if (mySettings.showErrorMessagesSetting)
                             MessageBox.Show("Unable to save file", "Error", MessageBoxButtons.OK);
-
                         isBusy = false;
                         utilities.SetProgramMessage(ex.Message, mainProgramMessage);
+                    }
+                    finally
+                    {
+                        if (PictureTaken != null)
+                        {
+                            PictureTaken.Dispose();
+                            PictureTaken = null;
+                        }
+                        
                     }
                 }
                 else
@@ -736,10 +752,12 @@ public class main : Form
                     //Camera mode is turned off, so we do the whole screen.
                     try
                     {
-                        Bitmap bFull = ScreenCapture.GetDesktopWindowCaptureAsBitmap();
-                        bFull.Save(System.IO.Path.Combine(mySettings.fileLocationSetting.ToString(), filename) + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg);                       
+
+                        PictureTaken = ScreenCapture.GetDesktopWindowCaptureAsBitmap();
+                        PictureTaken.Save(System.IO.Path.Combine(mySettings.fileLocationSetting.ToString(), filename) + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                        //set the program message.
                         utilities.SetProgramMessage("Picture Saved", mainProgramMessage);
-                        //this invokes a new toast form to display options.
+                        //invoke toast form to display picture options
                         this.Invoke(new ShowToastFormInvoker(ShowToastForm), filename);
 
                     }
@@ -751,6 +769,15 @@ public class main : Form
 
                         isBusy = false;
                         utilities.SetProgramMessage(ex.Message, mainProgramMessage);
+                    }
+                    finally
+                    {
+                        if (PictureTaken != null)
+                        {
+                            PictureTaken.Dispose();
+                            PictureTaken = null;
+                        }
+
                     }
                 }
 
@@ -768,6 +795,7 @@ public class main : Form
             }
 
         }
+
     }
 
 
@@ -926,12 +954,26 @@ public class main : Form
 
     }
     /// <summary>
+    /// This function is an event handler for the FolderBrowse button
+    /// It opens a new instance of the folderBrowser to allow
+    /// the user to select a path 
+    /// </summary>
+    private void browseButton_Click(object sender, EventArgs e)
+    {
+        FolderBrowserDialog fbd = new FolderBrowserDialog();
+        fbd.ShowDialog();
+        if (System.IO.Directory.Exists(fbd.SelectedPath))
+            fileLocationTextBox.Text = fbd.SelectedPath;
+        saveFileSettingBtn.PerformClick(); //click the save button
+        fbd.Dispose();
+        fbd = null;
+    }
+
+    /// <summary>
     /// This function is an event handler for the SaveGlobalSettings 
     /// button click. If its pressed it saves the global settings 
     /// to the XML file.
     /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
     private void saveGlobalSettingsBtn_Click(object sender, EventArgs e)
     {
         mySettings.hideOnLoad = HideUponLaunchCheckbox.Checked;
@@ -964,4 +1006,8 @@ public class main : Form
 
 
     #endregion
+
+
+
+
 }

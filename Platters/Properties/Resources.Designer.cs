@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Platters.Properties {
+namespace Skimpt.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Platters.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Platters.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Skimpt.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,6 +63,13 @@ namespace Platters.Properties {
         internal static System.Drawing.Bitmap ajax_loader {
             get {
                 object obj = ResourceManager.GetObject("ajax_loader", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap background_copy {
+            get {
+                object obj = ResourceManager.GetObject("background copy", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
