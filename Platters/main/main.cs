@@ -21,6 +21,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Util;
 using Microsoft.Win32;
+using Microsoft.CSharp;
 
 public class main : Form
 {
@@ -262,7 +263,7 @@ public class main : Form
         this.label1.AutoSize = true;
         this.label1.Location = new System.Drawing.Point(13, 27);
         this.label1.Name = "label1";
-        this.label1.Size = new System.Drawing.Size(191, 19);
+        this.label1.Size = new System.Drawing.Size(192, 19);
         this.label1.TabIndex = 0;
         this.label1.Text = "Save my file to this location:";
         // 
@@ -271,7 +272,7 @@ public class main : Form
         this.radioButton2.AutoSize = true;
         this.radioButton2.Location = new System.Drawing.Point(26, 56);
         this.radioButton2.Name = "radioButton2";
-        this.radioButton2.Size = new System.Drawing.Size(213, 23);
+        this.radioButton2.Size = new System.Drawing.Size(214, 23);
         this.radioButton2.TabIndex = 1;
         this.radioButton2.TabStop = true;
         this.radioButton2.Text = "Allow me to specify each file";
@@ -282,7 +283,7 @@ public class main : Form
         this.radioButton1.AutoSize = true;
         this.radioButton1.Location = new System.Drawing.Point(26, 26);
         this.radioButton1.Name = "radioButton1";
-        this.radioButton1.Size = new System.Drawing.Size(185, 23);
+        this.radioButton1.Size = new System.Drawing.Size(186, 23);
         this.radioButton1.TabIndex = 0;
         this.radioButton1.TabStop = true;
         this.radioButton1.Text = "Randomly name my files";
@@ -813,7 +814,14 @@ public class main : Form
         else
             this.radioButton2.Checked = true;
 
-        this.fileLocationTextBox.Text = mySettings.fileLocationSetting;
+        if (mySettings.fileLocationSetting != "")
+        {
+            this.fileLocationTextBox.Text = mySettings.fileLocationSetting;
+        }
+        else
+        {
+            this.fileLocationTextBox.Text = System.IO.Path.GetFullPath(System.Environment.SpecialFolder.MyDocuments.ToString());
+        }
         this.ftpHostTxtBox.Text = mySettings.ftphostSetting;
         this.ftpPassTxtBox.Text = mySettings.ftppasswordSetting;
         this.ftpUserTxtBox.Text = mySettings.ftpusernameSetting;
