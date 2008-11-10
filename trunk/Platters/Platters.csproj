@@ -66,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="classes\autoupdater.cs" />
     <Compile Include="classes\ColorListForForm.cs" />
     <Compile Include="classes\formanimator.cs" />
     <Compile Include="classes\ftp.cs" />
