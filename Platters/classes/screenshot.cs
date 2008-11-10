@@ -58,7 +58,7 @@ public sealed class ScreenCapture
 
 
         // Create a rectangle encompassing all screens...
-        foreach (Screen screen in screens)
+        foreach (Screen screen in Screen.AllScreens)
             rcScreen = Rectangle.Union(rcScreen, screen.Bounds);
 
         // Create a composite bitmap of the size of all screens...
@@ -79,7 +79,7 @@ public sealed class ScreenCapture
 
         // Now, loop through screens, 
         // Blting each to the composite HDC created above...
-        foreach (Screen screen in screens)
+        foreach (Screen screen in Screen.AllScreens)
         {
             // Create DC for each source monitor...
             IntPtr hdcSource = Win32.CreateDC(
