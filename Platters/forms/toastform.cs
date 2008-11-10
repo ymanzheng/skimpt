@@ -182,7 +182,7 @@ public partial class toastform : Form
                 form.FileContentType = "image/jpeg";
                 form.InputBoxName = "selector";
                 form.setField("progress", "1");
-                form.setField("markurl", "http://www.clantemplates.com/v5/html/images/gametracker.gif");
+                form.setField("markurl", String.Empty);
                 form.setField("MAX_UPLOAD_SIZE", "16777216");
                 form.sendFile(_FileNameToHandle);
                 returnValue = utilities.parsePOSTData("kalleload", form.ResponseText.ToString());
@@ -233,7 +233,11 @@ public partial class toastform : Form
         this.applyEffectsButton.Enabled = true;
         this.uploadBtn.Enabled = true;
         this.uploadtoFtpBtn.Enabled = true;
+        //get rid of the form.
+        form = null;
 
+     
+        
     }
 
     private void uploadtoFtpBtn_Click(object sender, EventArgs e)
