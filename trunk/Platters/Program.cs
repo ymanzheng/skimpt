@@ -29,6 +29,7 @@ namespace Platters
     static class Program 
     {
 
+        
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -42,11 +43,7 @@ namespace Platters
             Mutex mutex = new Mutex(false, "Local\\" + "SkimptProgramRunning", out firstInstance);
 
             if (firstInstance)
-            {
-                BackgroundWorker bg = new BackgroundWorker();
-                bg.WorkerReportsProgress = false;
-                bg.DoWork += new DoWorkEventHandler(bg_DoWork);
-                bg.RunWorkerAsync();
+            {               
                 MessageBox.Show("Program started!");
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
@@ -56,10 +53,6 @@ namespace Platters
             {
                 MessageBox.Show("This program is already running!");
             }
-
-           
-
-
          //   Logger logger = new Logger(3, "test.txt");
 
 
@@ -79,16 +72,11 @@ namespace Platters
          //   logger.shutdown();
         }
 
-        static void bg_DoWork(object sender, DoWorkEventArgs e)
-        {
-            int curVer;
-            autoupdater.GetLatestVersion();
-            curVer = Convert.ToInt32(Application.ProductVersion.Replace(".", string.Empty));
-          //  MessageBox.Show(curVer.ToString());
+     
 
-            if (autoupdater.GetLatestVersion() > curVer)
-                MessageBox.Show("New Version is available on code.google.com/p/skimpt");
-        }
+
+
+
     
     }
 }

@@ -22,6 +22,11 @@ using System.Windows.Forms;
 using Util;
 using Microsoft.Win32;
 using Microsoft.CSharp;
+using System.Threading;
+using System.ComponentModel;
+using System.Collections.Generic;
+
+
 
 public class main : Form
 {
@@ -90,6 +95,8 @@ public class main : Form
         this.HideUponLaunchCheckbox = new System.Windows.Forms.CheckBox();
         this.startOnWindowsLoadCheckBox = new System.Windows.Forms.CheckBox();
         this.tabPage5 = new System.Windows.Forms.TabPage();
+        this.fontDialog1 = new System.Windows.Forms.FontDialog();
+        this.updateMessageLabel = new System.Windows.Forms.Label();
         this.tabControl1.SuspendLayout();
         this.tabPage1.SuspendLayout();
         this.tabPage2.SuspendLayout();
@@ -121,6 +128,7 @@ public class main : Form
         // tabPage1
         // 
         this.tabPage1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+        this.tabPage1.Controls.Add(this.updateMessageLabel);
         this.tabPage1.Controls.Add(this.toggleCamButton);
         this.tabPage1.Controls.Add(this.unhookButton);
         this.tabPage1.Controls.Add(this.mainProgramMessage);
@@ -263,7 +271,7 @@ public class main : Form
         this.label1.AutoSize = true;
         this.label1.Location = new System.Drawing.Point(13, 27);
         this.label1.Name = "label1";
-        this.label1.Size = new System.Drawing.Size(192, 19);
+        this.label1.Size = new System.Drawing.Size(191, 19);
         this.label1.TabIndex = 0;
         this.label1.Text = "Save my file to this location:";
         // 
@@ -272,7 +280,7 @@ public class main : Form
         this.radioButton2.AutoSize = true;
         this.radioButton2.Location = new System.Drawing.Point(26, 56);
         this.radioButton2.Name = "radioButton2";
-        this.radioButton2.Size = new System.Drawing.Size(214, 23);
+        this.radioButton2.Size = new System.Drawing.Size(213, 23);
         this.radioButton2.TabIndex = 1;
         this.radioButton2.TabStop = true;
         this.radioButton2.Text = "Allow me to specify each file";
@@ -283,7 +291,7 @@ public class main : Form
         this.radioButton1.AutoSize = true;
         this.radioButton1.Location = new System.Drawing.Point(26, 26);
         this.radioButton1.Name = "radioButton1";
-        this.radioButton1.Size = new System.Drawing.Size(186, 23);
+        this.radioButton1.Size = new System.Drawing.Size(185, 23);
         this.radioButton1.TabIndex = 0;
         this.radioButton1.TabStop = true;
         this.radioButton1.Text = "Randomly name my files";
@@ -504,6 +512,17 @@ public class main : Form
         this.tabPage5.ToolTipText = "Check log files";
         this.tabPage5.UseVisualStyleBackColor = true;
         // 
+        // updateMessageLabel
+        // 
+        this.updateMessageLabel.AutoSize = true;
+        this.updateMessageLabel.ForeColor = System.Drawing.Color.Red;
+        this.updateMessageLabel.Location = new System.Drawing.Point(8, 112);
+        this.updateMessageLabel.Name = "updateMessageLabel";
+        this.updateMessageLabel.Size = new System.Drawing.Size(392, 19);
+        this.updateMessageLabel.TabIndex = 3;
+        this.updateMessageLabel.Text = "New Update Available on http://code.google.com/p/skimpt";
+        this.updateMessageLabel.Visible = false;
+        // 
         // main
         // 
         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -588,6 +607,8 @@ public class main : Form
     private bool isBusy = false;
     public bool _cameraMode = false;
     private Button browseButton;
+    private FontDialog fontDialog1;
+    private Label updateMessageLabel;
     private static Skimpt.Properties.Settings mySettings = new Skimpt.Properties.Settings();
 
     #endregion
@@ -614,6 +635,36 @@ public class main : Form
         KeyboardHookInstance = new KeyboardHook();
         KeyboardHookInstance.KeyIntercepted += new KeyboardHookCaptureHandler(KeyboardHookInstance_KeyIntercepted);
 
+        //The following checks for a update
+        BackgroundWorker bg = new BackgroundWorker();
+        bg.WorkerReportsProgress = false;
+        bg.DoWork += new DoWorkEventHandler(bg_DoWork);
+        bg.RunWorkerAsync();
+        while (bg.IsBusy)
+        {
+            //keep the system response while the program is checking for an update
+            Application.DoEvents();
+        }
+        //dispose of the object when done
+        bg.Dispose();
+        bg = null;            
+        
+    }
+
+    /// <summary>
+    /// This function is invoked when RunWorkerAsync is called in the constructor.
+    /// It runs on a seperate thread to check for a program update.
+    /// </summary>
+    void bg_DoWork(object sender, DoWorkEventArgs e)
+    {
+        int curVer;
+        autoupdater.GetLatestVersion();
+        curVer = Convert.ToInt32(Application.ProductVersion.Replace(".", string.Empty));
+      
+        if (autoupdater.GetLatestVersion() > curVer)
+        {
+            updateMessageLabel.Invoke(new MethodInvoker(ShowUpdateLabel));        
+        }
     }
 
 
@@ -672,6 +723,17 @@ public class main : Form
         slice.Show();
         isBusy = false;
         rand = null;
+    }
+
+    /// <summary>
+    /// This function, when executed, displays the
+    /// hidden "update" label. It gets the update from
+    /// google code. A seperate function is required because 
+    /// a delegate is used to access this function.
+    /// </summary>
+    private void ShowUpdateLabel()
+    {
+        updateMessageLabel.Visible = true;
     }
 
     /// <summary>
@@ -814,13 +876,15 @@ public class main : Form
         else
             this.radioButton2.Checked = true;
 
-        if (mySettings.fileLocationSetting != "")
+        //check if a valid path exists.
+        if (mySettings.fileLocationSetting != String.Empty)
         {
             this.fileLocationTextBox.Text = mySettings.fileLocationSetting;
         }
         else
         {
-            this.fileLocationTextBox.Text = System.IO.Path.GetFullPath(System.Environment.SpecialFolder.MyDocuments.ToString());
+            this.fileLocationTextBox.Text = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyPictures);
+            saveFileSettingBtn.PerformClick(); //save the newly created path
         }
         this.ftpHostTxtBox.Text = mySettings.ftphostSetting;
         this.ftpPassTxtBox.Text = mySettings.ftppasswordSetting;
@@ -859,6 +923,9 @@ public class main : Form
         mySettings.ftpOKsettings = false;
     }
 
+    /// <summary>
+    /// This function tests the FTP connection if valid values are given
+    /// </summary>
     private void ftptestConnectionbutton_Click(object sender, EventArgs e)
     {
         //simulate save button so settings are stored in xml file
@@ -881,6 +948,32 @@ public class main : Form
 
     }
 
+    /// <summary>
+    /// This function is an event handler for the SaveGlobalSettings 
+    /// button click. If its pressed it saves the global settings 
+    /// to the XML file.
+    /// </summary>
+    private void saveGlobalSettingsBtn_Click(object sender, EventArgs e)
+    {
+        mySettings.hideOnLoad = HideUponLaunchCheckbox.Checked;
+        mySettings.showErrorMessagesSetting = ShowMessagesCheckbox.Checked;
+
+
+        //set or delete the registry key upon Windows Startup.
+        RegistryKey rkApp = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+        if (startOnWindowsLoadCheckBox.Checked)
+        {
+            rkApp.SetValue("Skimpt", Application.ExecutablePath.ToString());
+        }
+        else
+        {
+            rkApp.DeleteValue("MyApp", false);
+        }
+
+        mySettings.Save();
+    }
+
+
 
     #endregion
 
@@ -896,6 +989,9 @@ public class main : Form
             this.Hide();
         //When the form loads, load up all settings.
         LoadSettings();
+
+        //check if new version is available.
+        
     }
 
     /// <summary>
@@ -977,31 +1073,7 @@ public class main : Form
         fbd = null;
     }
 
-    /// <summary>
-    /// This function is an event handler for the SaveGlobalSettings 
-    /// button click. If its pressed it saves the global settings 
-    /// to the XML file.
-    /// </summary>
-    private void saveGlobalSettingsBtn_Click(object sender, EventArgs e)
-    {
-        mySettings.hideOnLoad = HideUponLaunchCheckbox.Checked;
-        mySettings.showErrorMessagesSetting = ShowMessagesCheckbox.Checked;
-
-
-        //set or delete the registry key upon Windows Startup.
-        RegistryKey rkApp = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-        if (startOnWindowsLoadCheckBox.Checked)
-        {
-            rkApp.SetValue("Skimpt", Application.ExecutablePath.ToString());
-        }
-        else
-        {
-            rkApp.DeleteValue("MyApp", false);
-        }
-
-        mySettings.Save();
-    }
-
+    
     /// <summary>
     /// This function occurs when the form is first SHOWN. 
     /// This function happens after the load event.
@@ -1014,7 +1086,6 @@ public class main : Form
 
 
     #endregion
-
 
 
 
