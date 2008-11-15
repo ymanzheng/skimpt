@@ -60,6 +60,7 @@ public class main : Form
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
         this.tabControl1 = new System.Windows.Forms.TabControl();
         this.tabPage1 = new System.Windows.Forms.TabPage();
+        this.updateMessageLabel = new System.Windows.Forms.Label();
         this.toggleCamButton = new System.Windows.Forms.Button();
         this.unhookButton = new System.Windows.Forms.Button();
         this.mainProgramMessage = new System.Windows.Forms.TextBox();
@@ -96,7 +97,6 @@ public class main : Form
         this.startOnWindowsLoadCheckBox = new System.Windows.Forms.CheckBox();
         this.tabPage5 = new System.Windows.Forms.TabPage();
         this.fontDialog1 = new System.Windows.Forms.FontDialog();
-        this.updateMessageLabel = new System.Windows.Forms.Label();
         this.tabControl1.SuspendLayout();
         this.tabPage1.SuspendLayout();
         this.tabPage2.SuspendLayout();
@@ -139,6 +139,18 @@ public class main : Form
         this.tabPage1.TabIndex = 0;
         this.tabPage1.Text = "Main";
         this.tabPage1.ToolTipText = "Main screen";
+        this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+        // 
+        // updateMessageLabel
+        // 
+        this.updateMessageLabel.AutoSize = true;
+        this.updateMessageLabel.ForeColor = System.Drawing.Color.Red;
+        this.updateMessageLabel.Location = new System.Drawing.Point(8, 112);
+        this.updateMessageLabel.Name = "updateMessageLabel";
+        this.updateMessageLabel.Size = new System.Drawing.Size(392, 19);
+        this.updateMessageLabel.TabIndex = 3;
+        this.updateMessageLabel.Text = "New Update Available on http://code.google.com/p/skimpt";
+        this.updateMessageLabel.Visible = false;
         // 
         // toggleCamButton
         // 
@@ -153,11 +165,11 @@ public class main : Form
         // 
         // unhookButton
         // 
-        this.unhookButton.Location = new System.Drawing.Point(321, 175);
+        this.unhookButton.Location = new System.Drawing.Point(318, 175);
         this.unhookButton.Name = "unhookButton";
-        this.unhookButton.Size = new System.Drawing.Size(146, 33);
+        this.unhookButton.Size = new System.Drawing.Size(149, 33);
         this.unhookButton.TabIndex = 1;
-        this.unhookButton.Text = "unhook prtscr";
+        this.unhookButton.Text = "Unhook Print Screen";
         this.unhookButton.UseVisualStyleBackColor = true;
         this.unhookButton.Click += new System.EventHandler(this.unhookButton_Click);
         // 
@@ -512,17 +524,6 @@ public class main : Form
         this.tabPage5.ToolTipText = "Check log files";
         this.tabPage5.UseVisualStyleBackColor = true;
         // 
-        // updateMessageLabel
-        // 
-        this.updateMessageLabel.AutoSize = true;
-        this.updateMessageLabel.ForeColor = System.Drawing.Color.Red;
-        this.updateMessageLabel.Location = new System.Drawing.Point(8, 112);
-        this.updateMessageLabel.Name = "updateMessageLabel";
-        this.updateMessageLabel.Size = new System.Drawing.Size(392, 19);
-        this.updateMessageLabel.TabIndex = 3;
-        this.updateMessageLabel.Text = "New Update Available on http://code.google.com/p/skimpt";
-        this.updateMessageLabel.Visible = false;
-        // 
         // main
         // 
         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -871,6 +872,20 @@ public class main : Form
     /// </summary>
     private void LoadSettings()
     {
+        if (mySettings.fileLocationSettingCheck.Equals(false))
+        {
+            Skimpt.forms.promptBox locationAsk = new Skimpt.forms.promptBox();
+            locationAsk.Text = "Store Settings";
+            locationAsk.promptBoxLabel.Text = "Please enter a location to save settings to:";
+            locationAsk.promptButtonBrowse.Text = "Browse";
+            locationAsk.promptButtonEnter.Text = "Save Location";
+            locationAsk.promptButtonEnter.Width = 30;
+            locationAsk.Show();
+        }
+        else
+        {
+            mySettings.fileLocationSettingCheck = true;
+        }
         if (mySettings.randomFileNameSetting)
             this.radioButton1.Checked = true;
         else
@@ -1086,6 +1101,11 @@ public class main : Form
 
 
     #endregion
+
+    private void tabPage1_Click(object sender, EventArgs e)
+    {
+
+    }
 
 
 
