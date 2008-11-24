@@ -200,11 +200,7 @@ public sealed class FormAnimator
     
     #endregion 
     
-    #region " APIs " 
-    
-    //Windows API function used to animate the form. 
-    
-    #endregion 
+
     
     #region " Constructors " 
     
@@ -294,7 +290,10 @@ public sealed class FormAnimator
         
         this.m_Direction = direction; 
     } 
-    
+    ~FormAnimator ()
+    {
+        this.m_Form = null;
+    }
     #endregion 
     
     #region " Event Handlers " 

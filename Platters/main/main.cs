@@ -138,8 +138,7 @@ public class main : Form
         this.tabPage1.Size = new System.Drawing.Size(475, 216);
         this.tabPage1.TabIndex = 0;
         this.tabPage1.Text = "Main";
-        this.tabPage1.ToolTipText = "Main screen";
-        this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+        this.tabPage1.ToolTipText = "Main screen";       
         // 
         // updateMessageLabel
         // 
@@ -641,15 +640,6 @@ public class main : Form
         bg.WorkerReportsProgress = false;
         bg.DoWork += new DoWorkEventHandler(bg_DoWork);
         bg.RunWorkerAsync();
-        while (bg.IsBusy)
-        {
-            //keep the system response while the program is checking for an update
-            Application.DoEvents();
-        }
-        //dispose of the object when done
-        bg.Dispose();
-        bg = null;            
-        
     }
 
     /// <summary>
@@ -661,10 +651,10 @@ public class main : Form
         int curVer;
         autoupdater.GetLatestVersion();
         curVer = Convert.ToInt32(Application.ProductVersion.Replace(".", string.Empty));
-      
+
         if (autoupdater.GetLatestVersion() > curVer)
         {
-            updateMessageLabel.Invoke(new MethodInvoker(ShowUpdateLabel));        
+            updateMessageLabel.Invoke(new MethodInvoker(ShowUpdateLabel));
         }
     }
 
@@ -751,7 +741,7 @@ public class main : Form
             //check if its a valid file and that the directory exists
             if (!String.IsNullOrEmpty(mySettings.fileLocationSetting.ToString()) || System.IO.Directory.Exists(mySettings.fileLocationSetting.ToString()))
             {
-                
+
                 //Check if user wants random filename
                 if (mySettings.randomFileNameSetting)
                 {
@@ -808,7 +798,7 @@ public class main : Form
                             PictureTaken.Dispose();
                             PictureTaken = null;
                         }
-                        
+
                     }
                 }
                 else
@@ -872,34 +862,25 @@ public class main : Form
     /// </summary>
     private void LoadSettings()
     {
-        if (mySettings.fileLocationSettingCheck.Equals(false))
-        {
-            Skimpt.forms.promptBox locationAsk = new Skimpt.forms.promptBox();
-            locationAsk.Text = "Store Settings";
-            locationAsk.promptBoxLabel.Text = "Please enter a location to save settings to:";
-            locationAsk.promptButtonBrowse.Text = "Browse";
-            locationAsk.promptButtonEnter.Text = "Save Location";
-            locationAsk.promptButtonEnter.Width = 30;
-            locationAsk.Show();
-        }
-        else
-        {
-            mySettings.fileLocationSettingCheck = true;
-        }
+
         if (mySettings.randomFileNameSetting)
             this.radioButton1.Checked = true;
         else
             this.radioButton2.Checked = true;
 
         //check if a valid path exists.
-        if (mySettings.fileLocationSetting != String.Empty)
+        if (mySettings.fileLocationSetting != String.Empty && 
+            System.IO.Directory.Exists (mySettings.fileLocationSetting))
         {
             this.fileLocationTextBox.Text = mySettings.fileLocationSetting;
         }
         else
         {
-            this.fileLocationTextBox.Text = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyPictures);
-            saveFileSettingBtn.PerformClick(); //save the newly created path
+            //valid path does not exist. 
+            mySettings.fileLocationSetting = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyPictures);
+            mySettings.Save();
+            this.fileLocationTextBox.Text = mySettings.fileLocationSetting;      
+
         }
         this.ftpHostTxtBox.Text = mySettings.ftphostSetting;
         this.ftpPassTxtBox.Text = mySettings.ftppasswordSetting;
@@ -982,7 +963,7 @@ public class main : Form
         }
         else
         {
-            rkApp.DeleteValue("MyApp", false);
+            rkApp.DeleteValue("Skimpt", false);
         }
 
         mySettings.Save();
@@ -1006,7 +987,7 @@ public class main : Form
         LoadSettings();
 
         //check if new version is available.
-        
+
     }
 
     /// <summary>
@@ -1088,7 +1069,7 @@ public class main : Form
         fbd = null;
     }
 
-    
+
     /// <summary>
     /// This function occurs when the form is first SHOWN. 
     /// This function happens after the load event.
@@ -1101,12 +1082,5 @@ public class main : Form
 
 
     #endregion
-
-    private void tabPage1_Click(object sender, EventArgs e)
-    {
-
-    }
-
-
 
 }

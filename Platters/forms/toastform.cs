@@ -17,147 +17,340 @@
 #endregion
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Util;
 
-public partial class toastform : Form
+public class toastform : Form
 {
-    #region Toast Variables, Do not change
-    [DllImport("user32", CharSet = CharSet.Auto, SetLastError = true, ExactSpelling = true)]
-    private static extern IntPtr GetForegroundWindow();
-    [DllImport("user32", CharSet = CharSet.Auto, SetLastError = true, ExactSpelling = true)]
-    private static extern bool SetForegroundWindow(IntPtr hWnd);
+    /// <summary>
+    /// Required designer variable.
+    /// </summary>
+    private System.ComponentModel.IContainer components = null;   
+    #region Windows Form Designer generated code
 
-    //The list of currently open ToastForms. 
-    private static ArrayList openForms = new ArrayList();
+    /// <summary>
+    /// Required method for Designer support - do not modify
+    /// the contents of this method with the code editor.
+    /// </summary>
+    private void InitializeComponent()
+    {
+        this.components = new System.ComponentModel.Container();
+        this.lifeTimer = new System.Windows.Forms.Timer(this.components);
+        this.fileNameLabel = new System.Windows.Forms.Label();
+        this.label1 = new System.Windows.Forms.Label();
+        this.groupBox1 = new System.Windows.Forms.GroupBox();
+        this.uploadtoFtpBtn = new System.Windows.Forms.Button();
+        this.uploadBtn = new System.Windows.Forms.Button();
+        this.hostingChoicesComboBox = new System.Windows.Forms.ComboBox();
+        this.hostingPictureList = new System.Windows.Forms.ImageList(this.components);
+        this.groupBox2 = new System.Windows.Forms.GroupBox();
+        this.applyEffectsButton = new System.Windows.Forms.Button();
+        this.effectsComboBox = new System.Windows.Forms.ComboBox();
+        this.previewPictureBox = new System.Windows.Forms.PictureBox();
+        this.groupBox1.SuspendLayout();
+        this.groupBox2.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)(this.previewPictureBox)).BeginInit();
+        this.SuspendLayout();
+        // 
+        // lifeTimer
+        // 
+        this.lifeTimer.Tick += new System.EventHandler(this.lifeTimer_Tick);
+        // 
+        // fileNameLabel
+        // 
+        this.fileNameLabel.AutoSize = true;
+        this.fileNameLabel.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        this.fileNameLabel.ForeColor = System.Drawing.Color.Blue;
+        this.fileNameLabel.Location = new System.Drawing.Point(48, 7);
+        this.fileNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+        this.fileNameLabel.Name = "fileNameLabel";
+        this.fileNameLabel.Size = new System.Drawing.Size(15, 18);
+        this.fileNameLabel.TabIndex = 4;
+        this.fileNameLabel.Text = "#";
+        // 
+        // label1
+        // 
+        this.label1.AutoSize = true;
+        this.label1.Location = new System.Drawing.Point(12, 7);
+        this.label1.Name = "label1";
+        this.label1.Size = new System.Drawing.Size(38, 18);
+        this.label1.TabIndex = 5;
+        this.label1.Text = "File: ";
+        // 
+        // groupBox1
+        // 
+        this.groupBox1.Controls.Add(this.uploadtoFtpBtn);
+        this.groupBox1.Controls.Add(this.uploadBtn);
+        this.groupBox1.Controls.Add(this.hostingChoicesComboBox);
+        this.groupBox1.Location = new System.Drawing.Point(3, 63);
+        this.groupBox1.Name = "groupBox1";
+        this.groupBox1.Size = new System.Drawing.Size(302, 57);
+        this.groupBox1.TabIndex = 6;
+        this.groupBox1.TabStop = false;
+        this.groupBox1.Text = "Upload ";
+        // 
+        // uploadtoFtpBtn
+        // 
+        this.uploadtoFtpBtn.Location = new System.Drawing.Point(217, 23);
+        this.uploadtoFtpBtn.Name = "uploadtoFtpBtn";
+        this.uploadtoFtpBtn.Size = new System.Drawing.Size(66, 26);
+        this.uploadtoFtpBtn.TabIndex = 2;
+        this.uploadtoFtpBtn.Text = "ftp";
+        this.uploadtoFtpBtn.UseVisualStyleBackColor = true;
+        this.uploadtoFtpBtn.Click += new System.EventHandler(this.uploadtoFtpBtn_Click);
+        // 
+        // uploadBtn
+        // 
+        this.uploadBtn.Location = new System.Drawing.Point(145, 24);
+        this.uploadBtn.Name = "uploadBtn";
+        this.uploadBtn.Size = new System.Drawing.Size(66, 26);
+        this.uploadBtn.TabIndex = 1;
+        this.uploadBtn.Text = "site";
+        this.uploadBtn.UseVisualStyleBackColor = true;
+        this.uploadBtn.Click += new System.EventHandler(this.uploadBtn_Click);
+        // 
+        // hostingChoicesComboBox
+        // 
+        this.hostingChoicesComboBox.FormattingEnabled = true;
+        this.hostingChoicesComboBox.Items.AddRange(new object[] {
+            "Kalleload.com",
+            "Imgpurse.com",
+            "Imageshack.us",
+            "Tinypic.com"});
+        this.hostingChoicesComboBox.Location = new System.Drawing.Point(18, 23);
+        this.hostingChoicesComboBox.Name = "hostingChoicesComboBox";
+        this.hostingChoicesComboBox.Size = new System.Drawing.Size(121, 26);
+        this.hostingChoicesComboBox.TabIndex = 0;
+        // 
+        // hostingPictureList
+        // 
+        this.hostingPictureList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+        this.hostingPictureList.ImageSize = new System.Drawing.Size(16, 16);
+        this.hostingPictureList.TransparentColor = System.Drawing.Color.Transparent;
+        // 
+        // groupBox2
+        // 
+        this.groupBox2.Controls.Add(this.applyEffectsButton);
+        this.groupBox2.Controls.Add(this.effectsComboBox);
+        this.groupBox2.Location = new System.Drawing.Point(3, 126);
+        this.groupBox2.Name = "groupBox2";
+        this.groupBox2.Size = new System.Drawing.Size(302, 57);
+        this.groupBox2.TabIndex = 7;
+        this.groupBox2.TabStop = false;
+        this.groupBox2.Text = "Effects";
+        // 
+        // applyEffectsButton
+        // 
+        this.applyEffectsButton.Location = new System.Drawing.Point(145, 24);
+        this.applyEffectsButton.Name = "applyEffectsButton";
+        this.applyEffectsButton.Size = new System.Drawing.Size(66, 26);
+        this.applyEffectsButton.TabIndex = 1;
+        this.applyEffectsButton.Text = "apply";
+        this.applyEffectsButton.UseVisualStyleBackColor = true;
+        this.applyEffectsButton.Click += new System.EventHandler(this.applyEffectsButton_Click_1);
+        // 
+        // effectsComboBox
+        // 
+        this.effectsComboBox.FormattingEnabled = true;
+        this.effectsComboBox.Items.AddRange(new object[] {
+            "grayscale",
+            "invert",
+            "flip",
+            "watermark"});
+        this.effectsComboBox.Location = new System.Drawing.Point(18, 23);
+        this.effectsComboBox.Name = "effectsComboBox";
+        this.effectsComboBox.Size = new System.Drawing.Size(121, 26);
+        this.effectsComboBox.TabIndex = 0;
+        // 
+        // previewPictureBox
+        // 
+        this.previewPictureBox.Location = new System.Drawing.Point(70, 7);
+        this.previewPictureBox.Name = "previewPictureBox";
+        this.previewPictureBox.Size = new System.Drawing.Size(88, 50);
+        this.previewPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+        this.previewPictureBox.TabIndex = 8;
+        this.previewPictureBox.TabStop = false;
+        // 
+        // toastform
+        // 
+        this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
+        this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+        this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+        this.ClientSize = new System.Drawing.Size(311, 191);
+        this.Controls.Add(this.previewPictureBox);
+        this.Controls.Add(this.groupBox2);
+        this.Controls.Add(this.groupBox1);
+        this.Controls.Add(this.label1);
+        this.Controls.Add(this.fileNameLabel);
+        this.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+        this.Margin = new System.Windows.Forms.Padding(4);
+        this.MaximizeBox = false;
+        this.MinimizeBox = false;
+        this.Name = "toastform";
+        this.ShowIcon = false;
+        this.ShowInTaskbar = false;
+        this.Text = "Picture Options";
+        this.TopMost = true;
+        this.Load += new System.EventHandler(this.toastform_Load);
+        this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.toastform_FormClosed);
+        this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.toastform_FormClosing);
+        this.groupBox1.ResumeLayout(false);
+        this.groupBox2.ResumeLayout(false);
+        ((System.ComponentModel.ISupportInitialize)(this.previewPictureBox)).EndInit();
+        this.ResumeLayout(false);
+        this.PerformLayout();
+
+    }
+
+    #endregion
+
+    private System.Windows.Forms.Timer lifeTimer;
+    private System.Windows.Forms.Label fileNameLabel;
+    private System.Windows.Forms.Label label1;
+    private System.Windows.Forms.GroupBox groupBox1;
+    private System.Windows.Forms.ImageList hostingPictureList;
+    private System.Windows.Forms.ComboBox hostingChoicesComboBox;
+    private System.Windows.Forms.Button uploadBtn;
+    private System.Windows.Forms.Button uploadtoFtpBtn;
+    private System.Windows.Forms.GroupBox groupBox2;
+    private System.Windows.Forms.Button applyEffectsButton;
+    private System.Windows.Forms.ComboBox effectsComboBox;
+
+    //The new list of current open ToastForms.
+    private static List<toastform> openToastForms = new List<toastform>();
 
     //The object that creates the sliding animation. 
     private FormAnimator m_Animator;
 
-    //The handle of the window that currently has focus. 
-    private IntPtr m_CurrentForegroundWindow;
-    static int static_ToastForm_Activated_activationCount = 0;
 
-    #endregion
-
-
+    
     //the property and variable for the filename
     private string _FileNameToHandle;
+    private PictureBox previewPictureBox;
+
     public string SetFileName { set { _FileNameToHandle = value; } }
 
     //the private static reference to the settings object
     private static Skimpt.Properties.Settings mySettings = new Skimpt.Properties.Settings();
-
-
-    //private constructor
-    private toastform()
+    
+    public toastform(string filename) 
     {
+        //design the GUI
         InitializeComponent();
-    }
 
-    public toastform(string filename)
-        : this()
-    {
+        //check for invalid file
+        if (!System.IO.File.Exists(filename))
+            this.Close();
+        
         this._FileNameToHandle = filename;
+
         //Set the time for which the form should be displayed. 
         this.lifeTimer.Interval = 10000;
+
         //Display the form by sliding up. 
-        this.m_Animator = new FormAnimator(this, FormAnimator.AnimationMethod.Slide, FormAnimator.AnimationDirection.Up, 400);
-        
+        //create a new object.
+        this.m_Animator = new FormAnimator(this, FormAnimator.AnimationMethod.Slide, FormAnimator.AnimationDirection.Up, 400);        
     }
 
 
-    public new void Show()
-    {
-        //Determine the current foreground window so it can be reactivated each time this form tries to get the focus. 
-        this.m_CurrentForegroundWindow = toastform.GetForegroundWindow();
 
-        //Display the form. 
-        base.Show();
-    }
 
+    /// <summary>
+    /// Form_load override
+    /// </summary>
     private void toastform_Load(object sender, EventArgs e)
     {
-
-
         //Display the form just above the system tray. 
         this.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - this.Width - 5, Screen.PrimaryScreen.WorkingArea.Height - this.Height - 5);
 
-        //Move each open form upwards to make room for this one. 
-        foreach (toastform openForm in toastform.openForms)
+        //Move each open form upwards to make room for this one.
+        foreach (toastform oform in toastform.openToastForms)
         {
-            openForm.Top -= this.Height + 5;
+            oform.Top -= this.Height + 5;
         }
-
-        //Add this form from the open form list. 
-        toastform.openForms.Add(this);
-
+        toastform.openToastForms.Add(this);
+        
         if (!string.IsNullOrEmpty(_FileNameToHandle))
             fileNameLabel.Text = _FileNameToHandle;
 
         //set the initial values for both comobo boxes
         hostingChoicesComboBox.SelectedIndex = 0;
         effectsComboBox.SelectedIndex = 0;
-        
+
+        previewPictureBox.Load(_FileNameToHandle);
+
         //Start counting down the form's liftime. 
-        this.lifeTimer.Start();
- 
+        this.lifeTimer.Start(); 
+
+
     }
 
 
     #region ToastForm Private Functions, Dont change
-    private void toastform_Activated(object sender, EventArgs e)
-    {
-        //The number of times the form has been actiavted. 
-
-        //This form will try to take the focus times as it is being displayed. 
-        if (static_ToastForm_Activated_activationCount < 5)
-        {
-            //Activate the window that previously had the focus. 
-            toastform.SetForegroundWindow(this.m_CurrentForegroundWindow);
-        }
-
-        //Increment the activation counter. 
-        static_ToastForm_Activated_activationCount += 1;
-    }
-
+  
     private void toastform_FormClosing(object sender, FormClosingEventArgs e)
     {
         //Close the form by sliding down. 
         this.m_Animator.Direction = FormAnimator.AnimationDirection.Down;
-
     }
 
     private void toastform_FormClosed(object sender, FormClosedEventArgs e)
     {
-        int myFormIndex = toastform.openForms.Count - 1;
 
-        //Find the index of this form in the open form list. 
-        while (!(object.ReferenceEquals(toastform.openForms[myFormIndex], this)))
+
+        int myFormIndex = toastform.openToastForms.Count - 1;
+
+        //Find the index of this form in the open form list.
+        while (!(object.ReferenceEquals(toastform.openToastForms[myFormIndex], this)))
         {
             myFormIndex -= 1;
         }
 
         toastform openForm = default(toastform);
 
-        //Move down any open forms above this one. 
+        //Move down any open forms above this one.
         for (int i = myFormIndex - 1; i >= 0; i += -1)
         {
-            openForm = (toastform)toastform.openForms[i];
+            openForm = (toastform)toastform.openToastForms[i];
             openForm.Top += this.Height + 5;
             openForm.Refresh();
         }
 
-        //Remove this form from the open form list. 
-        toastform.openForms.Remove(this);
-
+        //Remove this form from the open form list.
+        toastform.openToastForms.Remove(this);
+        this.Dispose();
     }
 
     private void lifeTimer_Tick(object sender, EventArgs e)
     {
         this.Close();
+    }
+
+    ~toastform()
+    {
+        Console.WriteLine("Bye from toastform");
+    }
+
+
+    /// <summary>
+    /// Clean up any resources being used.
+    /// </summary>
+    /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+    protected override void Dispose(bool disposing)
+    {
+               
+        if (disposing && (components != null))
+        {
+            this.m_Animator = null;
+            this.lifeTimer = null;
+            components.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
     #endregion
 
@@ -234,10 +427,7 @@ public partial class toastform : Form
         this.uploadBtn.Enabled = true;
         this.uploadtoFtpBtn.Enabled = true;
         //get rid of the form.
-        form = null;
-
-     
-        
+        form = null;       
     }
 
     private void uploadtoFtpBtn_Click(object sender, EventArgs e)

@@ -166,17 +166,5 @@ namespace Skimpt.Properties {
                 this["hideOnLoad"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool fileLocationSettingCheck {
-            get {
-                return ((bool)(this["fileLocationSettingCheck"]));
-            }
-            set {
-                this["fileLocationSettingCheck"] = value;
-            }
-        }
     }
 }
