@@ -155,6 +155,11 @@ public class Win32
     [DllImport("user32.dll")]
     public static extern int DeregisterShellHookWindow(IntPtr hWnd);
 
+    //[DllImport("user32", CharSet = CharSet.Auto, SetLastError = true, ExactSpelling = true)]
+    //public static extern IntPtr GetForegroundWindow();
+
+    [DllImport("user32", CharSet = CharSet.Auto, SetLastError = true, ExactSpelling = true)]
+    public static extern bool SetForegroundWindow(IntPtr hWnd);
     #endregion Hooks
 
     #region System - Kernel32.dll
