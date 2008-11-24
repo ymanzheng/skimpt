@@ -72,12 +72,18 @@
     <Compile Include="classes\formanimator.cs" />
     <Compile Include="classes\ftp.cs" />
     <Compile Include="classes\ImageEffects.cs" />
+    <Compile Include="classes\ImageEventArgs.cs" />
+    <Compile Include="classes\ImageOutputCollection.cs" />
     <Compile Include="classes\keyboardhook.cs" />
     <Compile Include="classes\logger.cs" />
     <Compile Include="classes\screenshot.cs" />
+    <Compile Include="classes\SkimptImage.cs">
+    </Compile>
     <Compile Include="classes\utilities.cs" />
     <Compile Include="classes\webpost.cs" />
     <Compile Include="classes\win32.cs" />
+    <Compile Include="extensibility\IImageFormat.cs" />
+    <Compile Include="extensibility\JPGFormat.cs" />
     <Compile Include="forms\AboutBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +107,9 @@
     </Compile>
     <Compile Include="classes\genericLayeredForm.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\toastform.designer.cs">
+      <DependentUpon>toastform.cs</DependentUpon>
     </Compile>
     <Compile Include="main\main.cs">
       <SubType>Form</SubType>
@@ -159,6 +168,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="License\GNUv3.txt" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="Resources\background copy.jpg" />
     <Content Include="Resources\ftp_logo.jpg" />
     <None Include="Resources\imageshack.gif" />

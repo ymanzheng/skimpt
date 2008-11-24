@@ -27,6 +27,9 @@ namespace Util
 
     public static class utilities
     {
+
+        private static Skimpt.Properties.Settings mySettings = new Skimpt.Properties.Settings();
+
         /// <summary>
         /// This delegate+method changes the textbox value to the specified text
         /// If it is invoked from a seperate thread it uses a delegate.
@@ -67,24 +70,11 @@ namespace Util
         /// </summary>
         /// <param name="GetRandomFileName"></param>
         public static string GetRandomFileName(){
-
             string name;
+           
+                name = System.IO.Path.GetRandomFileName();
+          
 
-            DateTime systemtime = DateTime.Now; //creates variable as the current date and time
-            DateTime temp1; //temprary variable for date
-            TimeSpan temp2; //temprary variable for time
-            string filename_random, filename_random2; //string for output of date
-            string [] display_date, display_time; //string for output of time
-            temp1 = systemtime.Date; //get the date part
-            temp2 = systemtime.TimeOfDay; //get the time part
-            filename_random = temp1.ToString();  //convert date to string and store
-            filename_random2 = temp2.ToString(); //covnert time to string and store
-            display_date = filename_random.Split(' '); //split is required here as the date here is dd-mm-yyyy 00:00:00, we remove the extra 0's
-            display_time = filename_random2.Split('.'); //split is required here as the time here is HH:MM:SS.(MILI)SSSS, we remove the miliseconds
-            display_time[0] = display_time[0].Replace(":", "");
-            //since we have the required date and time as strings, we join them to get the filename
-
-            name = display_date[0]+ "-" + display_time[0];
             return name;
         }
 

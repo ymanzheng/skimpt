@@ -166,5 +166,41 @@ namespace Skimpt.Properties {
                 this["hideOnLoad"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool generateThumbNails {
+            get {
+                return ((bool)(this["generateThumbNails"]));
+            }
+            set {
+                this["generateThumbNails"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string thumbnailLocationSetting {
+            get {
+                return ((string)(this["thumbnailLocationSetting"]));
+            }
+            set {
+                this["thumbnailLocationSetting"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("80")]
+        public double thumbnailSize {
+            get {
+                return ((double)(this["thumbnailSize"]));
+            }
+            set {
+                this["thumbnailSize"] = value;
+            }
+        }
     }
 }

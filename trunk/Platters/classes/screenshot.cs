@@ -27,6 +27,7 @@ using System.Windows.Forms;
 /// <summary>
 /// This is a static class which exposes two methods
 /// It allows us to take a screen capture.
+/// It is sealed so it can not be inherited.
 /// </summary>
 public sealed class ScreenCapture
 {
