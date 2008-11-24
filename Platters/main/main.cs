@@ -807,16 +807,21 @@ public class main : Form
                     try
                     {
 
-                        PictureTaken = ScreenCapture.GetDesktopWindowCaptureAsBitmap();
-                        PictureTaken.Save(System.IO.Path.Combine(mySettings.fileLocationSetting.ToString(), filename) + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
-                        //set the program message.
-                        utilities.SetProgramMessage("Picture Saved", mainProgramMessage);
-                        //invoke toast form to display picture options
-                        this.Invoke(new ShowToastFormInvoker(ShowToastForm), filename);
+                        //PictureTaken = ScreenCapture.GetDesktopWindowCaptureAsBitmap();
+                        //PictureTaken.Save(System.IO.Path.Combine(mySettings.fileLocationSetting.ToString(), filename) + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                    
 
+                        SkimptImage ski = new SkimptImage();
+                        ski.ImageFormat = new JPGFormat();
+                        ski.CaptureDesktop();
+                     
                     }
                     catch (Exception ex)
                     {
+                        Console.WriteLine(ex.Message);
+                        Console.WriteLine(ex.Source.ToString() );
+                        Console.WriteLine(ex.StackTrace.ToString());
+
                         //we were unable to save file.                        
                         if (mySettings.showErrorMessagesSetting)
                             MessageBox.Show("Unable to save file", "Error", MessageBoxButtons.OK);
