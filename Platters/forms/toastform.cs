@@ -176,9 +176,8 @@ public partial class toastform : Form
         //see what option they chose.
         switch (hostingChoicesComboBox.SelectedItem.ToString().ToLower())
         {
-            case "kalleload.com":
-                uploadBtn.Enabled = false;
-                form = new MultipartForm("http://kalleload.net");
+            case "kalleload.net":
+                form = new MultipartForm("http://ww.kalleload.net/");
                 form.FileContentType = "image/jpeg";
                 form.InputBoxName = "selector";
                 form.setField("progress", "1");
@@ -192,7 +191,7 @@ public partial class toastform : Form
                 break;
 
             case "imgpurse.com":
-                form = new MultipartForm("http://imgpurse.com/index.php");
+                form = new MultipartForm("http://www.imgpurse.com/");
                 form.FileContentType = "image/jpeg";
                 form.InputBoxName = "file";
                 form.setField("upload", "1");
@@ -216,7 +215,7 @@ public partial class toastform : Form
                 i.Show();
                 break;
             case "imageshack.us":
-                form = new MultipartForm("http://imageshack.us");
+                form = new MultipartForm("http://www.imageshack.us");
                 form.FileContentType = "image/jpeg";
                 form.InputBoxName = "fileupload";
                 form.setField("swfbutan", "1");
