@@ -103,7 +103,7 @@
         // 
         this.hostingChoicesComboBox.FormattingEnabled = true;
         this.hostingChoicesComboBox.Items.AddRange(new object[] {
-            "Kalleload.com",
+            "Kalleload.net",
             "Imgpurse.com",
             "Imageshack.us",
             "Tinypic.com"});
