@@ -72,7 +72,7 @@ namespace Util
         public static string GetRandomFileName(){
             string name;
            
-                name = System.IO.Path.GetRandomFileName();
+                name = System.IO.Path.GetFileNameWithoutExtension (System.IO.Path.GetRandomFileName());
           
 
             return name;

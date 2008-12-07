@@ -351,6 +351,9 @@ public class MainCropForm : LayeredForm
         NativeMethods.SendMessage(NativeMethods.GetTopLevelOwner(Handle), NativeMethods.WM_SETTEXT, 0, null);
         base.OnClosed(e);
         mainFormReference._cameraMode = false;
+        mainFormReference._highlightMode  = false;           
+        mainFormReference.CameraCoords.X = 0;
+        mainFormReference.CameraCoords.Y = 0;
         mainFormReference.Show();
     }
 

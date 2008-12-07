@@ -98,16 +98,20 @@ public class JPGFormat : IImageFormat
 
         try
         {
-            string finalFile = System.IO.Path.Combine(e.FullSaveLocation, e.FullFileName) + ".jpeg";
-
-            e.CapturedImage.Save(finalFile,                   
+            string finalFile = System.IO.Path.Combine(e.FullSaveLocation, e.FullFileName) + "." + e.Extension;           
+          
+            e.CapturedImage.Save(finalFile,
                                 myImageCodecInfo, myEncoderParameters);
 
-            
-         //  e.CapturedImage.Save(finalFile);
-           // e.CapturedImage.Save("c:\\users\\affan\\desktop\\jjajja.jpeg");
+
+            //  e.CapturedImage.Save(finalFile);
+            // e.CapturedImage.Save("c:\\users\\affan\\desktop\\jjajja.jpeg");
             ShowToastForm(finalFile);
             //this.Invoke(new ShowToastFormInvoker(ShowToastForm), e.FullSaveLocation + ".jpg");
+        }
+        catch(ArgumentException ex)
+        {
+            Console.WriteLine(ex.Message);
         }
         finally
         {
