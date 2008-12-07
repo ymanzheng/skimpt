@@ -63,14 +63,42 @@ public class SkimptImage : IImageOutput
             throw new ArgumentNullException("+imageFormat->Capture()");        
     
         //Process the image and populate the arguments
-        ProcessImage(ScreenCapture.GetDesktopWindowCaptureAsBitmap());
-
-        //Future version of this event will have something to cancel the 
-        //call to the providers save method
-        //OnImageCapturing(IMGARGS); //execute eventraise method.
-
-        OnImageCaptured(IMGARGS);
+        ProcessImage(ScreenCapture.GetDesktopWindowCaptureAsBitmap());     
     }
+
+
+    public void CaptureDesktop(Rectangle r)
+    {
+        if(_imageFormat == null)
+            throw new ArgumentNullException("+imageFormat->Capture()");
+
+        Bitmap bpicture = null;
+        CaptureDesktop(); //call the base function to get the desktop image
+        if(r.X > 0 && r.Y > 0)
+        {
+            //we have a valid rectangle within the image contained.
+            //Process the image and populate the arguments
+
+            //start the highlight process.
+
+
+            bpicture = new Bitmap(IMGARGS.CapturedImage);                 
+            if(BitmapFilter.HighlightWithOutColor(bpicture, r))
+            {
+                IMGARGS.CapturedImage = (Image)bpicture;
+                MessageBox.Show("highlight completed");
+            }                   
+        }         
+
+        //raise the imagecaptured event which in if connected to plugin 
+        //should handle the saving of the image.
+        OnImageCaptured(IMGARGS);
+        
+        //dispose of the newly created image
+        if (bpicture != null)
+            bpicture.Dispose();
+    }
+     
 
     private void OnImageCaptured(ImageEventArgs IMGARGS)
     {    
@@ -92,7 +120,7 @@ public class SkimptImage : IImageOutput
                                      CreateThumbnailImage(full, 100),
                                      mySettings.fileLocationSetting,
                                      mySettings.thumbnailLocationSetting,
-                                     filename, filename + "_thumb",
+                                     filename, filename + "_thumb",_imageFormat.Extension,
                                      DateTime.Now, mySettings.generateThumbNails);
     }
 

@@ -295,4 +295,94 @@ public class BitmapFilter
 
         return true;
     }
+
+    public static bool HighlightWithOutColor(Bitmap b, Rectangle r)
+    {
+        int nContrast = -30;
+        
+        double pixel = 0, contrast = (100.0 + nContrast) / 100.0; //70 / 100 = 0.7
+
+        contrast *= contrast;
+
+        int red, green, blue;
+
+        // GDI+ still lies to us - the return format is BGR, NOT RGB.
+        //lock the bits and get the data. 
+        BitmapData bmData = b.LockBits(new Rectangle(0, 0, b.Width, b.Height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
+        
+        int stride = bmData.Stride;
+        System.IntPtr Scan0 = bmData.Scan0;
+
+        unsafe
+        {
+            //first cast it to generic pointer then casst it to byte pointer
+            byte* p = (byte*)(void*)Scan0;
+
+            /* The Stride property, as shown in figure 1, holds the width of one row in bytes.
+             * The size of a row however may not be an exact multiple of the pixel size because for efficiency,
+             * the system ensures that the data is packed into rows that begin on a four byte boundary 
+             * and are padded out to a multiple of four bytes. This means for example that a 24 bit per 
+             * pixel image 17 pixels wide would have a stride of 52. 
+             * The used data in each row would take up 3*17 = 51 bytes and the 
+             * padding of 1 byte would expand each row to 52 bytes or 13*4 bytes.
+             * A 4BppIndexed image of 17 pixels wide would have a stride of 12. 
+             * Nine of the bytes, or more properly eight and a half,  would contain data and the 
+             * row would be padded out with a further 3 bytes to a 4 byte boundary.*/
+
+
+            //the offset is the padding.
+            int nOffset = stride - b.Width * 3;
+
+            for(int y = 0; y < b.Height; ++y)
+            {              
+                for(int x = 0; x < b.Width; ++x)
+                {
+                    
+                        if((x < r.Left || x > r.Right) || (y < r.Top || y >r.Bottom))
+                        {
+                            blue = p[0];
+                            green = p[1];
+                            red = p[2];
+
+                            pixel = red / 255.0;
+                            pixel -= 0.5;
+                            pixel *= contrast;
+                            pixel += 0.5;
+                            pixel *= 255;
+                            if(pixel < 0) pixel = 0;
+                            if(pixel > 255) pixel = 255;
+                            p[2] = (byte)pixel;
+
+                            pixel = green / 255.0;
+                            pixel -= 0.5;
+                            pixel *= contrast;
+                            pixel += 0.5;
+                            pixel *= 255;
+                            if(pixel < 0) pixel = 0;
+                            if(pixel > 255) pixel = 255;
+                            p[1] = (byte)pixel;
+
+                            pixel = blue / 255.0;
+                            pixel -= 0.5;
+                            pixel *= contrast;
+                            pixel += 0.5;
+                            pixel *= 255;
+                            if(pixel < 0) pixel = 0;
+                            if(pixel > 255) pixel = 255;
+                            p[0] = (byte)pixel;
+
+                        }
+
+                    
+                
+                    p += 3;
+                }
+                p += nOffset;
+            }
+        }
+
+        b.UnlockBits(bmData);
+        b = null;
+        return true;        
+    }
 }

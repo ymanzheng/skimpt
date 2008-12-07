@@ -12,13 +12,14 @@ public class ImageEventArgs : EventArgs
     private string _saveThumbLocation;
     private string _FullName;
     private string _thumbNailName;
+    private string _extension;
     private DateTime _timeSaved;
     private bool _needThumbNail;
 
 
     public ImageEventArgs(Image captured, Image thumb, 
                           string FullsaveLoc, string ThumbSaveLoc, 
-                          string fullname, string thumbName, 
+                          string fullname, string thumbName, string exten, 
                           DateTime datetimeSaved, bool needthumb)
     {
         _capturedImage = captured;
@@ -27,6 +28,7 @@ public class ImageEventArgs : EventArgs
         _saveThumbLocation = ThumbSaveLoc;
         _FullName = fullname;
         _thumbNailName = thumbName;
+        _extension = exten;
         _timeSaved = datetimeSaved;
         _needThumbNail = needthumb;
     }
@@ -34,11 +36,12 @@ public class ImageEventArgs : EventArgs
     public Image CapturedImage
     {
         get { return _capturedImage; }
+        set { _capturedImage = value; }
     }
 
     public Image ThumbnailImage
     {
-        get { return _thumbnailImage; }
+        get { return _thumbnailImage; }        
     }
 
     public string FullSaveLocation
@@ -59,6 +62,11 @@ public class ImageEventArgs : EventArgs
     public string ThumbnailFileName
     {
         get { return _thumbNailName; }
+    }
+
+    public string Extension
+    {
+        get { return _extension; }
     }
 
     public DateTime TimeSaved

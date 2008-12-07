@@ -60,6 +60,7 @@ public class main : Form
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
         this.tabControl1 = new System.Windows.Forms.TabControl();
         this.tabPage1 = new System.Windows.Forms.TabPage();
+        this.startHighlightModeBtn = new System.Windows.Forms.Button();
         this.updateMessageLabel = new System.Windows.Forms.Label();
         this.toggleCamButton = new System.Windows.Forms.Button();
         this.unhookButton = new System.Windows.Forms.Button();
@@ -128,6 +129,7 @@ public class main : Form
         // tabPage1
         // 
         this.tabPage1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+        this.tabPage1.Controls.Add(this.startHighlightModeBtn);
         this.tabPage1.Controls.Add(this.updateMessageLabel);
         this.tabPage1.Controls.Add(this.toggleCamButton);
         this.tabPage1.Controls.Add(this.unhookButton);
@@ -138,7 +140,18 @@ public class main : Form
         this.tabPage1.Size = new System.Drawing.Size(475, 216);
         this.tabPage1.TabIndex = 0;
         this.tabPage1.Text = "Main";
-        this.tabPage1.ToolTipText = "Main screen";       
+        this.tabPage1.ToolTipText = "Main screen";
+        // 
+        // startHighlightModeBtn
+        // 
+        this.startHighlightModeBtn.BackColor = System.Drawing.SystemColors.ControlLightLight;
+        this.startHighlightModeBtn.Location = new System.Drawing.Point(228, 73);
+        this.startHighlightModeBtn.Name = "startHighlightModeBtn";
+        this.startHighlightModeBtn.Size = new System.Drawing.Size(214, 36);
+        this.startHighlightModeBtn.TabIndex = 4;
+        this.startHighlightModeBtn.Text = "Start Highlight Mode";
+        this.startHighlightModeBtn.UseVisualStyleBackColor = false;
+        this.startHighlightModeBtn.Click += new System.EventHandler(this.startHighlightModeBtn_Click);
         // 
         // updateMessageLabel
         // 
@@ -606,9 +619,11 @@ public class main : Form
     private KeyboardHook KeyboardHookInstance;
     private bool isBusy = false;
     public bool _cameraMode = false;
+    public bool _highlightMode = false;
     private Button browseButton;
     private FontDialog fontDialog1;
     private Label updateMessageLabel;
+    private Button startHighlightModeBtn;
     private static Skimpt.Properties.Settings mySettings = new Skimpt.Properties.Settings();
 
     #endregion
@@ -766,7 +781,7 @@ public class main : Form
 
                 //clean the input incase it has an extension.
                 filename = System.IO.Path.GetFileNameWithoutExtension(filename);
-
+                
                 //if camera mode is on
                 if (_cameraMode)
                 {
@@ -809,11 +824,9 @@ public class main : Form
 
                         //PictureTaken = ScreenCapture.GetDesktopWindowCaptureAsBitmap();
                         //PictureTaken.Save(System.IO.Path.Combine(mySettings.fileLocationSetting.ToString(), filename) + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
-                    
-
                         SkimptImage ski = new SkimptImage();
                         ski.ImageFormat = new JPGFormat();
-                        ski.CaptureDesktop();
+                        ski.CaptureDesktop(CameraCoords);           
                      
                     }
                     catch (Exception ex)
@@ -1041,6 +1054,28 @@ public class main : Form
 
     }
 
+    private void startHighlightModeBtn_Click(object sender, EventArgs e)
+    {
+        _highlightMode = !_highlightMode;
+        bool _alreadyopen = false;
+
+        if(_highlightMode)
+        {
+            foreach(var item in Application.OpenForms)
+            {
+                if(item is MainCropForm)
+                    _alreadyopen = true;
+            }
+            if(!_alreadyopen)
+            {
+                MainCropForm mc = new MainCropForm(this);
+                mc.Show();
+                this.Hide();
+            }
+
+        }
+    }
+
     /// <summary>
     /// This function is an event handler for the Radiobutton1_Checkchanged
     /// If its changed, and if its true, then show the
@@ -1088,4 +1123,7 @@ public class main : Form
 
     #endregion
 
+  
+
+ 
 }

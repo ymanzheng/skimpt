@@ -320,9 +320,7 @@ public partial class toastform : Form
                     break;
             }
 
-            bpicture.Dispose();
-            bpicture = null;
-            p = null;
+            bpicture.Dispose();         
         }
         catch (Exception)
         {
