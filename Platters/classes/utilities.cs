@@ -112,6 +112,14 @@ namespace Util
                     d = d.Trim();
                     Console.WriteLine (d);
                     break;
+
+                case "imgcow":
+                    d = data.Substring(data.IndexOf("dirlink"));
+                    d = d.Substring(0, d.IndexOf("Direct"));
+                    d = d.Substring(d.IndexOf ("value"), d.Length - d.IndexOf ("value"));
+                    d = d.Substring (d.IndexOf ("h"), d.Length - d.IndexOf ("h") - d.IndexOf ("'") - 1);
+                    d = d.Trim();
+                    break;
                 default:
                     break;
             }

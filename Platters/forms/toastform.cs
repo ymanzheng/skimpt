@@ -161,7 +161,7 @@ public partial class toastform : Form
     }
     #endregion
 
-    private void uploadBtn_Click(object sender, EventArgs e)
+    private void uploadToSiteButton_Click(object sender, EventArgs e)
     {
         this.lifeTimer.Enabled = false;
         //declare the form.
@@ -169,15 +169,15 @@ public partial class toastform : Form
 
         //define the inputbox as readonly, output only.
         InputBox i = new InputBox("Your URL", "Your URL is also copied to the clipboard automatically", false, true);
-        uploadBtn.Enabled = false;
-        uploadtoFtpBtn.Enabled = false;
-        applyEffectsButton.Enabled = false;
+        uploadToSiteButton.Enabled = false;
+        uploadToFtpButton.Enabled = false;
+        applyEffectButton.Enabled = false;
         string returnValue;
         //see what option they chose.
-        switch (hostingChoicesComboBox.SelectedItem.ToString().ToLower())
+        switch(hostingChoicesComboBox.SelectedItem.ToString().ToLower())
         {
             case "kalleload.net":
-                form = new MultipartForm("http://ww.kalleload.net/");
+                form = new MultipartForm("http://www.kalleload.net/");
                 form.FileContentType = "image/jpeg";
                 form.InputBoxName = "selector";
                 form.setField("progress", "1");
@@ -225,29 +225,37 @@ public partial class toastform : Form
                 i.SetTextbox(returnValue);
                 i.Show();
                 break;
+            case "imgcow.com":
+                form = new MultipartForm("http://www.imgcow.com/index.php");
+                form.FileContentType = "image/jpeg";
+                form.InputBoxName = "file_1";
+                form.sendFile(_FileNameToHandle);
+                returnValue = utilities.parsePOSTData("imgcow", form.ResponseText.ToString());
+                Clipboard.SetText(returnValue, TextDataFormat.Text);
+                i.SetTextbox(returnValue);
+                i.Show();
+                break;
             default:
                 break;
         }
         this.lifeTimer.Enabled = true;
-        this.applyEffectsButton.Enabled = true;
-        this.uploadBtn.Enabled = true;
-        this.uploadtoFtpBtn.Enabled = true;
+        this.applyEffectButton.Enabled = true;
+        this.uploadToSiteButton.Enabled = true;
+        this.uploadToFtpButton.Enabled = true;
         //get rid of the form.
         form = null;
-
-
-
     }
 
-    private void uploadtoFtpBtn_Click(object sender, EventArgs e)
+
+    private void uploadToFtpButton_Click(object sender, EventArgs e)
     {
-        uploadBtn.Enabled = false;
-        uploadtoFtpBtn.Enabled = false;
-        applyEffectsButton.Enabled = false;
+        uploadToSiteButton.Enabled = false;
+        uploadToFtpButton.Enabled = false;
+        applyEffectButton.Enabled = false;
         this.lifeTimer.Enabled = false;
         try
         {
-            if (mySettings.ftpOKsettings)
+            if(mySettings.ftpOKsettings)
             {
                 FTP f = new FTP(mySettings.ftphostSetting.ToString(), ".", mySettings.ftpusernameSetting, mySettings.ftppasswordSetting, mySettings.ftpportSetting);
                 f.ChangeDirectory(mySettings.ftpdirectorySetting);
@@ -260,23 +268,22 @@ public partial class toastform : Form
 
             //MessageBox.Show("Done");
         }
-        catch (Exception ex)
+        catch(Exception ex)
         {
             MessageBox.Show(ex.Message);
         }
 
-        this.applyEffectsButton.Enabled = true;
-        this.uploadBtn.Enabled = true;
-        this.uploadtoFtpBtn.Enabled = true;
+        this.applyEffectButton.Enabled = true;
+        this.uploadToSiteButton.Enabled = true;
+        this.uploadToFtpButton.Enabled = true;
         this.lifeTimer.Enabled = true;
     }
 
-
-    private void applyEffectsButton_Click_1(object sender, EventArgs e)
+    private void applyEffectButton_Click(object sender, EventArgs e)
     {
-        uploadBtn.Enabled = false;
-        uploadtoFtpBtn.Enabled = false;
-        applyEffectsButton.Enabled = false;
+        uploadToSiteButton.Enabled = false;
+        uploadToFtpButton.Enabled = false;
+        applyEffectButton.Enabled = false;
         this.lifeTimer.Enabled = false;
         try
         {
@@ -286,10 +293,10 @@ public partial class toastform : Form
             p.Dispose();
             System.IO.File.Delete(_FileNameToHandle);
 
-            switch (effectsComboBox.SelectedItem.ToString().ToLower())
+            switch(effectsComboBox.SelectedItem.ToString().ToLower())
             {
                 case "grayscale":
-                    if (BitmapFilter.GrayScale(bpicture))
+                    if(BitmapFilter.GrayScale(bpicture))
                     {
                         bpicture.Save(_FileNameToHandle);
                         MessageBox.Show("image grayscaled");
@@ -300,7 +307,7 @@ public partial class toastform : Form
                     }
                     break;
                 case "invert":
-                    if (BitmapFilter.Invert(bpicture))
+                    if(BitmapFilter.Invert(bpicture))
                     {
                         bpicture.Save(_FileNameToHandle);
                         MessageBox.Show("image inverted");
@@ -316,21 +323,36 @@ public partial class toastform : Form
                 case "flip":
                     MessageBox.Show("not supported");
                     break;
+                case "brightness":
+                    if(BitmapFilter.Brightness (bpicture, 40))
+                    {
+                        bpicture.Save(_FileNameToHandle);
+                        MessageBox.Show("image inverted");
+                    }
+                    else
+                    {
+                        MessageBox.Show("unable to invert");
+                    }
+                    break;
                 default:
                     break;
             }
 
-            bpicture.Dispose();         
+            bpicture.Dispose();
         }
-        catch (Exception)
+        catch(Exception)
         {
             MessageBox.Show("unable to apply effect");
         }
-        this.applyEffectsButton.Enabled = true;
-        this.uploadBtn.Enabled = true;
-        this.uploadtoFtpBtn.Enabled = true;
+        this.applyEffectButton.Enabled = true;
+        this.uploadToSiteButton.Enabled = true;
+        this.uploadToFtpButton.Enabled = true;
         this.lifeTimer.Enabled = true;
     }
+
+
+  
+   
 
 
 
