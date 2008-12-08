@@ -13,3 +13,6 @@ Steps to use highlight mode
   * Click highlight button to enable the camera
   * Select the part you want to emphasize and press print screen
   * View/Upload your shot for the public.
+
+The end result looks like this:
+http://www.imgcow.com/uploads/139v0exhsfv.jpg
