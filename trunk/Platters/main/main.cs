@@ -955,7 +955,8 @@ public class main : Form
         //When the form loads, load up all settings.
         LoadSettings();
 
-        //check if new version is available.
+        //update the title bar
+        this.Text = "Skimpt V: " + Application.ProductVersion.ToString();
 
     }
 
