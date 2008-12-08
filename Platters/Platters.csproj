@@ -82,6 +82,15 @@
     <Compile Include="classes\utilities.cs" />
     <Compile Include="classes\webpost.cs" />
     <Compile Include="classes\win32.cs" />
+    <Compile Include="controls\GlassButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="controls\GlassButton.Designer.cs">
+      <DependentUpon>GlassButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="controls\RibbonButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="extensibility\IImageFormat.cs" />
     <Compile Include="extensibility\JPGFormat.cs" />
     <Compile Include="forms\AboutBox.cs">
@@ -167,9 +176,10 @@
     <None Include="Resources\loadingpicture.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="controls\GlassButton.bmp" />
     <Content Include="License\GNUv3.txt" />
     <None Include="ClassDiagram1.cd" />
-    <None Include="Resources\background copy.jpg" />
+    <None Include="Resources\backgroundcopy.jpg" />
     <Content Include="Resources\ftp_logo.jpg" />
     <None Include="Resources\imageshack.gif" />
     <None Include="Resources\imgpurse - Copy.jpg" />
