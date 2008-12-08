@@ -60,16 +60,13 @@ public class main : Form
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
         this.tabControl1 = new System.Windows.Forms.TabControl();
         this.tabPage1 = new System.Windows.Forms.TabPage();
-        this.startHighlightModeBtn = new System.Windows.Forms.Button();
+        this.cameraButton = new SkimptControls.GlassButton();
+        this.hightlightButton = new SkimptControls.GlassButton();
         this.updateMessageLabel = new System.Windows.Forms.Label();
-        this.toggleCamButton = new System.Windows.Forms.Button();
         this.unhookButton = new System.Windows.Forms.Button();
         this.mainProgramMessage = new System.Windows.Forms.TextBox();
         this.tabPage2 = new System.Windows.Forms.TabPage();
-        this.randomnameoptions = new System.Windows.Forms.GroupBox();
-        this.filenameasrandomoption = new System.Windows.Forms.RadioButton();
-        this.filenameasdateoption = new System.Windows.Forms.RadioButton();
-        this.saveFileSettingBtn = new System.Windows.Forms.Button();
+        this.saveFileSettingButton = new SkimptControls.GlassButton();
         this.groupBox1 = new System.Windows.Forms.GroupBox();
         this.browseButton = new System.Windows.Forms.Button();
         this.fileLocationTextBox = new System.Windows.Forms.TextBox();
@@ -77,12 +74,12 @@ public class main : Form
         this.radioButton2 = new System.Windows.Forms.RadioButton();
         this.radioButton1 = new System.Windows.Forms.RadioButton();
         this.tabPage3 = new System.Windows.Forms.TabPage();
+        this.saveFtpSettingButton = new SkimptControls.GlassButton();
+        this.ftpTestConnButton = new SkimptControls.GlassButton();
         this.ftpDirTxtBox = new System.Windows.Forms.TextBox();
         this.ftpPortTxtBox = new System.Windows.Forms.TextBox();
         this.ftpPassTxtBox = new System.Windows.Forms.TextBox();
         this.ftpUserTxtBox = new System.Windows.Forms.TextBox();
-        this.ftpSettingsBtn = new System.Windows.Forms.Button();
-        this.ftptestConnectionbutton = new System.Windows.Forms.Button();
         this.ftpHostTxtBox = new System.Windows.Forms.TextBox();
         this.label6 = new System.Windows.Forms.Label();
         this.label5 = new System.Windows.Forms.Label();
@@ -90,7 +87,7 @@ public class main : Form
         this.label3 = new System.Windows.Forms.Label();
         this.label2 = new System.Windows.Forms.Label();
         this.tabPage4 = new System.Windows.Forms.TabPage();
-        this.saveGlobalSettingsBtn = new System.Windows.Forms.Button();
+        this.saveGlobalSettingButton = new SkimptControls.GlassButton();
         this.KillCheckbox = new System.Windows.Forms.CheckBox();
         this.ShowMessagesCheckbox = new System.Windows.Forms.CheckBox();
         this.AllowPluginsCheckbox = new System.Windows.Forms.CheckBox();
@@ -101,7 +98,6 @@ public class main : Form
         this.tabControl1.SuspendLayout();
         this.tabPage1.SuspendLayout();
         this.tabPage2.SuspendLayout();
-        this.randomnameoptions.SuspendLayout();
         this.groupBox1.SuspendLayout();
         this.tabPage3.SuspendLayout();
         this.tabPage4.SuspendLayout();
@@ -129,9 +125,9 @@ public class main : Form
         // tabPage1
         // 
         this.tabPage1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-        this.tabPage1.Controls.Add(this.startHighlightModeBtn);
+        this.tabPage1.Controls.Add(this.cameraButton);
+        this.tabPage1.Controls.Add(this.hightlightButton);
         this.tabPage1.Controls.Add(this.updateMessageLabel);
-        this.tabPage1.Controls.Add(this.toggleCamButton);
         this.tabPage1.Controls.Add(this.unhookButton);
         this.tabPage1.Controls.Add(this.mainProgramMessage);
         this.tabPage1.Location = new System.Drawing.Point(4, 30);
@@ -142,42 +138,44 @@ public class main : Form
         this.tabPage1.Text = "Main";
         this.tabPage1.ToolTipText = "Main screen";
         // 
-        // startHighlightModeBtn
+        // cameraButton
         // 
-        this.startHighlightModeBtn.BackColor = System.Drawing.SystemColors.ControlLightLight;
-        this.startHighlightModeBtn.Location = new System.Drawing.Point(228, 73);
-        this.startHighlightModeBtn.Name = "startHighlightModeBtn";
-        this.startHighlightModeBtn.Size = new System.Drawing.Size(214, 36);
-        this.startHighlightModeBtn.TabIndex = 4;
-        this.startHighlightModeBtn.Text = "Start Highlight Mode";
-        this.startHighlightModeBtn.UseVisualStyleBackColor = false;
-        this.startHighlightModeBtn.Click += new System.EventHandler(this.startHighlightModeBtn_Click);
+        this.cameraButton.BackColor = System.Drawing.Color.DarkViolet;
+        this.cameraButton.ForeColor = System.Drawing.Color.Black;
+        this.cameraButton.Location = new System.Drawing.Point(12, 73);
+        this.cameraButton.Name = "cameraButton";
+        this.cameraButton.ShineColor = System.Drawing.Color.Thistle;
+        this.cameraButton.Size = new System.Drawing.Size(214, 36);
+        this.cameraButton.TabIndex = 6;
+        this.cameraButton.Text = "Start Camera Mode";
+        this.cameraButton.Click += new System.EventHandler(this.cameraButton_Click);
+        // 
+        // hightlightButton
+        // 
+        this.hightlightButton.BackColor = System.Drawing.Color.SteelBlue;
+        this.hightlightButton.Location = new System.Drawing.Point(244, 73);
+        this.hightlightButton.Name = "hightlightButton";
+        this.hightlightButton.ShineColor = System.Drawing.Color.SkyBlue;
+        this.hightlightButton.Size = new System.Drawing.Size(214, 36);
+        this.hightlightButton.TabIndex = 5;
+        this.hightlightButton.Text = "Start Highlight mode";
+        this.hightlightButton.Click += new System.EventHandler(this.hightlightButton_Click);
         // 
         // updateMessageLabel
         // 
         this.updateMessageLabel.AutoSize = true;
         this.updateMessageLabel.ForeColor = System.Drawing.Color.Red;
-        this.updateMessageLabel.Location = new System.Drawing.Point(8, 112);
+        this.updateMessageLabel.Location = new System.Drawing.Point(30, 130);
         this.updateMessageLabel.Name = "updateMessageLabel";
         this.updateMessageLabel.Size = new System.Drawing.Size(392, 19);
         this.updateMessageLabel.TabIndex = 3;
         this.updateMessageLabel.Text = "New Update Available on http://code.google.com/p/skimpt";
         this.updateMessageLabel.Visible = false;
         // 
-        // toggleCamButton
-        // 
-        this.toggleCamButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
-        this.toggleCamButton.Location = new System.Drawing.Point(8, 73);
-        this.toggleCamButton.Name = "toggleCamButton";
-        this.toggleCamButton.Size = new System.Drawing.Size(214, 36);
-        this.toggleCamButton.TabIndex = 2;
-        this.toggleCamButton.Text = "Toggle Screen Camera";
-        this.toggleCamButton.UseVisualStyleBackColor = false;
-        this.toggleCamButton.Click += new System.EventHandler(this.toggleCamButton_Click);
-        // 
         // unhookButton
         // 
-        this.unhookButton.Location = new System.Drawing.Point(318, 175);
+        this.unhookButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+        this.unhookButton.Location = new System.Drawing.Point(320, 177);
         this.unhookButton.Name = "unhookButton";
         this.unhookButton.Size = new System.Drawing.Size(149, 33);
         this.unhookButton.TabIndex = 1;
@@ -199,8 +197,7 @@ public class main : Form
         // tabPage2
         // 
         this.tabPage2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-        this.tabPage2.Controls.Add(this.randomnameoptions);
-        this.tabPage2.Controls.Add(this.saveFileSettingBtn);
+        this.tabPage2.Controls.Add(this.saveFileSettingButton);
         this.tabPage2.Controls.Add(this.groupBox1);
         this.tabPage2.Controls.Add(this.radioButton2);
         this.tabPage2.Controls.Add(this.radioButton1);
@@ -212,59 +209,21 @@ public class main : Form
         this.tabPage2.Text = "File";
         this.tabPage2.ToolTipText = "change file settings including save path";
         // 
-        // randomnameoptions
+        // saveFileSettingButton
         // 
-        this.randomnameoptions.Controls.Add(this.filenameasrandomoption);
-        this.randomnameoptions.Controls.Add(this.filenameasdateoption);
-        this.randomnameoptions.Location = new System.Drawing.Point(240, 3);
-        this.randomnameoptions.Name = "randomnameoptions";
-        this.randomnameoptions.Size = new System.Drawing.Size(227, 78);
-        this.randomnameoptions.TabIndex = 5;
-        this.randomnameoptions.TabStop = false;
-        this.randomnameoptions.Text = "Random Filenames as";
-        this.randomnameoptions.Visible = false;
-        // 
-        // filenameasrandomoption
-        // 
-        this.filenameasrandomoption.AutoSize = true;
-        this.filenameasrandomoption.Location = new System.Drawing.Point(6, 52);
-        this.filenameasrandomoption.Name = "filenameasrandomoption";
-        this.filenameasrandomoption.Size = new System.Drawing.Size(129, 23);
-        this.filenameasrandomoption.TabIndex = 1;
-        this.filenameasrandomoption.TabStop = true;
-        this.filenameasrandomoption.Text = "Random Letters";
-        this.filenameasrandomoption.UseVisualStyleBackColor = true;
-        // 
-        // filenameasdateoption
-        // 
-        this.filenameasdateoption.AutoSize = true;
-        this.filenameasdateoption.Location = new System.Drawing.Point(6, 23);
-        this.filenameasdateoption.Name = "filenameasdateoption";
-        this.filenameasdateoption.Size = new System.Drawing.Size(174, 23);
-        this.filenameasdateoption.TabIndex = 0;
-        this.filenameasdateoption.TabStop = true;
-        this.filenameasdateoption.Text = "Current Date and Time";
-        this.filenameasdateoption.UseVisualStyleBackColor = true;
-        // 
-        // saveFileSettingBtn
-        // 
-        this.saveFileSettingBtn.BackColor = System.Drawing.SystemColors.ControlLight;
-        this.saveFileSettingBtn.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-        this.saveFileSettingBtn.ForeColor = System.Drawing.Color.DarkGreen;
-        this.saveFileSettingBtn.Location = new System.Drawing.Point(136, 179);
-        this.saveFileSettingBtn.Name = "saveFileSettingBtn";
-        this.saveFileSettingBtn.Size = new System.Drawing.Size(221, 31);
-        this.saveFileSettingBtn.TabIndex = 4;
-        this.saveFileSettingBtn.Text = "Save File Settings";
-        this.saveFileSettingBtn.UseVisualStyleBackColor = false;
-        this.saveFileSettingBtn.Click += new System.EventHandler(this.saveFileSettingBtn_Click);
+        this.saveFileSettingButton.Location = new System.Drawing.Point(155, 172);
+        this.saveFileSettingButton.Name = "saveFileSettingButton";
+        this.saveFileSettingButton.Size = new System.Drawing.Size(141, 36);
+        this.saveFileSettingButton.TabIndex = 5;
+        this.saveFileSettingButton.Text = "Save File Settings";
+        this.saveFileSettingButton.Click += new System.EventHandler(this.saveFileSettingButton_Click);
         // 
         // groupBox1
         // 
         this.groupBox1.Controls.Add(this.browseButton);
         this.groupBox1.Controls.Add(this.fileLocationTextBox);
         this.groupBox1.Controls.Add(this.label1);
-        this.groupBox1.Location = new System.Drawing.Point(9, 84);
+        this.groupBox1.Location = new System.Drawing.Point(6, 74);
         this.groupBox1.Name = "groupBox1";
         this.groupBox1.Size = new System.Drawing.Size(463, 92);
         this.groupBox1.TabIndex = 3;
@@ -302,35 +261,34 @@ public class main : Form
         // radioButton2
         // 
         this.radioButton2.AutoSize = true;
-        this.radioButton2.Location = new System.Drawing.Point(26, 56);
+        this.radioButton2.Location = new System.Drawing.Point(26, 45);
         this.radioButton2.Name = "radioButton2";
         this.radioButton2.Size = new System.Drawing.Size(213, 23);
         this.radioButton2.TabIndex = 1;
-        this.radioButton2.TabStop = true;
         this.radioButton2.Text = "Allow me to specify each file";
         this.radioButton2.UseVisualStyleBackColor = true;
         // 
         // radioButton1
         // 
         this.radioButton1.AutoSize = true;
-        this.radioButton1.Location = new System.Drawing.Point(26, 26);
+        this.radioButton1.Checked = true;
+        this.radioButton1.Location = new System.Drawing.Point(26, 16);
         this.radioButton1.Name = "radioButton1";
         this.radioButton1.Size = new System.Drawing.Size(185, 23);
         this.radioButton1.TabIndex = 0;
         this.radioButton1.TabStop = true;
         this.radioButton1.Text = "Randomly name my files";
         this.radioButton1.UseVisualStyleBackColor = true;
-        this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
         // 
         // tabPage3
         // 
         this.tabPage3.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+        this.tabPage3.Controls.Add(this.saveFtpSettingButton);
+        this.tabPage3.Controls.Add(this.ftpTestConnButton);
         this.tabPage3.Controls.Add(this.ftpDirTxtBox);
         this.tabPage3.Controls.Add(this.ftpPortTxtBox);
         this.tabPage3.Controls.Add(this.ftpPassTxtBox);
         this.tabPage3.Controls.Add(this.ftpUserTxtBox);
-        this.tabPage3.Controls.Add(this.ftpSettingsBtn);
-        this.tabPage3.Controls.Add(this.ftptestConnectionbutton);
         this.tabPage3.Controls.Add(this.ftpHostTxtBox);
         this.tabPage3.Controls.Add(this.label6);
         this.tabPage3.Controls.Add(this.label5);
@@ -343,6 +301,28 @@ public class main : Form
         this.tabPage3.TabIndex = 2;
         this.tabPage3.Text = "Upload";
         this.tabPage3.ToolTipText = "Set upload settings to remote server";
+        // 
+        // saveFtpSettingButton
+        // 
+        this.saveFtpSettingButton.BackColor = System.Drawing.Color.DarkSlateBlue;
+        this.saveFtpSettingButton.Location = new System.Drawing.Point(332, 173);
+        this.saveFtpSettingButton.Name = "saveFtpSettingButton";
+        this.saveFtpSettingButton.ShineColor = System.Drawing.Color.SlateBlue;
+        this.saveFtpSettingButton.Size = new System.Drawing.Size(135, 35);
+        this.saveFtpSettingButton.TabIndex = 13;
+        this.saveFtpSettingButton.Text = "Save FTP Settings";
+        this.saveFtpSettingButton.Click += new System.EventHandler(this.saveFtpSettingButton_Click);
+        // 
+        // ftpTestConnButton
+        // 
+        this.ftpTestConnButton.BackColor = System.Drawing.Color.Crimson;
+        this.ftpTestConnButton.Location = new System.Drawing.Point(191, 173);
+        this.ftpTestConnButton.Name = "ftpTestConnButton";
+        this.ftpTestConnButton.ShineColor = System.Drawing.Color.Pink;
+        this.ftpTestConnButton.Size = new System.Drawing.Size(135, 35);
+        this.ftpTestConnButton.TabIndex = 12;
+        this.ftpTestConnButton.Text = "Test Connection";
+        this.ftpTestConnButton.Click += new System.EventHandler(this.ftpTestConnButton_Click);
         // 
         // ftpDirTxtBox
         // 
@@ -373,27 +353,6 @@ public class main : Form
         this.ftpUserTxtBox.Name = "ftpUserTxtBox";
         this.ftpUserTxtBox.Size = new System.Drawing.Size(307, 27);
         this.ftpUserTxtBox.TabIndex = 8;
-        // 
-        // ftpSettingsBtn
-        // 
-        this.ftpSettingsBtn.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-        this.ftpSettingsBtn.Location = new System.Drawing.Point(325, 173);
-        this.ftpSettingsBtn.Name = "ftpSettingsBtn";
-        this.ftpSettingsBtn.Size = new System.Drawing.Size(145, 37);
-        this.ftpSettingsBtn.TabIndex = 7;
-        this.ftpSettingsBtn.Text = "save settings";
-        this.ftpSettingsBtn.UseVisualStyleBackColor = true;
-        this.ftpSettingsBtn.Click += new System.EventHandler(this.ftpSettingsBtn_Click_1);
-        // 
-        // ftptestConnectionbutton
-        // 
-        this.ftptestConnectionbutton.Location = new System.Drawing.Point(174, 173);
-        this.ftptestConnectionbutton.Name = "ftptestConnectionbutton";
-        this.ftptestConnectionbutton.Size = new System.Drawing.Size(145, 37);
-        this.ftptestConnectionbutton.TabIndex = 6;
-        this.ftptestConnectionbutton.Text = "test connection";
-        this.ftptestConnectionbutton.UseVisualStyleBackColor = true;
-        this.ftptestConnectionbutton.Click += new System.EventHandler(this.ftptestConnectionbutton_Click);
         // 
         // ftpHostTxtBox
         // 
@@ -450,7 +409,7 @@ public class main : Form
         // tabPage4
         // 
         this.tabPage4.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-        this.tabPage4.Controls.Add(this.saveGlobalSettingsBtn);
+        this.tabPage4.Controls.Add(this.saveGlobalSettingButton);
         this.tabPage4.Controls.Add(this.KillCheckbox);
         this.tabPage4.Controls.Add(this.ShowMessagesCheckbox);
         this.tabPage4.Controls.Add(this.AllowPluginsCheckbox);
@@ -463,23 +422,21 @@ public class main : Form
         this.tabPage4.Text = "Settings";
         this.tabPage4.ToolTipText = "Set global application settings";
         // 
-        // saveGlobalSettingsBtn
+        // saveGlobalSettingButton
         // 
-        this.saveGlobalSettingsBtn.BackColor = System.Drawing.SystemColors.ControlLight;
-        this.saveGlobalSettingsBtn.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-        this.saveGlobalSettingsBtn.ForeColor = System.Drawing.Color.DarkGreen;
-        this.saveGlobalSettingsBtn.Location = new System.Drawing.Point(125, 177);
-        this.saveGlobalSettingsBtn.Name = "saveGlobalSettingsBtn";
-        this.saveGlobalSettingsBtn.Size = new System.Drawing.Size(221, 31);
-        this.saveGlobalSettingsBtn.TabIndex = 5;
-        this.saveGlobalSettingsBtn.Text = "Save Global Settings";
-        this.saveGlobalSettingsBtn.UseVisualStyleBackColor = false;
-        this.saveGlobalSettingsBtn.Click += new System.EventHandler(this.saveGlobalSettingsBtn_Click);
+        this.saveGlobalSettingButton.BackColor = System.Drawing.Color.Chocolate;
+        this.saveGlobalSettingButton.Location = new System.Drawing.Point(132, 173);
+        this.saveGlobalSettingButton.Name = "saveGlobalSettingButton";
+        this.saveGlobalSettingButton.OuterBorderColor = System.Drawing.Color.LightSalmon;
+        this.saveGlobalSettingButton.Size = new System.Drawing.Size(221, 35);
+        this.saveGlobalSettingButton.TabIndex = 6;
+        this.saveGlobalSettingButton.Text = "Save Program Settings";
+        this.saveGlobalSettingButton.Click += new System.EventHandler(this.saveGlobalSettingButton_Click);
         // 
         // KillCheckbox
         // 
         this.KillCheckbox.AutoSize = true;
-        this.KillCheckbox.Location = new System.Drawing.Point(23, 146);
+        this.KillCheckbox.Location = new System.Drawing.Point(25, 133);
         this.KillCheckbox.Name = "KillCheckbox";
         this.KillCheckbox.Size = new System.Drawing.Size(48, 23);
         this.KillCheckbox.TabIndex = 4;
@@ -489,7 +446,7 @@ public class main : Form
         // ShowMessagesCheckbox
         // 
         this.ShowMessagesCheckbox.AutoSize = true;
-        this.ShowMessagesCheckbox.Location = new System.Drawing.Point(23, 117);
+        this.ShowMessagesCheckbox.Location = new System.Drawing.Point(25, 104);
         this.ShowMessagesCheckbox.Name = "ShowMessagesCheckbox";
         this.ShowMessagesCheckbox.Size = new System.Drawing.Size(294, 23);
         this.ShowMessagesCheckbox.TabIndex = 3;
@@ -499,7 +456,7 @@ public class main : Form
         // AllowPluginsCheckbox
         // 
         this.AllowPluginsCheckbox.AutoSize = true;
-        this.AllowPluginsCheckbox.Location = new System.Drawing.Point(23, 88);
+        this.AllowPluginsCheckbox.Location = new System.Drawing.Point(25, 75);
         this.AllowPluginsCheckbox.Name = "AllowPluginsCheckbox";
         this.AllowPluginsCheckbox.Size = new System.Drawing.Size(380, 23);
         this.AllowPluginsCheckbox.TabIndex = 2;
@@ -509,7 +466,7 @@ public class main : Form
         // HideUponLaunchCheckbox
         // 
         this.HideUponLaunchCheckbox.AutoSize = true;
-        this.HideUponLaunchCheckbox.Location = new System.Drawing.Point(23, 59);
+        this.HideUponLaunchCheckbox.Location = new System.Drawing.Point(25, 46);
         this.HideUponLaunchCheckbox.Name = "HideUponLaunchCheckbox";
         this.HideUponLaunchCheckbox.Size = new System.Drawing.Size(284, 23);
         this.HideUponLaunchCheckbox.TabIndex = 1;
@@ -519,7 +476,7 @@ public class main : Form
         // startOnWindowsLoadCheckBox
         // 
         this.startOnWindowsLoadCheckBox.AutoSize = true;
-        this.startOnWindowsLoadCheckBox.Location = new System.Drawing.Point(23, 30);
+        this.startOnWindowsLoadCheckBox.Location = new System.Drawing.Point(25, 17);
         this.startOnWindowsLoadCheckBox.Name = "startOnWindowsLoadCheckBox";
         this.startOnWindowsLoadCheckBox.Size = new System.Drawing.Size(307, 23);
         this.startOnWindowsLoadCheckBox.TabIndex = 0;
@@ -561,8 +518,6 @@ public class main : Form
         this.tabPage1.PerformLayout();
         this.tabPage2.ResumeLayout(false);
         this.tabPage2.PerformLayout();
-        this.randomnameoptions.ResumeLayout(false);
-        this.randomnameoptions.PerformLayout();
         this.groupBox1.ResumeLayout(false);
         this.groupBox1.PerformLayout();
         this.tabPage3.ResumeLayout(false);
@@ -581,7 +536,6 @@ public class main : Form
     private System.Windows.Forms.TabPage tabPage3;
     private System.Windows.Forms.TabPage tabPage4;
     private System.Windows.Forms.TabPage tabPage5;
-    private System.Windows.Forms.Button saveFileSettingBtn;
     private System.Windows.Forms.GroupBox groupBox1;
     private System.Windows.Forms.TextBox fileLocationTextBox;
     private System.Windows.Forms.Label label1;
@@ -598,18 +552,11 @@ public class main : Form
     private System.Windows.Forms.TextBox ftpPortTxtBox;
     private System.Windows.Forms.TextBox ftpPassTxtBox;
     private System.Windows.Forms.TextBox ftpUserTxtBox;
-    private System.Windows.Forms.Button ftpSettingsBtn;
-    private System.Windows.Forms.Button ftptestConnectionbutton;
-    private GroupBox randomnameoptions;
-    private RadioButton filenameasrandomoption;
-    private RadioButton filenameasdateoption;
     private Button unhookButton;
-    private Button toggleCamButton;
     public Rectangle CameraCoords;
     private CheckBox AllowPluginsCheckbox;
     private CheckBox HideUponLaunchCheckbox;
     private CheckBox startOnWindowsLoadCheckBox;
-    private Button saveGlobalSettingsBtn;
     private CheckBox KillCheckbox;
     private CheckBox ShowMessagesCheckbox;
     #endregion
@@ -623,7 +570,12 @@ public class main : Form
     private Button browseButton;
     private FontDialog fontDialog1;
     private Label updateMessageLabel;
-    private Button startHighlightModeBtn;
+    private SkimptControls.GlassButton hightlightButton;
+    private SkimptControls.GlassButton cameraButton;
+    private SkimptControls.GlassButton saveFileSettingButton;
+    private SkimptControls.GlassButton ftpTestConnButton;
+    private SkimptControls.GlassButton saveFtpSettingButton;
+    private SkimptControls.GlassButton saveGlobalSettingButton;
     private static Skimpt.Properties.Settings mySettings = new Skimpt.Properties.Settings();
 
     #endregion
@@ -912,22 +864,23 @@ public class main : Form
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void saveFileSettingBtn_Click(object sender, EventArgs e)
+    private void saveFileSettingButton_Click(object sender, EventArgs e)
     {
         mySettings.fileLocationSetting = fileLocationTextBox.Text;
-        if (radioButton1.Checked)
+        if(radioButton1.Checked)
             mySettings.randomFileNameSetting = true;
-        else if (radioButton2.Checked)
+        else if(radioButton2.Checked)
             mySettings.randomFileNameSetting = false;
         else
             mySettings.randomFileNameSetting = true;
         mySettings.Save();
     }
 
+
     /// <summary>
     /// The FTP SaveSettings button is clicked
     /// </summary>  
-    private void ftpSettingsBtn_Click_1(object sender, EventArgs e)
+    private void saveFtpSettingButton_Click(object sender, EventArgs e)
     {
         mySettings.ftphostSetting = ftpHostTxtBox.Text;
         mySettings.ftpusernameSetting = ftpUserTxtBox.Text;
@@ -940,10 +893,9 @@ public class main : Form
     /// <summary>
     /// This function tests the FTP connection if valid values are given
     /// </summary>
-    private void ftptestConnectionbutton_Click(object sender, EventArgs e)
+    private void ftpTestConnButton_Click(object sender, EventArgs e)
     {
-        //simulate save button so settings are stored in xml file
-        ftpSettingsBtn.PerformClick();
+      
         try
         {
             FTP f = new FTP(mySettings.ftphostSetting.ToString(), ".", mySettings.ftpusernameSetting, mySettings.ftppasswordSetting, mySettings.ftpportSetting);
@@ -952,22 +904,21 @@ public class main : Form
             mySettings.Save();
             MessageBox.Show("Test Successfull");
         }
-        catch (Exception ex)
+        catch(Exception ex)
         {
             mySettings.ftpOKsettings = false;
             mySettings.Save();
             MessageBox.Show(ex.Message + Environment.NewLine + "Test Failed");
         }
-
-
     }
+
 
     /// <summary>
     /// This function is an event handler for the SaveGlobalSettings 
     /// button click. If its pressed it saves the global settings 
     /// to the XML file.
     /// </summary>
-    private void saveGlobalSettingsBtn_Click(object sender, EventArgs e)
+    private void saveGlobalSettingButton_Click(object sender, EventArgs e)
     {
         mySettings.hideOnLoad = HideUponLaunchCheckbox.Checked;
         mySettings.showErrorMessagesSetting = ShowMessagesCheckbox.Checked;
@@ -975,7 +926,7 @@ public class main : Form
 
         //set or delete the registry key upon Windows Startup.
         RegistryKey rkApp = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-        if (startOnWindowsLoadCheckBox.Checked)
+        if(startOnWindowsLoadCheckBox.Checked)
         {
             rkApp.SetValue("Skimpt", Application.ExecutablePath.ToString());
         }
@@ -985,8 +936,8 @@ public class main : Form
         }
 
         mySettings.Save();
-    }
 
+    }
 
 
     #endregion
@@ -1024,37 +975,13 @@ public class main : Form
                 MessageBox.Show("prtscr unhooked from program");
         }
     }
+
+
     /// <summary>
-    /// This function is an event handler for when the toggle camera 
+    /// This function is an event handler for when the hightligt 
     /// button is clicked.
     /// </summary>
-    private void toggleCamButton_Click(object sender, EventArgs e)
-    {
-
-        _cameraMode = !_cameraMode;
-        bool _alreadyopen = false;
-
-        if (_cameraMode)
-        {
-            foreach (var item in Application.OpenForms)
-            {
-                if (item is MainCropForm)
-                    _alreadyopen = true;
-
-
-            }
-            if (!_alreadyopen)
-            {
-                MainCropForm mc = new MainCropForm(this);
-                mc.Show();
-                this.Hide();
-            }
-
-        }
-
-    }
-
-    private void startHighlightModeBtn_Click(object sender, EventArgs e)
+    private void hightlightButton_Click(object sender, EventArgs e)
     {
         _highlightMode = !_highlightMode;
         bool _alreadyopen = false;
@@ -1077,22 +1004,35 @@ public class main : Form
     }
 
     /// <summary>
-    /// This function is an event handler for the Radiobutton1_Checkchanged
-    /// If its changed, and if its true, then show the
-    /// options for random file renaming.
+    /// This function is an event handler for when the toggle camera 
+    /// button is clicked.
     /// </summary>
-    private void radioButton1_CheckedChanged(object sender, EventArgs e)
+    private void cameraButton_Click(object sender, EventArgs e)
     {
-        if (radioButton1.Checked)
-        {
-            randomnameoptions.Visible = true;
-        }
-        else
-        {
-            randomnameoptions.Visible = false;
-        }
 
+        _cameraMode = !_cameraMode;
+        bool _alreadyopen = false;
+
+        if(_cameraMode)
+        {
+            foreach(var item in Application.OpenForms)
+            {
+                if(item is MainCropForm)
+                    _alreadyopen = true;
+
+
+            }
+            if(!_alreadyopen)
+            {
+                MainCropForm mc = new MainCropForm(this);
+                mc.Show();
+                this.Hide();
+            }
+
+        }
     }
+   
+
     /// <summary>
     /// This function is an event handler for the FolderBrowse button
     /// It opens a new instance of the folderBrowser to allow
@@ -1104,7 +1044,8 @@ public class main : Form
         fbd.ShowDialog();
         if (System.IO.Directory.Exists(fbd.SelectedPath))
             fileLocationTextBox.Text = fbd.SelectedPath;
-        saveFileSettingBtn.PerformClick(); //click the save button
+
+        saveFileSettingButton.PerformClick();
         fbd.Dispose();
         fbd = null;
     }
@@ -1123,6 +1064,15 @@ public class main : Form
 
     #endregion
 
+
+
+
+
+   
+
+
+
+  
   
 
  

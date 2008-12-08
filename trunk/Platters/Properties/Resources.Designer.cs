@@ -67,6 +67,13 @@ namespace Skimpt.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap backgroundcopy {
+            get {
+                object obj = ResourceManager.GetObject("backgroundcopy", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Icon Skimpt {
             get {
                 object obj = ResourceManager.GetObject("Skimpt", resourceCulture);
