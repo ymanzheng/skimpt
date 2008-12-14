@@ -57,16 +57,16 @@ public class main : Form
     /// </summary>
     private void InitializeComponent()
     {
+        this.components = new System.ComponentModel.Container();
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
         this.tabControl1 = new System.Windows.Forms.TabControl();
         this.tabPage1 = new System.Windows.Forms.TabPage();
-        this.cameraButton = new SkimptControls.GlassButton();
-        this.hightlightButton = new SkimptControls.GlassButton();
+        this.exitButton = new System.Windows.Forms.Button();
+        this.updateMessageLink = new System.Windows.Forms.LinkLabel();
         this.updateMessageLabel = new System.Windows.Forms.Label();
         this.unhookButton = new System.Windows.Forms.Button();
         this.mainProgramMessage = new System.Windows.Forms.TextBox();
         this.tabPage2 = new System.Windows.Forms.TabPage();
-        this.saveFileSettingButton = new SkimptControls.GlassButton();
         this.groupBox1 = new System.Windows.Forms.GroupBox();
         this.browseButton = new System.Windows.Forms.Button();
         this.fileLocationTextBox = new System.Windows.Forms.TextBox();
@@ -74,8 +74,6 @@ public class main : Form
         this.radioButton2 = new System.Windows.Forms.RadioButton();
         this.radioButton1 = new System.Windows.Forms.RadioButton();
         this.tabPage3 = new System.Windows.Forms.TabPage();
-        this.saveFtpSettingButton = new SkimptControls.GlassButton();
-        this.ftpTestConnButton = new SkimptControls.GlassButton();
         this.ftpDirTxtBox = new System.Windows.Forms.TextBox();
         this.ftpPortTxtBox = new System.Windows.Forms.TextBox();
         this.ftpPassTxtBox = new System.Windows.Forms.TextBox();
@@ -87,7 +85,6 @@ public class main : Form
         this.label3 = new System.Windows.Forms.Label();
         this.label2 = new System.Windows.Forms.Label();
         this.tabPage4 = new System.Windows.Forms.TabPage();
-        this.saveGlobalSettingButton = new SkimptControls.GlassButton();
         this.KillCheckbox = new System.Windows.Forms.CheckBox();
         this.ShowMessagesCheckbox = new System.Windows.Forms.CheckBox();
         this.AllowPluginsCheckbox = new System.Windows.Forms.CheckBox();
@@ -95,12 +92,17 @@ public class main : Form
         this.startOnWindowsLoadCheckBox = new System.Windows.Forms.CheckBox();
         this.tabPage5 = new System.Windows.Forms.TabPage();
         this.fontDialog1 = new System.Windows.Forms.FontDialog();
+        this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+        this.notificationIconContext = new System.Windows.Forms.ContextMenuStrip(this.components);
+        this.contextExitMenu = new System.Windows.Forms.ToolStripMenuItem();
+        this.contextShowMenu = new System.Windows.Forms.ToolStripMenuItem();
         this.tabControl1.SuspendLayout();
         this.tabPage1.SuspendLayout();
         this.tabPage2.SuspendLayout();
         this.groupBox1.SuspendLayout();
         this.tabPage3.SuspendLayout();
         this.tabPage4.SuspendLayout();
+        this.notificationIconContext.SuspendLayout();
         this.SuspendLayout();
         // 
         // tabControl1
@@ -125,8 +127,8 @@ public class main : Form
         // tabPage1
         // 
         this.tabPage1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-        this.tabPage1.Controls.Add(this.cameraButton);
-        this.tabPage1.Controls.Add(this.hightlightButton);
+        this.tabPage1.Controls.Add(this.exitButton);
+        this.tabPage1.Controls.Add(this.updateMessageLink);
         this.tabPage1.Controls.Add(this.updateMessageLabel);
         this.tabPage1.Controls.Add(this.unhookButton);
         this.tabPage1.Controls.Add(this.mainProgramMessage);
@@ -138,28 +140,28 @@ public class main : Form
         this.tabPage1.Text = "Main";
         this.tabPage1.ToolTipText = "Main screen";
         // 
-        // cameraButton
+        // exitButton
         // 
-        this.cameraButton.BackColor = System.Drawing.Color.DarkViolet;
-        this.cameraButton.ForeColor = System.Drawing.Color.Black;
-        this.cameraButton.Location = new System.Drawing.Point(12, 73);
-        this.cameraButton.Name = "cameraButton";
-        this.cameraButton.ShineColor = System.Drawing.Color.Thistle;
-        this.cameraButton.Size = new System.Drawing.Size(214, 36);
-        this.cameraButton.TabIndex = 6;
-        this.cameraButton.Text = "Start Camera Mode";
-        this.cameraButton.Click += new System.EventHandler(this.cameraButton_Click);
+        this.exitButton.Location = new System.Drawing.Point(13, 178);
+        this.exitButton.Name = "exitButton";
+        this.exitButton.Size = new System.Drawing.Size(88, 31);
+        this.exitButton.TabIndex = 5;
+        this.exitButton.Text = "Exit Skimpt";
+        this.exitButton.UseVisualStyleBackColor = true;
+        this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
         // 
-        // hightlightButton
+        // updateMessageLink
         // 
-        this.hightlightButton.BackColor = System.Drawing.Color.SteelBlue;
-        this.hightlightButton.Location = new System.Drawing.Point(244, 73);
-        this.hightlightButton.Name = "hightlightButton";
-        this.hightlightButton.ShineColor = System.Drawing.Color.SkyBlue;
-        this.hightlightButton.Size = new System.Drawing.Size(214, 36);
-        this.hightlightButton.TabIndex = 5;
-        this.hightlightButton.Text = "Start Highlight mode";
-        this.hightlightButton.Click += new System.EventHandler(this.hightlightButton_Click);
+        this.updateMessageLink.AutoSize = true;
+        this.updateMessageLink.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+        this.updateMessageLink.Location = new System.Drawing.Point(199, 130);
+        this.updateMessageLink.Name = "updateMessageLink";
+        this.updateMessageLink.Size = new System.Drawing.Size(126, 19);
+        this.updateMessageLink.TabIndex = 4;
+        this.updateMessageLink.TabStop = true;
+        this.updateMessageLink.Text = "Skimpt Homepage";
+        this.updateMessageLink.Visible = false;
+        this.updateMessageLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.updateMessageLink_LinkClicked);
         // 
         // updateMessageLabel
         // 
@@ -167,9 +169,9 @@ public class main : Form
         this.updateMessageLabel.ForeColor = System.Drawing.Color.Red;
         this.updateMessageLabel.Location = new System.Drawing.Point(30, 130);
         this.updateMessageLabel.Name = "updateMessageLabel";
-        this.updateMessageLabel.Size = new System.Drawing.Size(392, 19);
+        this.updateMessageLabel.Size = new System.Drawing.Size(173, 19);
         this.updateMessageLabel.TabIndex = 3;
-        this.updateMessageLabel.Text = "New Update Available on http://code.google.com/p/skimpt";
+        this.updateMessageLabel.Text = "New Update Available on";
         this.updateMessageLabel.Visible = false;
         // 
         // unhookButton
@@ -197,7 +199,6 @@ public class main : Form
         // tabPage2
         // 
         this.tabPage2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-        this.tabPage2.Controls.Add(this.saveFileSettingButton);
         this.tabPage2.Controls.Add(this.groupBox1);
         this.tabPage2.Controls.Add(this.radioButton2);
         this.tabPage2.Controls.Add(this.radioButton1);
@@ -208,15 +209,6 @@ public class main : Form
         this.tabPage2.TabIndex = 1;
         this.tabPage2.Text = "File";
         this.tabPage2.ToolTipText = "change file settings including save path";
-        // 
-        // saveFileSettingButton
-        // 
-        this.saveFileSettingButton.Location = new System.Drawing.Point(155, 172);
-        this.saveFileSettingButton.Name = "saveFileSettingButton";
-        this.saveFileSettingButton.Size = new System.Drawing.Size(141, 36);
-        this.saveFileSettingButton.TabIndex = 5;
-        this.saveFileSettingButton.Text = "Save File Settings";
-        this.saveFileSettingButton.Click += new System.EventHandler(this.saveFileSettingButton_Click);
         // 
         // groupBox1
         // 
@@ -283,8 +275,6 @@ public class main : Form
         // tabPage3
         // 
         this.tabPage3.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-        this.tabPage3.Controls.Add(this.saveFtpSettingButton);
-        this.tabPage3.Controls.Add(this.ftpTestConnButton);
         this.tabPage3.Controls.Add(this.ftpDirTxtBox);
         this.tabPage3.Controls.Add(this.ftpPortTxtBox);
         this.tabPage3.Controls.Add(this.ftpPassTxtBox);
@@ -301,28 +291,6 @@ public class main : Form
         this.tabPage3.TabIndex = 2;
         this.tabPage3.Text = "Upload";
         this.tabPage3.ToolTipText = "Set upload settings to remote server";
-        // 
-        // saveFtpSettingButton
-        // 
-        this.saveFtpSettingButton.BackColor = System.Drawing.Color.DarkSlateBlue;
-        this.saveFtpSettingButton.Location = new System.Drawing.Point(332, 173);
-        this.saveFtpSettingButton.Name = "saveFtpSettingButton";
-        this.saveFtpSettingButton.ShineColor = System.Drawing.Color.SlateBlue;
-        this.saveFtpSettingButton.Size = new System.Drawing.Size(135, 35);
-        this.saveFtpSettingButton.TabIndex = 13;
-        this.saveFtpSettingButton.Text = "Save FTP Settings";
-        this.saveFtpSettingButton.Click += new System.EventHandler(this.saveFtpSettingButton_Click);
-        // 
-        // ftpTestConnButton
-        // 
-        this.ftpTestConnButton.BackColor = System.Drawing.Color.Crimson;
-        this.ftpTestConnButton.Location = new System.Drawing.Point(191, 173);
-        this.ftpTestConnButton.Name = "ftpTestConnButton";
-        this.ftpTestConnButton.ShineColor = System.Drawing.Color.Pink;
-        this.ftpTestConnButton.Size = new System.Drawing.Size(135, 35);
-        this.ftpTestConnButton.TabIndex = 12;
-        this.ftpTestConnButton.Text = "Test Connection";
-        this.ftpTestConnButton.Click += new System.EventHandler(this.ftpTestConnButton_Click);
         // 
         // ftpDirTxtBox
         // 
@@ -409,7 +377,6 @@ public class main : Form
         // tabPage4
         // 
         this.tabPage4.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-        this.tabPage4.Controls.Add(this.saveGlobalSettingButton);
         this.tabPage4.Controls.Add(this.KillCheckbox);
         this.tabPage4.Controls.Add(this.ShowMessagesCheckbox);
         this.tabPage4.Controls.Add(this.AllowPluginsCheckbox);
@@ -421,17 +388,6 @@ public class main : Form
         this.tabPage4.TabIndex = 3;
         this.tabPage4.Text = "Settings";
         this.tabPage4.ToolTipText = "Set global application settings";
-        // 
-        // saveGlobalSettingButton
-        // 
-        this.saveGlobalSettingButton.BackColor = System.Drawing.Color.Chocolate;
-        this.saveGlobalSettingButton.Location = new System.Drawing.Point(132, 173);
-        this.saveGlobalSettingButton.Name = "saveGlobalSettingButton";
-        this.saveGlobalSettingButton.OuterBorderColor = System.Drawing.Color.LightSalmon;
-        this.saveGlobalSettingButton.Size = new System.Drawing.Size(221, 35);
-        this.saveGlobalSettingButton.TabIndex = 6;
-        this.saveGlobalSettingButton.Text = "Save Program Settings";
-        this.saveGlobalSettingButton.Click += new System.EventHandler(this.saveGlobalSettingButton_Click);
         // 
         // KillCheckbox
         // 
@@ -493,6 +449,39 @@ public class main : Form
         this.tabPage5.ToolTipText = "Check log files";
         this.tabPage5.UseVisualStyleBackColor = true;
         // 
+        // notifyIcon
+        // 
+        this.notifyIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+        this.notifyIcon.BalloonTipText = "Program Status: Running";
+        this.notifyIcon.BalloonTipTitle = "Skimpt v1.01";
+        this.notifyIcon.ContextMenuStrip = this.notificationIconContext;
+        this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
+        this.notifyIcon.Text = "Skimpt v1.01\r\nProgram Status: Running";
+        this.notifyIcon.Visible = true;
+        this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
+        // 
+        // notificationIconContext
+        // 
+        this.notificationIconContext.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.contextShowMenu,
+            this.contextExitMenu});
+        this.notificationIconContext.Name = "notificationIconContext";
+        this.notificationIconContext.Size = new System.Drawing.Size(181, 70);
+        // 
+        // contextExitMenu
+        // 
+        this.contextExitMenu.Name = "contextExitMenu";
+        this.contextExitMenu.Size = new System.Drawing.Size(180, 22);
+        this.contextExitMenu.Text = "Exit Skimpt";
+        this.contextExitMenu.Click += new System.EventHandler(this.contextExitMenu_Click);
+        // 
+        // contextShowMenu
+        // 
+        this.contextShowMenu.Name = "contextShowMenu";
+        this.contextShowMenu.Size = new System.Drawing.Size(180, 22);
+        this.contextShowMenu.Text = "Show Main Window";
+        this.contextShowMenu.Click += new System.EventHandler(this.contextShowMenu_Click);
+        // 
         // main
         // 
         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -513,6 +502,7 @@ public class main : Form
         this.TopMost = true;
         this.Load += new System.EventHandler(this.main_Load);
         this.Shown += new System.EventHandler(this.main_Shown);
+        this.Closing += new System.ComponentModel.CancelEventHandler(this.main_Closing);
         this.tabControl1.ResumeLayout(false);
         this.tabPage1.ResumeLayout(false);
         this.tabPage1.PerformLayout();
@@ -524,6 +514,7 @@ public class main : Form
         this.tabPage3.PerformLayout();
         this.tabPage4.ResumeLayout(false);
         this.tabPage4.PerformLayout();
+        this.notificationIconContext.ResumeLayout(false);
         this.ResumeLayout(false);
 
     }
@@ -576,7 +567,15 @@ public class main : Form
     private SkimptControls.GlassButton ftpTestConnButton;
     private SkimptControls.GlassButton saveFtpSettingButton;
     private SkimptControls.GlassButton saveGlobalSettingButton;
+    private NotifyIcon notifyIcon;
+    private LinkLabel updateMessageLink;
+    private Button exitButton;
+    private ContextMenuStrip notificationIconContext;
+    private ToolStripMenuItem contextExitMenu;
+    private ToolStripMenuItem contextShowMenu;
     private static Skimpt.Properties.Settings mySettings = new Skimpt.Properties.Settings();
+    
+
 
     #endregion
 
@@ -692,6 +691,7 @@ public class main : Form
     private void ShowUpdateLabel()
     {
         updateMessageLabel.Visible = true;
+        updateMessageLink.Visible = true;
     }
 
     /// <summary>
@@ -960,6 +960,22 @@ public class main : Form
 
     }
 
+    ///<summary>
+    ///The following function hides the form if the close button is pressed,
+    ///instead of closing the application. Also, it enables the Notification Icon.
+    /// </summary>
+    private void main_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+    {
+        // Hide the form...
+        this.Hide();
+
+        // Cancel the close...
+        e.Cancel = true;
+
+        //Enable Notification Icon
+        notifyIcon.Visible = true;
+    }
+    
     /// <summary>
     /// This function is an event handler which unhooks the 
     /// Keyboard Intercepting. Clicking this will not cause the
@@ -1064,6 +1080,38 @@ public class main : Form
 
 
     #endregion
+
+    //Open Browser Window on clicking website link
+    private void updateMessageLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    {
+        System.Diagnostics.Process.Start("http://code.google.com/p/skimpt");
+    }
+
+    private void exitButton_Click(object sender, EventArgs e)
+    {
+        notifyIcon.Visible = false;
+        Application.Exit();
+    }
+
+    //Show the form screen on double clicking 
+    //Notification Icon
+    private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+    {
+        this.Show();
+        notifyIcon.Visible = false;
+    }
+
+    private void contextExitMenu_Click(object sender, EventArgs e)
+    {
+        notifyIcon.Visible = false;
+        Application.Exit();
+    }
+
+    private void contextShowMenu_Click(object sender, EventArgs e)
+    {
+        notifyIcon.Visible = false;
+        this.Show();
+    }
 
 
 
