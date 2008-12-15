@@ -299,39 +299,39 @@ public partial class toastform : Form
                     if(BitmapFilter.GrayScale(bpicture))
                     {
                         bpicture.Save(_FileNameToHandle);
-                        MessageBox.Show("image grayscaled");
+                        utilities.ShowMessage("image grayscaled", "apply effects");
                     }
                     else
                     {
-                        MessageBox.Show("unable to grayscale");
+                        utilities.ShowMessage("unable to grayscale", "failed");
                     }
                     break;
                 case "invert":
                     if(BitmapFilter.Invert(bpicture))
                     {
                         bpicture.Save(_FileNameToHandle);
-                        MessageBox.Show("image inverted");
+                        utilities.ShowMessage("image inverted", "apply effects");
                     }
                     else
                     {
-                        MessageBox.Show("unable to invert");
+                         utilities.ShowMessage("unable to invert", "failed");
                     }
                     break;
                 case "watermark":
-                    MessageBox.Show("not supported");
+                     utilities.ShowMessage("not supported", "failed");
                     break;
                 case "flip":
-                    MessageBox.Show("not supported");
+                    utilities.ShowMessage("not supported", "failed");
                     break;
                 case "brightness":
                     if(BitmapFilter.Brightness (bpicture, 40))
                     {
                         bpicture.Save(_FileNameToHandle);
-                        MessageBox.Show("image inverted");
+                        utilities.ShowMessage("image inverted", "apply effects");
                     }
                     else
                     {
-                        MessageBox.Show("unable to invert");
+                         utilities.ShowMessage("unable to invert", "failed");
                     }
                     break;
                 default:
@@ -342,7 +342,7 @@ public partial class toastform : Form
         }
         catch(Exception)
         {
-            MessageBox.Show("unable to apply effect");
+            utilities.ShowMessage("unable to apply effect", "failed");
         }
         this.applyEffectButton.Enabled = true;
         this.uploadToSiteButton.Enabled = true;
