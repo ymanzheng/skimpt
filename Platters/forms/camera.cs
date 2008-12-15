@@ -354,7 +354,7 @@ public class MainCropForm : LayeredForm
         mainFormReference._highlightMode  = false;           
         mainFormReference.CameraCoords.X = 0;
         mainFormReference.CameraCoords.Y = 0;
-        mainFormReference.Show();
+      //  mainFormReference.Show();
     }
 
     protected override void OnMove(EventArgs e)

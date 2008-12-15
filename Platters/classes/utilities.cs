@@ -130,7 +130,11 @@ namespace Util
                 return string.Empty;
         }
 
-
+        public static void ShowMessage(string message, string caption)
+        {
+            if(mySettings.showErrorMessagesSetting)
+                MessageBox.Show(message, caption, MessageBoxButtons.OK);
+        }
 
     }
 
