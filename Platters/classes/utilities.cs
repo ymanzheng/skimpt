@@ -136,6 +136,18 @@ namespace Util
                 MessageBox.Show(message, caption, MessageBoxButtons.OK);
         }
 
+        /// <summary>
+        /// This function, when executed, shows the toast form
+        /// with animation. 
+        /// </summary>
+        /// <param name="filename">Full path needed to send to toast form</param>
+        public static void ShowToastForm(string filename)
+        {
+            //create a new toastform instance.
+            toastform slice = new toastform(filename);
+            slice.Show();
+
+        }
     }
 
     

@@ -34,49 +34,54 @@ namespace Platters
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string [] args)
         {
+            if(args.Length > 0)
+            {
+                //we have a context menu item... 
 
-       
-            
-            bool firstInstance;
-            Mutex mutex = new Mutex(false, "Local\\" + "SkimptProgramRunning", out firstInstance);
-
-            if (firstInstance)
-            {               
-                MessageBox.Show("Program started!");
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new main());
+                //check for valid item
+                if(System.IO.File.Exists(args[0]))
+                {
+                    Util.utilities.ShowToastForm(args[0]);
+                }
             }
             else
             {
-                MessageBox.Show("This program is already running!");
+                bool firstInstance;
+                Mutex mutex = new Mutex(false, "Local\\" + "SkimptProgramRunning", out firstInstance);
+
+                if(firstInstance)
+                {
+                    MessageBox.Show("Program started!");
+                    Application.EnableVisualStyles();
+                    Application.SetCompatibleTextRenderingDefault(false);
+                    Application.Run(new main());
+                }
             }
-         //   Logger logger = new Logger(3, "test.txt");
+            
+            //wait till all toast forms are closed
+            while(Application.OpenForms.Count > 0)
+                Application.DoEvents();
+        
+                
+             //   Logger logger = new Logger(3, "test.txt");
 
 
-         //   for (int x = 0; x < 100; x++)
-         //   {
-         //       for (int i = 0; i < 100; i++)
-         //       {
-         //           logger.log(i % 6, "TEST", "message " + i);
-         //       }
-         //       //Thread.Sleep(500);
-         //   }
-         //MessageBox.Show ((DateTime.Now.ToFileTime() / 10000).ToString());
-         //   //			logger.log(0, "TEST", "message 1");
-         //   //			logger.log(1, "TEST", "message 2");
-         //   //			logger.log(2, "TEST", "message 3");
-         //   //System.Console.ReadLine();
-         //   logger.shutdown();
-        }
-
-     
-
-
-
-
-    
+             //   for (int x = 0; x < 100; x++)
+             //   {
+             //       for (int i = 0; i < 100; i++)
+             //       {
+             //           logger.log(i % 6, "TEST", "message " + i);
+             //       }
+             //       //Thread.Sleep(500);
+             //   }
+             //MessageBox.Show ((DateTime.Now.ToFileTime() / 10000).ToString());
+             //   //			logger.log(0, "TEST", "message 1");
+             //   //			logger.log(1, "TEST", "message 2");
+             //   //			logger.log(2, "TEST", "message 3");
+             //   //System.Console.ReadLine();
+             //   logger.shutdown();                   
+        }   
     }
 }

@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="classes\autoupdater.cs" />
     <Compile Include="classes\ColorListForForm.cs" />
+    <Compile Include="classes\contexthandler.cs" />
     <Compile Include="classes\formanimator.cs" />
     <Compile Include="classes\ftp.cs" />
     <Compile Include="classes\ImageEffects.cs" />
