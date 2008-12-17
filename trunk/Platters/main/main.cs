@@ -673,6 +673,8 @@ public class main : Form
     private bool isBusy = false;
     public bool _cameraMode = false;
     public bool _highlightMode = false;
+    private bool _updateFound = false;
+    private BackgroundWorker bg;
     private Button browseButton;
     private FontDialog fontDialog1;
     private Label updateMessageLabel;
@@ -722,11 +724,28 @@ public class main : Form
         KeyboardHookInstance = new KeyboardHook();
         KeyboardHookInstance.KeyIntercepted += new KeyboardHookCaptureHandler(KeyboardHookInstance_KeyIntercepted);
 
-        //The following checks for a update
-        BackgroundWorker bg = new BackgroundWorker();
+        //Create a timer for checking for updates
+        System.Threading.Timer tm = new System.Threading.Timer(new TimerCallback(timerProcCallBack));
+        tm.Change(10000, 600000);
+
+        //Configure the background worker. 
+        bg = new BackgroundWorker();
         bg.WorkerReportsProgress = false;
         bg.DoWork += new DoWorkEventHandler(bg_DoWork);
-        bg.RunWorkerAsync();
+        
+    }
+
+    private void timerProcCallBack(Object state)
+    {
+        if(!bg.IsBusy && !_updateFound)
+            bg.RunWorkerAsync();
+
+        if(_updateFound)
+        {
+            System.Threading.Timer tm = (System.Threading.Timer)state;
+            tm.Dispose();
+        }
+            
     }
 
     /// <summary>
@@ -741,6 +760,7 @@ public class main : Form
 
         if (autoupdater.GetLatestVersion() > curVer)
         {
+            _updateFound = true;
             updateMessageLabel.Invoke(new MethodInvoker(ShowUpdateLabel));
         }
     }
@@ -1126,12 +1146,9 @@ public class main : Form
     /// </summary>
     private void removeContextMenuButton_Click(object sender, EventArgs e)
     {
-        ContextHandler.Remove();
+        if(!ContextHandler.Remove())
+            utilities.ShowMessage("Unable to remove Skimpt from context menu", "failed");
     }
-
-  
-
-
     #endregion
 
     #region Form Events

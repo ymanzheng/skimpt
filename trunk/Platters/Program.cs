@@ -43,7 +43,11 @@ namespace Platters
                 //check for valid item
                 if(System.IO.File.Exists(args[0]))
                 {
-                    Util.utilities.ShowToastForm(args[0]);
+                    //check if its a valid picture format. 
+                    if(System.IO.Path.GetExtension(args[0]) == ".jpg")
+                        Util.utilities.ShowToastForm(args[0]);
+                    else
+                        Util.utilities.ShowMessage("Not a valid file", "failed");
                 }
             }
             else
