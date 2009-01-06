@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="classes\autoupdater.cs" />
+    <Compile Include="classes\BinaryReverseReader.cs" />
     <Compile Include="classes\ColorListForForm.cs" />
     <Compile Include="classes\contexthandler.cs" />
     <Compile Include="classes\formanimator.cs" />
@@ -77,6 +78,13 @@
     <Compile Include="classes\ImageOutputCollection.cs" />
     <Compile Include="classes\keyboardhook.cs" />
     <Compile Include="classes\logger.cs" />
+    <Compile Include="classes\photoshop\ImageDecoderBitmaps.cs" />
+    <Compile Include="classes\photoshop\ImageResource.cs" />
+    <Compile Include="classes\photoshop\ImageResources\AlphaChannels.cs" />
+    <Compile Include="classes\photoshop\ImageResources\ResolutionInfo.cs" />
+    <Compile Include="classes\photoshop\ImageResources\Thumbnail.cs" />
+    <Compile Include="classes\photoshop\Layer.cs" />
+    <Compile Include="classes\photoshop\PSDFile.cs" />
     <Compile Include="classes\screenshot.cs" />
     <Compile Include="classes\SkimptImage.cs">
     </Compile>

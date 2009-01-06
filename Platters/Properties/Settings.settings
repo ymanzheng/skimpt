@@ -47,5 +47,8 @@
     <Setting Name="thumbnailSize" Type="System.Double" Scope="User">
       <Value Profile="(Default)">80</Value>
     </Setting>
+    <Setting Name="savePSDasFileSetting" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

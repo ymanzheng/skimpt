@@ -202,5 +202,17 @@ namespace Skimpt.Properties {
                 this["thumbnailSize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool savePSDasFileSetting {
+            get {
+                return ((bool)(this["savePSDasFileSetting"]));
+            }
+            set {
+                this["savePSDasFileSetting"] = value;
+            }
+        }
     }
 }
