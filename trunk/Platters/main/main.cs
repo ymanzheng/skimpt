@@ -90,6 +90,7 @@ public class main : Form
         this.label3 = new System.Windows.Forms.Label();
         this.label2 = new System.Windows.Forms.Label();
         this.tabPage4 = new System.Windows.Forms.TabPage();
+        this.savePSDasFileCheckbox = new System.Windows.Forms.CheckBox();
         this.groupBox2 = new System.Windows.Forms.GroupBox();
         this.removeContextMenuButton = new SkimptControls.GlassButton();
         this.attachContextMenuButton = new SkimptControls.GlassButton();
@@ -447,6 +448,7 @@ public class main : Form
         // tabPage4
         // 
         this.tabPage4.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+        this.tabPage4.Controls.Add(this.savePSDasFileCheckbox);
         this.tabPage4.Controls.Add(this.groupBox2);
         this.tabPage4.Controls.Add(this.ShowMessagesCheckbox);
         this.tabPage4.Controls.Add(this.HideUponLaunchCheckbox);
@@ -459,11 +461,21 @@ public class main : Form
         this.tabPage4.Text = "Settings";
         this.tabPage4.ToolTipText = "Set global application settings";
         // 
+        // savePSDasFileCheckbox
+        // 
+        this.savePSDasFileCheckbox.AutoSize = true;
+        this.savePSDasFileCheckbox.Location = new System.Drawing.Point(25, 90);
+        this.savePSDasFileCheckbox.Name = "savePSDasFileCheckbox";
+        this.savePSDasFileCheckbox.Size = new System.Drawing.Size(191, 23);
+        this.savePSDasFileCheckbox.TabIndex = 15;
+        this.savePSDasFileCheckbox.Text = "Save a JPEG of a PSD file.";
+        this.savePSDasFileCheckbox.UseVisualStyleBackColor = true;
+        // 
         // groupBox2
         // 
         this.groupBox2.Controls.Add(this.removeContextMenuButton);
         this.groupBox2.Controls.Add(this.attachContextMenuButton);
-        this.groupBox2.Location = new System.Drawing.Point(25, 104);
+        this.groupBox2.Location = new System.Drawing.Point(25, 119);
         this.groupBox2.Name = "groupBox2";
         this.groupBox2.Size = new System.Drawing.Size(428, 62);
         this.groupBox2.TabIndex = 14;
@@ -495,7 +507,7 @@ public class main : Form
         // ShowMessagesCheckbox
         // 
         this.ShowMessagesCheckbox.AutoSize = true;
-        this.ShowMessagesCheckbox.Location = new System.Drawing.Point(25, 75);
+        this.ShowMessagesCheckbox.Location = new System.Drawing.Point(25, 61);
         this.ShowMessagesCheckbox.Name = "ShowMessagesCheckbox";
         this.ShowMessagesCheckbox.Size = new System.Drawing.Size(306, 23);
         this.ShowMessagesCheckbox.TabIndex = 3;
@@ -505,7 +517,7 @@ public class main : Form
         // HideUponLaunchCheckbox
         // 
         this.HideUponLaunchCheckbox.AutoSize = true;
-        this.HideUponLaunchCheckbox.Location = new System.Drawing.Point(25, 46);
+        this.HideUponLaunchCheckbox.Location = new System.Drawing.Point(25, 32);
         this.HideUponLaunchCheckbox.Name = "HideUponLaunchCheckbox";
         this.HideUponLaunchCheckbox.Size = new System.Drawing.Size(284, 23);
         this.HideUponLaunchCheckbox.TabIndex = 1;
@@ -515,7 +527,7 @@ public class main : Form
         // startOnWindowsLoadCheckBox
         // 
         this.startOnWindowsLoadCheckBox.AutoSize = true;
-        this.startOnWindowsLoadCheckBox.Location = new System.Drawing.Point(25, 17);
+        this.startOnWindowsLoadCheckBox.Location = new System.Drawing.Point(25, 3);
         this.startOnWindowsLoadCheckBox.Name = "startOnWindowsLoadCheckBox";
         this.startOnWindowsLoadCheckBox.Size = new System.Drawing.Size(307, 23);
         this.startOnWindowsLoadCheckBox.TabIndex = 0;
@@ -525,10 +537,10 @@ public class main : Form
         // saveGlobalSettingButton
         // 
         this.saveGlobalSettingButton.BackColor = System.Drawing.Color.Chocolate;
-        this.saveGlobalSettingButton.Location = new System.Drawing.Point(189, 173);
+        this.saveGlobalSettingButton.Location = new System.Drawing.Point(158, 186);
         this.saveGlobalSettingButton.Name = "saveGlobalSettingButton";
         this.saveGlobalSettingButton.OuterBorderColor = System.Drawing.Color.LightSalmon;
-        this.saveGlobalSettingButton.Size = new System.Drawing.Size(221, 35);
+        this.saveGlobalSettingButton.Size = new System.Drawing.Size(161, 27);
         this.saveGlobalSettingButton.TabIndex = 6;
         this.saveGlobalSettingButton.Text = "Save Program Settings";
         this.saveGlobalSettingButton.Click += new System.EventHandler(this.saveGlobalSettingButton_Click);
@@ -563,38 +575,38 @@ public class main : Form
             this.contextShowMenu,
             this.contextExitMenu});
         this.notificationIconContext.Name = "notificationIconContext";
-        this.notificationIconContext.Size = new System.Drawing.Size(186, 98);
+        this.notificationIconContext.Size = new System.Drawing.Size(172, 98);
         // 
         // contextStartCamera
         // 
         this.contextStartCamera.Name = "contextStartCamera";
-        this.contextStartCamera.Size = new System.Drawing.Size(185, 22);
+        this.contextStartCamera.Size = new System.Drawing.Size(171, 22);
         this.contextStartCamera.Text = "Start Camera Mode";
         this.contextStartCamera.Click += new System.EventHandler(this.contextStartCamera_Click);
         // 
         // contextHighlightMode
         // 
         this.contextHighlightMode.Name = "contextHighlightMode";
-        this.contextHighlightMode.Size = new System.Drawing.Size(185, 22);
+        this.contextHighlightMode.Size = new System.Drawing.Size(171, 22);
         this.contextHighlightMode.Text = "Start Highlight Mode";
         this.contextHighlightMode.Click += new System.EventHandler(this.contextHighlightMode_Click);
         // 
         // toolStripSeparator1
         // 
         this.toolStripSeparator1.Name = "toolStripSeparator1";
-        this.toolStripSeparator1.Size = new System.Drawing.Size(182, 6);
+        this.toolStripSeparator1.Size = new System.Drawing.Size(168, 6);
         // 
         // contextShowMenu
         // 
         this.contextShowMenu.Name = "contextShowMenu";
-        this.contextShowMenu.Size = new System.Drawing.Size(185, 22);
+        this.contextShowMenu.Size = new System.Drawing.Size(171, 22);
         this.contextShowMenu.Text = "Show Main Window";
         this.contextShowMenu.Click += new System.EventHandler(this.contextShowMenu_Click);
         // 
         // contextExitMenu
         // 
         this.contextExitMenu.Name = "contextExitMenu";
-        this.contextExitMenu.Size = new System.Drawing.Size(185, 22);
+        this.contextExitMenu.Size = new System.Drawing.Size(171, 22);
         this.contextExitMenu.Text = "Exit Skimpt";
         this.contextExitMenu.Click += new System.EventHandler(this.contextExitMenu_Click);
         // 
@@ -696,6 +708,7 @@ public class main : Form
     private SkimptControls.GlassButton attachContextMenuButton;
     private GroupBox groupBox2;
     private SkimptControls.GlassButton removeContextMenuButton;
+    private CheckBox savePSDasFileCheckbox;
     private static Skimpt.Properties.Settings mySettings = new Skimpt.Properties.Settings();
     
 
@@ -1049,6 +1062,10 @@ public class main : Form
         this.ftpDirTxtBox.Text = mySettings.ftpdirectorySetting;
         this.ftpPortTxtBox.Text = mySettings.ftpportSetting.ToString();
 
+        this.savePSDasFileCheckbox.Checked  = mySettings.savePSDasFileSetting;
+        this.HideUponLaunchCheckbox.Checked = mySettings.hideOnLoad;
+        this.ShowMessagesCheckbox.Checked = mySettings.showErrorMessagesSetting;
+        
     }
     /// <summary>
     /// The file SaveSettings button is clicked
@@ -1113,7 +1130,7 @@ public class main : Form
     {
         mySettings.hideOnLoad = HideUponLaunchCheckbox.Checked;
         mySettings.showErrorMessagesSetting = ShowMessagesCheckbox.Checked;
-
+        mySettings.savePSDasFileSetting = savePSDasFileCheckbox.Checked;
 
         //set or delete the registry key upon Windows Startup.
         RegistryKey rkApp = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
@@ -1166,6 +1183,9 @@ public class main : Form
 
         //update the title bar
         this.Text = "Skimpt V: " + Application.ProductVersion.ToString();
+
+        //use the notify icon to tell the user its been started
+        notifyIcon.ShowBalloonTip(1000, "Skimpt", "Skimpt is now running", ToolTipIcon.Info);
 
     }
 
@@ -1290,6 +1310,9 @@ public class main : Form
         startHighlightMode();
     }
     #endregion
+
+
+
 
     
 

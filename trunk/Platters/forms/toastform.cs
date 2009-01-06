@@ -190,17 +190,17 @@ public partial class toastform : Form
                 i.Show();
                 break;
 
-            case "imgpurse.com":
-                form = new MultipartForm("http://www.imgpurse.com/");
-                form.FileContentType = "image/jpeg";
-                form.InputBoxName = "file";
-                form.setField("upload", "1");
-                form.sendFile(_FileNameToHandle);
-                returnValue = utilities.parsePOSTData("imgpurse", form.ResponseText.ToString());
-                Clipboard.SetText(returnValue, TextDataFormat.Text);
-                i.SetTextbox(returnValue);
-                i.Show();
-                break;
+            //case "imgpurse.com":
+            //    form = new MultipartForm("http://www.imgpurse.com/");
+            //    form.FileContentType = "image/jpeg";
+            //    form.InputBoxName = "file";
+            //    form.setField("upload", "1");
+            //    form.sendFile(_FileNameToHandle);
+            //    returnValue = utilities.parsePOSTData("imgpurse", form.ResponseText.ToString());
+            //    Clipboard.SetText(returnValue, TextDataFormat.Text);
+            //    i.SetTextbox(returnValue);
+            //    i.Show();
+            //    break;
             case "tinypic.com":
                 form = new MultipartForm("http://s4.tinypic.com/upload.php");
                 form.FileContentType = "image/jpeg";

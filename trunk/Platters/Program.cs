@@ -22,6 +22,7 @@ using System.Windows.Forms;
 using Microsoft.VisualBasic;
 using System.Threading;
 using System.ComponentModel;
+using System.Drawing;
 
 
 namespace Platters
@@ -39,15 +40,34 @@ namespace Platters
             if(args.Length > 0)
             {
                 //we have a context menu item... 
-
+                string filename = args[0].ToLower();
+          
                 //check for valid item
-                if(System.IO.File.Exists(args[0]))
+                if(System.IO.File.Exists(filename))
                 {
+
                     //check if its a valid picture format. 
-                    if(System.IO.Path.GetExtension(args[0]) == ".jpg")
-                        Util.utilities.ShowToastForm(args[0]);
-                    else
+                    if(System.IO.Path.GetExtension(filename) == ".jpg") {
+                        Util.utilities.ShowToastForm(filename);
+                    } else if(System.IO.Path.GetExtension(filename) == ".psd") {
+                        //its a PSD file.
+                        
+                        //save a local copy of the PSD as jpeg
+                        //double check location
+                        if(System.IO.File.Exists(filename)) {
+                            Photoshop.PsdFile psd = new Photoshop.PsdFile();
+                            //load the file
+                            psd.Load(filename);
+                            //decode the image
+                            Image myPsdImage = Photoshop.ImageDecoder.DecodeImage(psd);
+                            //create new filename string
+                            string newfilename = System.IO.Path.GetFileNameWithoutExtension(filename) + "-skimpt" + ".jpg";
+                            myPsdImage.Save(newfilename);
+                            Util.utilities.ShowToastForm(newfilename);                            
+                        }
+                    } else {
                         Util.utilities.ShowMessage("Not a valid file", "failed");
+                    }
                 }
             }
             else
@@ -56,8 +76,7 @@ namespace Platters
                 Mutex mutex = new Mutex(false, "Local\\" + "SkimptProgramRunning", out firstInstance);
 
                 if(firstInstance)
-                {
-                    MessageBox.Show("Program started!");
+                {                    
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
                     Application.Run(new main());
