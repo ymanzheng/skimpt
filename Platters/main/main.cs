@@ -846,6 +846,7 @@ public class main : Form
     {
         updateMessageLabel.Visible = true;
         updateMessageLink.Visible = true;
+        notifyIcon.ShowBalloonTip(60000, "Update", "Skimpt has a new update!", ToolTipIcon.Info);
     }
 
     /// <summary>
