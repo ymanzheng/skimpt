@@ -1,0 +1,24 @@
+C:\Users\Andy\AppData\Local\Temporary Projects\Thematic\bin\Debug\Thematic.exe
+C:\Users\Andy\AppData\Local\Temporary Projects\Thematic\bin\Debug\Thematic.pdb
+C:\Users\Andy\AppData\Local\Temporary Projects\Thematic\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Andy\AppData\Local\Temporary Projects\Thematic\obj\Debug\Window1.baml
+C:\Users\Andy\AppData\Local\Temporary Projects\Thematic\obj\Debug\Window1.g.cs
+C:\Users\Andy\AppData\Local\Temporary Projects\Thematic\obj\Debug\App.g.cs
+C:\Users\Andy\AppData\Local\Temporary Projects\Thematic\obj\Debug\Thematic_MarkupCompile.cache
+C:\Users\Andy\AppData\Local\Temporary Projects\Thematic\obj\Debug\Thematic.g.resources
+C:\Users\Andy\AppData\Local\Temporary Projects\Thematic\obj\Debug\Thematic.Properties.Resources.resources
+C:\Users\Andy\AppData\Local\Temporary Projects\Thematic\obj\Debug\Thematic.csproj.GenerateResource.Cache
+C:\Users\Andy\AppData\Local\Temporary Projects\Thematic\obj\Debug\Thematic.exe
+C:\Users\Andy\AppData\Local\Temporary Projects\Thematic\obj\Debug\Thematic.pdb
+C:\Users\Andy\Documents\Visual Studio 2008\Projects\Thematic\Thematic\obj\Debug\Thematic.exe
+C:\Users\Andy\Documents\Visual Studio 2008\Projects\Thematic\Thematic\obj\Debug\Thematic.pdb
+C:\Users\Andy\Documents\Visual Studio 2008\Projects\Thematic\Thematic\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Andy\Documents\Visual Studio 2008\Projects\Thematic\Thematic\obj\Debug\Window1.baml
+C:\Users\Andy\Documents\Visual Studio 2008\Projects\Thematic\Thematic\obj\Debug\Window1.g.cs
+C:\Users\Andy\Documents\Visual Studio 2008\Projects\Thematic\Thematic\obj\Debug\App.g.cs
+C:\Users\Andy\Documents\Visual Studio 2008\Projects\Thematic\Thematic\obj\Debug\Thematic_MarkupCompile.cache
+C:\Users\Andy\Documents\Visual Studio 2008\Projects\Thematic\Thematic\obj\Debug\Thematic.g.resources
+C:\Users\Andy\Documents\Visual Studio 2008\Projects\Thematic\Thematic\obj\Debug\Thematic.Properties.Resources.resources
+C:\Users\Andy\Documents\Visual Studio 2008\Projects\Thematic\Thematic\obj\Debug\Thematic.csproj.GenerateResource.Cache
+C:\Users\Andy\Documents\Visual Studio 2008\Projects\Thematic\Thematic\bin\Debug\Thematic.exe
+C:\Users\Andy\Documents\Visual Studio 2008\Projects\Thematic\Thematic\bin\Debug\Thematic.pdb
