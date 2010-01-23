@@ -5,6 +5,7 @@ using System.Text;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Diagnostics;
 
 namespace Skimpt3.classes {
     public class skImage {
@@ -32,6 +33,7 @@ namespace Skimpt3.classes {
                 //create a random location without saving
                 _saveFullLocation = Path.Combine(mySettings.ImageFileLocation, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + "." +Common.GetFormatString(_capturedImage));
                 _imageOnFile = false;
+                Debug.WriteLine(_saveFullLocation);
             }
         }
     
