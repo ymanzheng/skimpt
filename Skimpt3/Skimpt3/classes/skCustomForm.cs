@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
+using System.Diagnostics;
 
 namespace Skimpt3.classes {
     public  class skCustomForm : Form {
@@ -36,29 +37,38 @@ namespace Skimpt3.classes {
             get { return freezePainting; }
             set {
                 if (value == false)
-                    PaintLayeredWindow();
-                //paint layer
+                    PaintLayeredWindow();             
                 freezePainting = value;
             }
         }
-
-
 
         protected skCustomForm() {
             FormBorderStyle = FormBorderStyle.None;
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.Manual;
-            Console.WriteLine("Base - constructor");
+            InitializeComponent();
+            Debug.WriteLine("Base - constructor");
         }
 
+        private void InitializeComponent()
+        {
+            //this.clientSize calls the onPaintLayer internally. Which means it 
+            //calls the OnPaintLayer method in the derived class. Which in turn 
+            //calls the base OnPaintLayer which invokes the event.
+
+            Debug.WriteLine("Initilizing base");
+            this.SuspendLayout();
+            this.ClientSize = new System.Drawing.Size(280, 260);
+            this.Name = "skCustomForm";          
+            this.ResumeLayout(false);
+
+        }
         /// <summary>
         /// Raises the <see cref="PaintLayer"/> event.
         /// </summary>
         /// <param name="e">A <see cref="PaintLayerEventArgs"/> object containing the 
         /// event data.</param>
-        protected virtual void OnPaintLayer(PaintLayerEventArgs e) {
-            Console.WriteLine("onPaintLayer base");
-
+        protected virtual void OnPaintLayer(PaintLayerEventArgs e) {       
             EventHandler<PaintLayerEventArgs> handler = PaintLayer;
             if (!DesignMode && (handler != null))
                 PaintLayer(this, e);
@@ -67,16 +77,14 @@ namespace Skimpt3.classes {
         protected void PaintLayeredWindow() {
             if (Bounds.Size != Size.Empty) {
                 using (Bitmap surface = new Bitmap(ClientRectangle.Width, ClientRectangle.Height, PixelFormat.Format32bppArgb))
-                    PaintLayeredWindow(surface, layerOpacity);
+                    PaintLayeredWindow(surface);
             }
           
         }
 
-        protected void PaintLayeredWindow(Bitmap bitmap, double opacity) {
+        protected void PaintLayeredWindow(Bitmap bitmap) {
             if (bitmap.PixelFormat != PixelFormat.Format32bppArgb)
-                throw new ArgumentException("The bitmap must be 32bpp with an alpha-channel.", "bitmap");
-
-            layerOpacity = opacity;
+                throw new ArgumentException("The bitmap must be 32bpp with an alpha-channel.", "bitmap");          
 
             using (PaintLayerEventArgs args = new PaintLayerEventArgs(bitmap)) {
                 OnPaintLayer(args);
@@ -86,6 +94,7 @@ namespace Skimpt3.classes {
         }
 
         private void PaintNative(Bitmap bitmap, byte opacity) {
+            Debug.WriteLine("PaintNative");
             IntPtr hdcDestination = NativeMethods.GetDC(IntPtr.Zero);
             IntPtr hdcSource = NativeMethods.CreateCompatibleDC(hdcDestination);
             IntPtr hdcBitmap = IntPtr.Zero;
@@ -130,8 +139,7 @@ namespace Skimpt3.classes {
             if (!freezePainting) {
                 PaintLayeredWindow();
                 base.OnResize(e);
-            }
-            Console.WriteLine("Onresize - base");
+            }          
         }
 
         protected override CreateParams CreateParams {
@@ -140,31 +148,7 @@ namespace Skimpt3.classes {
                 cParams.ExStyle |= NativeMethods.WS_EX_LAYERED;
                 return cParams;
             }
-        }
-
-        protected override void OnPaintBackground(PaintEventArgs pevent) {
-            // Eat event to prevent rendering error when WM_PAINT message 
-            // is sent.
-        }
-
-        private void InitializeComponent() {
-            this.SuspendLayout();
-            // 
-            // skCustomForm
-            // 
-            this.ClientSize = new System.Drawing.Size(284, 262);
-            this.Name = "skCustomForm";
-            this.Load += new System.EventHandler(this.skCustomForm_Load);
-            this.ResumeLayout(false);
-
-        }
-
-        private void skCustomForm_Load(object sender, EventArgs e) {
-
-        }
-
-
-
+        }       
     }
 
     public class PaintLayerEventArgs : EventArgs, IDisposable {

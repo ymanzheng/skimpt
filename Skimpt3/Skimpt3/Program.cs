@@ -56,8 +56,7 @@ namespace Skimpt3 {
                 if (firstInstance) {
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
-                    Application.Run(new GUI.test());
-
+                    Application.Run(new GUI.main());
                     Console.WriteLine("reach?");
                 }
             }

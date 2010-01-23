@@ -166,7 +166,7 @@
         this.optimizeImageCheckbox.AutoSize = true;
         this.optimizeImageCheckbox.Location = new System.Drawing.Point(121, 28);
         this.optimizeImageCheckbox.Name = "optimizeImageCheckbox";
-        this.optimizeImageCheckbox.Size = new System.Drawing.Size(241, 22);
+        this.optimizeImageCheckbox.Size = new System.Drawing.Size(242, 22);
         this.optimizeImageCheckbox.TabIndex = 9;
         this.optimizeImageCheckbox.Text = "Optimize Image before uploading?";
         this.optimizeImageCheckbox.UseVisualStyleBackColor = true;

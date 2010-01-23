@@ -8,7 +8,6 @@ using System.Windows.Forms;
 namespace Skimpt3.classes {
     class skImageCapture {
       
-        private Rectangle rec;
 
         /// Intro to DCs:  
         /// If you are familiar, skip ahead. If not, read on.
