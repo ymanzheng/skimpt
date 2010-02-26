@@ -32,11 +32,9 @@ namespace Skimpt3.classes {
         /// <param name="filename">Full path needed</param>
         public static bool IsValidImage(string filename) {
             try {
-                Image newImage = Image.FromFile(filename);
+                Image newImage = Image.FromFile(filename);               
                 return true;
-            } catch (OutOfMemoryException) {
-                // Image.FromFile will throw this if file is invalid.
-                // Don't ask me why.
+            } catch (Exception ex) {                
                 return false;
             }          
         }

@@ -18,22 +18,14 @@ namespace Skimpt3 {
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main(string[] args) {
-         //("C:\\Users\\Affan\\Pictures\\4popped.jpg");        
-
-
-
+        static void Main(string[] args) { 
             if (args.Length > 0) {
                 //we have a context menu item... 
-                string filename = args[0].ToLower();
-                //check for valid item
+                string filename = args[0].ToLower();              
                 if (System.IO.File.Exists(filename)) {
-
                     //check if its a valid picture format. 
                     if (Common.IsValidImage(filename)) {
-                        skImage ski = new skImage(Image.FromFile(filename), filename, true);
-                        //ski.Invert();
-                        //ski.Save();
+                        skImage ski = new skImage(Image.FromFile(filename), filename);                      
                         Common.ShowToastForm(ski);
                     } else if (System.IO.Path.GetExtension(filename) == ".psd") {
                         //its a PSD file.
@@ -44,7 +36,8 @@ namespace Skimpt3 {
                         psd.Load(filename);
                         //decode the image
                         Image myPsdImage = Photoshop.ImageDecoder.DecodeImage(psd);
-                        skImage ski = new skImage(myPsdImage, string.Empty, false);
+                        //create new image
+                        skImage ski = new skImage(myPsdImage);
                         Common.ShowToastForm(ski);
                     }
                     //exit silently
@@ -56,15 +49,17 @@ namespace Skimpt3 {
                 if (firstInstance) {
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
-                    Application.Run(new GUI.main());
-                    Console.WriteLine("reach?");
+                    Application.Run(new GUI.main());                
                 }
             }
         
             //wait till all toast forms are closed
             while (Application.OpenForms.Count > 0)
-                Application.DoEvents();
+            {
+                  Application.DoEvents();
+            }
 
         }
+
     }
 }

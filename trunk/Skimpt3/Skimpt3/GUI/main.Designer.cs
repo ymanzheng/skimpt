@@ -28,58 +28,59 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.glassButton1 = new SkimptControls.GlassButton();
-            this.hightlightButton = new SkimptControls.GlassButton();
-            this.cameraButton = new SkimptControls.GlassButton();
-            this.label1 = new System.Windows.Forms.Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.cameraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.highlightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // glassButton1
+            // notifyIcon1
             // 
-            this.glassButton1.BackColor = System.Drawing.Color.ForestGreen;
-            this.glassButton1.FadeOnFocus = true;
-            this.glassButton1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.glassButton1.ForeColor = System.Drawing.Color.Black;
-            this.glassButton1.Location = new System.Drawing.Point(12, 108);
-            this.glassButton1.Name = "glassButton1";
-            this.glassButton1.ShineColor = System.Drawing.Color.LimeGreen;
-            this.glassButton1.Size = new System.Drawing.Size(168, 36);
-            this.glassButton1.TabIndex = 7;
-            this.glassButton1.Text = "Options";
+            this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "Skimpt";
+            this.notifyIcon1.Visible = true;
             // 
-            // hightlightButton
+            // contextMenuStrip1
             // 
-            this.hightlightButton.BackColor = System.Drawing.Color.SteelBlue;
-            this.hightlightButton.FadeOnFocus = true;
-            this.hightlightButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hightlightButton.ForeColor = System.Drawing.Color.Black;
-            this.hightlightButton.Location = new System.Drawing.Point(12, 66);
-            this.hightlightButton.Name = "hightlightButton";
-            this.hightlightButton.ShineColor = System.Drawing.Color.SkyBlue;
-            this.hightlightButton.Size = new System.Drawing.Size(168, 36);
-            this.hightlightButton.TabIndex = 5;
-            this.hightlightButton.Text = "Highlight mode";
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cameraToolStripMenuItem,
+            this.highlightToolStripMenuItem,
+            this.optionsToolStripMenuItem,
+            this.exitToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(127, 92);
             // 
-            // cameraButton
+            // cameraToolStripMenuItem
             // 
-            this.cameraButton.BackColor = System.Drawing.Color.DarkViolet;
-            this.cameraButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cameraButton.ForeColor = System.Drawing.Color.Black;
-            this.cameraButton.Location = new System.Drawing.Point(12, 24);
-            this.cameraButton.Name = "cameraButton";
-            this.cameraButton.ShineColor = System.Drawing.Color.Thistle;
-            this.cameraButton.Size = new System.Drawing.Size(168, 36);
-            this.cameraButton.TabIndex = 6;
-            this.cameraButton.Text = "Camera Mode";
+            this.cameraToolStripMenuItem.Name = "cameraToolStripMenuItem";
+            this.cameraToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.cameraToolStripMenuItem.Text = "Camera";
+            this.cameraToolStripMenuItem.Click += new System.EventHandler(this.cameraToolStripMenuItem_Click);
             // 
-            // label1
+            // highlightToolStripMenuItem
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 13);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "label1";
+            this.highlightToolStripMenuItem.Name = "highlightToolStripMenuItem";
+            this.highlightToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.highlightToolStripMenuItem.Text = "Highlight";
+            this.highlightToolStripMenuItem.Click += new System.EventHandler(this.highlightToolStripMenuItem_Click);
+            // 
+            // optionsToolStripMenuItem
+            // 
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.optionsToolStripMenuItem.Text = "Options";
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // main
             // 
@@ -87,29 +88,31 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(198, 178);
             this.ControlBox = false;
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.glassButton1);
-            this.Controls.Add(this.hightlightButton);
-            this.Controls.Add(this.cameraButton);
             this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.MinimumSize = new System.Drawing.Size(200, 180);
+            this.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.MaximizeBox = false;
             this.Name = "main";
             this.Opacity = 0.5D;
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.Text = "Skimpt3";           
+            this.Text = "Skimpt3";
+            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+            this.Load += new System.EventHandler(this.main_Load);
+            this.Resize += new System.EventHandler(this.main_Resize);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private SkimptControls.GlassButton cameraButton;
-        private SkimptControls.GlassButton hightlightButton;
-        private SkimptControls.GlassButton glassButton1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem cameraToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem highlightToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
 
     }
 }

@@ -32,13 +32,10 @@ public partial class toastform : Form
 
     //The list of currently open ToastForms. 
     private static ArrayList openForms = new ArrayList();
-
     //The object that creates the sliding animation. 
     private FormAnimator m_Animator;
-
     //The handle of the window that currently has focus. 
-    private IntPtr m_CurrentForegroundWindow;
-  
+    private IntPtr m_CurrentForegroundWindow;  
     static int static_ToastForm_Activated_activationCount = 0;
 
 
@@ -71,21 +68,9 @@ public partial class toastform : Form
         //The FormAnimator now has a reference to this toastform.
         //When the load() of this form is invoked, the Form animator intercepts it and displays the form.
         this.m_Animator = new FormAnimator(this, FormAnimator.AnimationMethod.Slide, FormAnimator.AnimationDirection.Up, 400);
+       // this.m_Animator.Dispose();
+        }
 
-        //Attach the skImage imagemodified() event to the class.
-        this._skImageToHandle.ImageModified += new skImage.ImageEventHandler(_skImageToHandle_ImageModified);
-        this._skImageToHandle.ImageSaved += new skImage.ImageEventHandler(_skImageToHandle_ImageSaved);
-    }
-
-    void _skImageToHandle_ImageSaved() {
-         //do nothing
-    }
-
-    private void _skImageToHandle_ImageModified() {
-        this.saveImageButton.Enabled = true;
-
-    }
- 
     public new void Show()
     {
         //Determine the current foreground window so it can be reactivated each time this form tries to get the focus. 
@@ -96,6 +81,7 @@ public partial class toastform : Form
 
     private void toastform_Load(object sender, EventArgs e)
     {
+        
         //Display the form just above the system tray. 
         this.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - this.Width - 5, Screen.PrimaryScreen.WorkingArea.Height - this.Height - 5);
 
@@ -133,6 +119,7 @@ public partial class toastform : Form
 
     private void toastform_Activated(object sender, EventArgs e)
     {
+       
         //The number of times the form has been actiavted. 
 
         //This form will try to take the focus times as it is being displayed. 
@@ -147,25 +134,21 @@ public partial class toastform : Form
     }
 
     private void toastform_FormClosing(object sender, FormClosingEventArgs e)
-    {
-        System.Diagnostics.Debug.WriteLine ("Toastform form_closing");
+    {          
         //Close the form by sliding down. 
         this.m_Animator.Direction = FormAnimator.AnimationDirection.Down;
-
     }
 
     private void toastform_FormClosed(object sender, FormClosedEventArgs e)
     {
+        Console.WriteLine("Closed - toastform");
         int myFormIndex = toastform.openForms.Count - 1;
-
         //Find the index of this form in the open form list. 
         while (!(object.ReferenceEquals(toastform.openForms[myFormIndex], this)))
         {
             myFormIndex -= 1;
         }
-
         toastform openForm = default(toastform);
-
         //Move down any open forms above this one. 
         for (int i = myFormIndex - 1; i >= 0; i += -1)
         {
@@ -173,10 +156,9 @@ public partial class toastform : Form
             openForm.Top += this.Height + 5;
             openForm.Refresh();
         }
-
         //Remove this form from the open form list. 
         toastform.openForms.Remove(this);
-
+        this.m_Animator.Dispose(); //remove the references to the events
     }
 
     private void lifeTimer_Tick(object sender, EventArgs e)

@@ -59,5 +59,12 @@ namespace Skimpt3.Properties {
                 resourceCulture = value;
             }
         }
+        
+        internal static System.Drawing.Icon ProgramIcon {
+            get {
+                object obj = ResourceManager.GetObject("ProgramIcon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
     }
 }
