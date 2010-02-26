@@ -41,7 +41,7 @@ using System.Windows.Forms;
 /// [Affan] October 25, 2008 Converted to C#.net
 /// </history> 
 /// ----------------------------------------------------------------------------- 
-public sealed class FormAnimator 
+public sealed class FormAnimator : IDisposable
 {
 
   
@@ -222,9 +222,7 @@ public sealed class FormAnimator
     /// ----------------------------------------------------------------------------- 
     public FormAnimator(Form form) 
     { 
-        this.m_Form = form; 
-        
-       
+        this.m_Form = form;       
         this.m_Form.Load += new EventHandler(m_Form_Load);
         this.m_Form.VisibleChanged += new EventHandler(m_Form_VisibleChanged);
         this.m_Form.Closing += new CancelEventHandler(m_Form_Closing);
@@ -295,13 +293,15 @@ public sealed class FormAnimator
     {
         this.m_Form = null;
     }
+
+  
     #endregion 
     
     #region " Event Handlers " 
     
     //Animates the form automatically when it is loaded. 
     private void m_Form_Load(object sender, System.EventArgs e)  
-    { 
+    {        
         //MDI child forms do not support transparency so do not try to use the Blend method. 
         if (this.m_Form.MdiParent == null || this.m_Method != AnimationMethod.Blend) { 
             //Activate the form. 
@@ -311,32 +311,26 @@ public sealed class FormAnimator
     
     //Animates the form automatically when it is shown or hidden. 
     private void m_Form_VisibleChanged(object sender, System.EventArgs e)  // ERROR: Handles clauses are not supported in C# 
-    { 
+    {       
         //Do not attempt to animate MDI child forms while showing or hiding as they do not behave as expected. 
         if (this.m_Form.MdiParent == null) { 
             int flags = (int)this.m_Method | (int)this.m_Direction; 
             
-            if (this.m_Form.Visible) {
-               
+            if (this.m_Form.Visible) {               
                 //Activate the form. 
                 flags = flags | FormAnimator.AW_ACTIVATE; 
             } 
-            else {
-               
+            else {               
                 //Hide the form. 
                 flags = flags | FormAnimator.AW_HIDE; 
             }
-
             Win32.AnimateWindow(this.m_Form.Handle, this.m_Duration, flags); 
         } 
     } 
     
     //Animates the form automatically when it closes. 
     private void m_Form_Closing(object sender, System.ComponentModel.CancelEventArgs e) // ERROR: Handles clauses are not supported in C#  
-    {
-        System.Diagnostics.Debug.WriteLine("FormAnimator form_closing");
-        
-        if (!e.Cancel) { 
+    {   if (!e.Cancel) { 
             //MDI child forms do not support transparency so do not try to use the Blend method. 
             if (this.m_Form.MdiParent == null || this.m_Method != AnimationMethod.Blend) { 
                 //Hide the form. 
@@ -347,4 +341,14 @@ public sealed class FormAnimator
     }     
     #endregion 
     
-} 
+
+public void  Dispose()
+{
+    this.m_Form.Load -= new EventHandler(m_Form_Load);
+    this.m_Form.VisibleChanged -= new EventHandler(m_Form_VisibleChanged);
+    this.m_Form.Closing -= new CancelEventHandler(m_Form_Closing);      
+ 
+}
+
+
+}

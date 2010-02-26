@@ -12,7 +12,6 @@ namespace Skimpt3.classes {
         private static Skimpt3.Properties.Settings mySettings = new Skimpt3.Properties.Settings();
 
         public delegate void ImageEventHandler();
-        public event ImageEventHandler ImageModified;
         public event ImageEventHandler ImageSaved;
 
         private Image _capturedImage;      
@@ -22,21 +21,31 @@ namespace Skimpt3.classes {
         public bool ImageOnFile {
             get { return _imageOnFile; }
         }
-        
-        public skImage(Image captured, string filepath, bool imagesaved) {
 
+        public skImage(Image captured)
+        {
             _capturedImage = captured;
-            if (imagesaved) {
-                _saveFullLocation = filepath;
-                _imageOnFile = true;
-            } else {
-                //create a random location without saving
-                _saveFullLocation = Path.Combine(mySettings.ImageFileLocation, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + "." +Common.GetFormatString(_capturedImage));
-                _imageOnFile = false;
-                Debug.WriteLine(_saveFullLocation);
-            }
+            //create a new file name
+            _saveFullLocation = Path.Combine(mySettings.ImageFileLocation, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + "." + Common.GetFormatString(_capturedImage));
+            _imageOnFile = false;
+               
         }
-    
+
+        public skImage(Image captured, Rectangle highlightr)
+        {
+            _capturedImage = captured;
+            this.HighlightWithOutColor(highlightr);
+            //create a new file name
+            _saveFullLocation = Path.Combine(mySettings.ImageFileLocation, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + "." + Common.GetFormatString(_capturedImage));
+            _imageOnFile = false;
+
+        }
+
+        public skImage(Image captured, string filepath) {
+            _capturedImage = captured;        
+            _saveFullLocation = filepath;
+            _imageOnFile = true;       
+        }    
 
 
         public Image CapturedImage {
@@ -44,27 +53,17 @@ namespace Skimpt3.classes {
             set { _capturedImage = value; }
         }
 
-
         public Image ThumbnailImage {
             get {       
                 //required by GDI, not used in GDI1.0 but still required by .net
-                Image.GetThumbnailImageAbort myCallback = new Image.GetThumbnailImageAbort(ThumbnailCallback);
+                Image.GetThumbnailImageAbort myCallback = new Image.GetThumbnailImageAbort(delegate() { return false; });
                 return _capturedImage.GetThumbnailImage(100, 100, myCallback, System.IntPtr.Zero);
             }
         }
 
-        /// <summary>
-        /// This method returns true if it decides that the GetThumbnailImage method should prematurely stop execution; otherwise, it returns false.
-        /// </summary>
-        /// <returns>False</returns>
-        private bool ThumbnailCallback() {
-            return false;
-        }
-
         public string FileLocation {
             get { return _saveFullLocation; }
-        }        
-
+        }     
 
         public bool Invert() {
 
@@ -91,9 +90,9 @@ namespace Skimpt3.classes {
 
             b.UnlockBits(bmData);
             //the invert is done, transfer the image back.
-            _capturedImage.Dispose();
+            _capturedImage.Dispose(); //dispose of the old image
             _capturedImage = b;
-            ImageModified(); // raise the event
+            
             return true;
         }
         public bool GrayScale() {
@@ -128,8 +127,7 @@ namespace Skimpt3.classes {
             b.UnlockBits(bmData);
             //the invert is done, transfer the image back.
             _capturedImage.Dispose();
-            _capturedImage = b;
-            ImageModified(); // raise the event
+            _capturedImage = b;           
             return true;
         }
 
@@ -173,8 +171,7 @@ namespace Skimpt3.classes {
             b.UnlockBits(bmData);
             //the invert is done, transfer the image back.
             _capturedImage.Dispose();
-            _capturedImage = b;
-            ImageModified(); // raise the event
+            _capturedImage = b;            
             return true;
 
         }
@@ -252,8 +249,7 @@ namespace Skimpt3.classes {
             b.UnlockBits(bmData);
             //the invert is done, transfer the image back.
             _capturedImage.Dispose();
-            _capturedImage = b;
-            ImageModified(); // raise the event
+            _capturedImage = b;           
             return true;
         }
 
@@ -303,8 +299,7 @@ namespace Skimpt3.classes {
             b.UnlockBits(bmData);
             //the invert is done, transfer the image back.
             _capturedImage.Dispose();
-            _capturedImage = b;
-            ImageModified(); // raise the event
+            _capturedImage = b;           
             return true;
         }
 
@@ -354,7 +349,6 @@ namespace Skimpt3.classes {
             //the invert is done, transfer the image back.
             _capturedImage.Dispose();
             _capturedImage = b;
-            ImageModified(); // raise the event
             return true;
         }
 
@@ -444,8 +438,7 @@ namespace Skimpt3.classes {
             b.UnlockBits(bmData);
             //the invert is done, transfer the image back.
             _capturedImage.Dispose();
-            _capturedImage = b;
-            ImageModified(); // raise the event
+            _capturedImage = b;            
             return true;
         }
 
@@ -457,25 +450,24 @@ namespace Skimpt3.classes {
                 try {
                     //resave with a --skimpt tag
                     string newPath;
-                    newPath = System.IO.Path.GetFileNameWithoutExtension(_saveFullLocation) + Common.getHash(5) + System.IO.Path.GetExtension(_saveFullLocation);
-                  
+                    newPath = System.IO.Path.GetFileNameWithoutExtension(_saveFullLocation) + Common.getHash(5) + System.IO.Path.GetExtension(_saveFullLocation);                  
                     _saveFullLocation = System.IO.Path.Combine(mySettings.ImageFileLocation, newPath);
-                    _capturedImage.Save(_saveFullLocation);
-                    ImageSaved();
+                    _capturedImage.Save(_saveFullLocation);      
                     return true;
                 } catch (Exception ex1) {
-                    throw new IOException("Unable to save modified image. " + ex1.Message);
+                    //Log message
+                    return false;
                 }
             } else {
             
                     try {
                         _capturedImage.Save(_saveFullLocation);
-                        _imageOnFile = true;
-                        ImageSaved();
+                        _imageOnFile = true;                      
                         return true;
                     } catch (Exception ex) {
                         //image save fail.
-                        throw new IOException("Unable to save modified image. " + ex.Message);
+                        //throw new IOException("Unable to save modified image. " + ex.Message);
+                        return false;
                     }
                 
             }           

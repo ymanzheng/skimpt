@@ -105,15 +105,12 @@ namespace Skimpt3.GUI
 
         // String displayed on form describing the current output format. 
         private string outputDescription = string.Empty;
-
         private Rectangle returnArea;
-
         public Rectangle ReturnArea
         {
             get { return returnArea; }
             set { returnArea = value; }
         } 
-
         public string OutputDescription
         {
             get { return outputDescription; }
@@ -357,6 +354,10 @@ namespace Skimpt3.GUI
 
         }
 
+        public Rectangle GetWindowFrame()
+        {        
+            return new Rectangle(VisibleLeft, VisibleTop, VisibleWidth, VisibleHeight);
+        }
 
 
 
