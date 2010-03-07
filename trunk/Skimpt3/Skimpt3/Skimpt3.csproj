@@ -29,7 +29,7 @@
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -163,7 +163,9 @@
     <Folder Include="plugins\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="apn-Box.ico" />
+    <Content Include="apn-Box.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\bg4.jpg" />
     <None Include="Resources\bg3.jpg" />
     <None Include="Resources\bg2.png" />
