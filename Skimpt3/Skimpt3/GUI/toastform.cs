@@ -24,10 +24,10 @@ using Skimpt3.classes;
 using System.Net;
 using System.Text;
 using System.IO;
+using System.Xml.Linq;
 
 
-public partial class toastform : Form
-{
+public partial class toastform : Form {
 
 
     //The list of currently open ToastForms. 
@@ -35,7 +35,7 @@ public partial class toastform : Form
     //The object that creates the sliding animation. 
     private FormAnimator m_Animator;
     //The handle of the window that currently has focus. 
-    private IntPtr m_CurrentForegroundWindow;  
+    private IntPtr m_CurrentForegroundWindow;
     static int static_ToastForm_Activated_activationCount = 0;
 
 
@@ -45,7 +45,7 @@ public partial class toastform : Form
 
 
     //the property and variable for the skImage
-    private skImage  _skImageToHandle;
+    private skImage _skImageToHandle;
     public skImage SetSkImage { set { _skImageToHandle = value; } }
 
     //the private static reference to the settings object
@@ -53,41 +53,38 @@ public partial class toastform : Form
 
 
     //private constructor
-    private toastform()
-    {
+    private toastform() {
         InitializeComponent();
     }
-    
-    public toastform(skImage ic) : this() {
-            this._skImageToHandle = ic;
-        
+
+    public toastform(skImage ic)
+        : this() {
+        this._skImageToHandle = ic;
+
         //Set the time for which the form should be displayed. 
-            this.lifeTimer.Interval = mySettings.ToastFormTimer;
-      
+        this.lifeTimer.Interval = mySettings.ToastFormTimer;
+
         //Attach this form to the Formanimator. 
         //The FormAnimator now has a reference to this toastform.
         //When the load() of this form is invoked, the Form animator intercepts it and displays the form.
         this.m_Animator = new FormAnimator(this, FormAnimator.AnimationMethod.Slide, FormAnimator.AnimationDirection.Up, 400);
-       // this.m_Animator.Dispose();
-        }
+        // this.m_Animator.Dispose();
+    }
 
-    public new void Show()
-    {
+    public new void Show() {
         //Determine the current foreground window so it can be reactivated each time this form tries to get the focus. 
         this.m_CurrentForegroundWindow = Win32.GetForegroundWindow();
         //Display the form. 
         base.Show();
     }
 
-    private void toastform_Load(object sender, EventArgs e)
-    {
-        
+    private void toastform_Load(object sender, EventArgs e) {
+
         //Display the form just above the system tray. 
         this.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - this.Width - 5, Screen.PrimaryScreen.WorkingArea.Height - this.Height - 5);
 
         //Move each open form upwards to make room for this one. 
-        foreach (toastform openForm in toastform.openForms)
-        {
+        foreach (toastform openForm in toastform.openForms) {
             openForm.Top -= this.Height + 5;
         }
 
@@ -101,12 +98,14 @@ public partial class toastform : Form
         updatePreview();
 
         if (_skImageToHandle.ImageOnFile) {
-            fileNameLabel.Text = _skImageToHandle.FileLocation;
+            filetextbox.Text = _skImageToHandle.FileLocation;
             saveImageButton.Enabled = false;
         } else {
-            fileNameLabel.Text = "Image not yet saved";
-            saveImageButton.Enabled = true;            
+            filetextbox.Text = "Image not yet saved";
+            saveImageButton.Enabled = true;
         }
+
+        optimizeImage.Checked = mySettings.OptimizeImage;
 
         //Start counting down the form's liftime. 
         this.lifeTimer.Start();
@@ -117,14 +116,12 @@ public partial class toastform : Form
         previewBox.Refresh();
     }
 
-    private void toastform_Activated(object sender, EventArgs e)
-    {
-       
+    private void toastform_Activated(object sender, EventArgs e) {
+
         //The number of times the form has been actiavted. 
 
         //This form will try to take the focus times as it is being displayed. 
-        if (static_ToastForm_Activated_activationCount < 5)
-        {
+        if (static_ToastForm_Activated_activationCount < 5) {
             //Activate the window that previously had the focus. 
             Win32.SetForegroundWindow(this.m_CurrentForegroundWindow);
         }
@@ -133,25 +130,21 @@ public partial class toastform : Form
         static_ToastForm_Activated_activationCount += 1;
     }
 
-    private void toastform_FormClosing(object sender, FormClosingEventArgs e)
-    {          
+    private void toastform_FormClosing(object sender, FormClosingEventArgs e) {
         //Close the form by sliding down. 
         this.m_Animator.Direction = FormAnimator.AnimationDirection.Down;
     }
 
-    private void toastform_FormClosed(object sender, FormClosedEventArgs e)
-    {
+    private void toastform_FormClosed(object sender, FormClosedEventArgs e) {
         Console.WriteLine("Closed - toastform");
         int myFormIndex = toastform.openForms.Count - 1;
         //Find the index of this form in the open form list. 
-        while (!(object.ReferenceEquals(toastform.openForms[myFormIndex], this)))
-        {
+        while (!(object.ReferenceEquals(toastform.openForms[myFormIndex], this))) {
             myFormIndex -= 1;
         }
         toastform openForm = default(toastform);
         //Move down any open forms above this one. 
-        for (int i = myFormIndex - 1; i >= 0; i += -1)
-        {
+        for (int i = myFormIndex - 1; i >= 0; i += -1) {
             openForm = (toastform)toastform.openForms[i];
             openForm.Top += this.Height + 5;
             openForm.Refresh();
@@ -161,86 +154,53 @@ public partial class toastform : Form
         this.m_Animator.Dispose(); //remove the references to the events
     }
 
-    private void lifeTimer_Tick(object sender, EventArgs e)
-    { 
+    private void lifeTimer_Tick(object sender, EventArgs e) {
         this.Close();
     }
 
 
     private void uploadToSiteButton_Click(object sender, EventArgs e) {
+        if (this.lifeTimer.Enabled)
+            toggleTimer(false);
+
+        uploadToSiteButton.Enabled = false;
+        applyEffectButton.Enabled = false;
+        timerButton.Enabled = false;
+        saveImageButton.Enabled = false;
+        this.lifeTimer.Enabled = false;
+        URLTextbox.Text = "Please wait ...";
         switch (hostingChoicesComboBox.SelectedItem.ToString().ToLower()) {
             case "imgur.com":
-                byte[] response;
-                using (MemoryStream ms = new MemoryStream()) {
-                    
-                    _skImageToHandle.CapturedImage.Save(ms, Common.GetFormat(_skImageToHandle.CapturedImage));
-                    using (WebClient wb = new WebClient()) {
-                        var values = new System.Collections.Specialized.NameValueCollection
-                                     {
-                                         {"key", mySettings.APIKey},
-                                         {"image", Convert.ToBase64String(ms.ToArray())}
-                                     };
-                        response = wb.UploadValues("http://imgur.com/api/upload.xml", values);
-                    }
-                }           
-
-                //read the result
-                MemoryStream s = new MemoryStream(response);
-                StreamReader sr = new StreamReader(s);                
-                Console.WriteLine(sr.ReadToEnd());
-
+                backgroundWorker1.RunWorkerAsync();             
                 break;
             default:
                 MessageBox.Show("not supported");
                 break;
         }
-
-    }
-
-
-    private void uploadToFtpButton_Click(object sender, EventArgs e)
-    {
-        if (this.lifeTimer.Enabled)
-            toggleTimer(false);
-
-        uploadToSiteButton.Enabled = false;
-        uploadToFtpButton.Enabled = false;
-        applyEffectButton.Enabled = false;
-        
-        try {
-            FTP f = new FTP(mySettings.FTPHost, ".", mySettings.FTPUser, mySettings.FTPPass, mySettings.FTPPort);
-            f.ChangeDirectory(mySettings.FTPDir);
-            f.UploadFile(_FileNameToHandle);
-            MessageBox.Show("Done");
-        }
-        catch(Exception ex)
-        {
-            MessageBox.Show(ex.Message);
-        }
-
+        while (backgroundWorker1.IsBusy)
+            Application.DoEvents();
+       
         this.applyEffectButton.Enabled = true;
-        this.uploadToSiteButton.Enabled = true;
-        this.uploadToFtpButton.Enabled = true;
-        
+        this.uploadToSiteButton.Enabled = true;      
+        saveImageButton.Enabled = true;
+        timerButton.Enabled = true;   
+        toggleTimer(true);
     }
 
-    private void applyEffectButton_Click(object sender, EventArgs e)
-    {
+    private void applyEffectButton_Click(object sender, EventArgs e) {
         if (this.lifeTimer.Enabled)
             toggleTimer(false);
 
         uploadToSiteButton.Enabled = false;
-        uploadToFtpButton.Enabled = false;
-        applyEffectButton.Enabled = false;       
-        this.lifeTimer.Enabled = false;
-        try {       
+        applyEffectButton.Enabled = false;
+        try {
             switch (effectsComboBox.SelectedItem.ToString().ToLower()) {
                 case "grayscale":
-                    if(_skImageToHandle.GrayScale())
+                    if (_skImageToHandle.GrayScale())
                         updatePreview();
                     break;
                 case "invert":
-                    if(_skImageToHandle.Invert())
+                    if (_skImageToHandle.Invert())
                         updatePreview();
                     break;
                 case "watermark":
@@ -250,21 +210,22 @@ public partial class toastform : Form
                     MessageBox.Show("Not supported");
                     break;
                 case "brightness":
-                    if(_skImageToHandle.Brightness(40))
+                    if (_skImageToHandle.Brightness(40))
                         updatePreview();
                     break;
                 default:
                     break;
             }
-         
+
         } catch (Exception ex) {
             Console.WriteLine(ex.Message);
             MessageBox.Show("Unable to apply effect!");
         }
         this.applyEffectButton.Enabled = true;
         this.uploadToSiteButton.Enabled = true;
-        this.uploadToFtpButton.Enabled = true;       
-        
+        timerButton.Enabled = true;
+        saveImageButton.Enabled = true;
+        toggleTimer(true);
     }
 
     private void glassButton1_Click(object sender, EventArgs e) {
@@ -272,8 +233,8 @@ public partial class toastform : Form
     }
 
     private void saveImageButton_Click(object sender, EventArgs e) {
-        if (_skImageToHandle.Save()) {
-            fileNameLabel.Text = _skImageToHandle.FileLocation;
+        if (_skImageToHandle.Save(optimizeImage.Checked)) {
+            filetextbox.Text = _skImageToHandle.FileLocation;
             saveImageButton.Enabled = false;
         }
     }
@@ -284,6 +245,47 @@ public partial class toastform : Form
             this.timerButton.Text = "pause timer";
         else
             this.timerButton.Text = "start timer";
+    }
+
+    private void checkBox1_CheckedChanged(object sender, EventArgs e) {
+
+    }
+
+    private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e) {
+        byte[] response;
+        using (MemoryStream ms = new MemoryStream()) {
+
+            if (optimizeImage.Checked) {
+                _skImageToHandle.CapturedImage.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+            } else {
+                _skImageToHandle.CapturedImage.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+
+            }
+
+            using (WebClient wb = new WebClient()) {
+                var values = new System.Collections.Specialized.NameValueCollection
+                                     {
+                                         {"key", mySettings.APIKey},
+                                         {"image", Convert.ToBase64String(ms.ToArray())}
+                                     };
+                response = wb.UploadValues("http://imgur.com/api/upload.xml", values);
+            }
+        }
+        e.Result = response;
+
+    }
+
+    private void backgroundWorker1_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e) {
+        //read the result     
+        StreamReader sr = new StreamReader(new MemoryStream((byte [])e.Result));
+        var xml = XElement.Parse(sr.ReadToEnd());
+        if (xml.Attribute("stat").Value == "ok") {
+            URLTextbox.Text = xml.Element("original_image").Value;
+            URLTextbox.SelectAll();
+            URLTextbox.Focus();
+        } else if (xml.Attribute("stat").Value == "fail") {
+            URLTextbox.Text = "FAILED: " + xml.Element("error_msg").Value;
+        }
     }
 
 

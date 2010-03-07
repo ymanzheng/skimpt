@@ -21,8 +21,9 @@ namespace Skimpt3.classes {
         /// <param name="ski">An skImage instance stored in memory</param>
         public static void ShowToastForm(skImage ski) {
             //create a new toastform instance.
-            toastform slice = new toastform(ski);
-            slice.Show();
+            using (toastform slice = new toastform(ski)) {
+                slice.ShowDialog();
+            }
         }
 
         /// <summary>
@@ -58,9 +59,7 @@ namespace Skimpt3.classes {
                 return System.Drawing.Imaging.ImageFormat.Jpeg; //return jpeg as default
         }
 
-        public static string GetFormatString(Image im) {
-            Console.WriteLine(im.RawFormat.ToString());
-            Console.WriteLine(System.Drawing.Imaging.ImageFormat.Jpeg.ToString());
+        public static string GetFormatString(Image im) {   
             if (im.RawFormat.Equals(System.Drawing.Imaging.ImageFormat.Jpeg))
                 return "jpeg";
             else if (im.RawFormat.Equals(System.Drawing.Imaging.ImageFormat.Png))
@@ -74,7 +73,7 @@ namespace Skimpt3.classes {
             else if (im.RawFormat.Equals(System.Drawing.Imaging.ImageFormat.Gif))
                 return "gif";
             else
-                return "jpg"; //return jpeg as default
+                return "jpeg"; //return jpeg as default
         }
 
         public static string getHash(int charCount) {

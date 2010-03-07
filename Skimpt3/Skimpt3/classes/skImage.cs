@@ -25,8 +25,7 @@ namespace Skimpt3.classes {
         public skImage(Image captured)
         {
             _capturedImage = captured;
-            //create a new file name
-            _saveFullLocation = Path.Combine(mySettings.ImageFileLocation, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + "." + Common.GetFormatString(_capturedImage));
+            _saveFullLocation = string.Empty;            
             _imageOnFile = false;
                
         }
@@ -34,9 +33,7 @@ namespace Skimpt3.classes {
         public skImage(Image captured, Rectangle highlightr)
         {
             _capturedImage = captured;
-            this.HighlightWithOutColor(highlightr);
-            //create a new file name
-            _saveFullLocation = Path.Combine(mySettings.ImageFileLocation, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + "." + Common.GetFormatString(_capturedImage));
+            this.HighlightWithOutColor(highlightr);            
             _imageOnFile = false;
 
         }
@@ -46,7 +43,6 @@ namespace Skimpt3.classes {
             _saveFullLocation = filepath;
             _imageOnFile = true;       
         }    
-
 
         public Image CapturedImage {
             get { return _capturedImage; }
@@ -442,31 +438,38 @@ namespace Skimpt3.classes {
             return true;
         }
 
-        public bool Save() {
+        public bool Save(bool compress = false) {
             //saves the image to harddrive;           
             //check if already exists:
             if (_imageOnFile) {
                 //we need to rewrite:
                 try {
                     //resave with a --skimpt tag
-                    string newPath;
-                    newPath = System.IO.Path.GetFileNameWithoutExtension(_saveFullLocation) + Common.getHash(5) + System.IO.Path.GetExtension(_saveFullLocation);                  
-                    _saveFullLocation = System.IO.Path.Combine(mySettings.ImageFileLocation, newPath);
-                    _capturedImage.Save(_saveFullLocation);      
+                    string newPath;                
+                    newPath = System.IO.Path.GetFileNameWithoutExtension(_saveFullLocation) + Common.getHash(5) + System.IO.Path.GetExtension(_saveFullLocation);
+                    _saveFullLocation = System.IO.Path.Combine(mySettings.ImageFileLocation, newPath);                 
+                    _capturedImage.Save(_saveFullLocation, ImageFormat.Jpeg);
+                   
                     return true;
                 } catch (Exception ex1) {
                     //Log message
                     return false;
                 }
             } else {
+                //create a new file name
+                   
             
                     try {
-                        _capturedImage.Save(_saveFullLocation);
+                        if (compress) {
+                            _saveFullLocation = Path.Combine(mySettings.ImageFileLocation, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + ".jpeg");           
+                            _capturedImage.Save(_saveFullLocation, ImageFormat.Jpeg);
+                        } else {
+                            _saveFullLocation = Path.Combine(mySettings.ImageFileLocation, Path.GetFileNameWithoutExtension(Path.GetRandomFileName()) + ".png");                                     
+                            _capturedImage.Save(_saveFullLocation, ImageFormat.Png);
+                        }
                         _imageOnFile = true;                      
                         return true;
-                    } catch (Exception ex) {
-                        //image save fail.
-                        //throw new IOException("Unable to save modified image. " + ex.Message);
+                    } catch (Exception ex) {                    
                         return false;
                     }
                 
