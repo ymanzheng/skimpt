@@ -14,11 +14,19 @@ using System.Web;
 
 namespace Skimpt3 {
     static class Program {
+        private static Skimpt3.Properties.Settings mySettings = new Skimpt3.Properties.Settings();
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main(string[] args) { 
+            //check for the first time
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            if (mySettings.FirstTime) {
+                var i = new GUI.FirstTime();
+                i.ShowDialog();
+            }
             if (args.Length > 0) {
                 //we have a context menu item... 
                 string filename = args[0].ToLower();              
@@ -46,13 +54,10 @@ namespace Skimpt3 {
                 bool firstInstance;
                 Mutex mutex = new Mutex(false, "Local\\" + "SkimptProgramRunning", out firstInstance);
 
-                if (firstInstance) {
-                    Application.EnableVisualStyles();
-                    Application.SetCompatibleTextRenderingDefault(false);
+                if (firstInstance) {                   
                     Application.Run(new GUI.main());                
                 }
-            }
-        
+            }        
             //wait till all toast forms are closed
             while (Application.OpenForms.Count > 0)
             {

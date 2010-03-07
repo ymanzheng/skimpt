@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Skimpt3")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Skimpt3")]
 [assembly: AssemblyCopyright("Copyright © Skimpt3 2010")]
 [assembly: AssemblyTrademark("")]

@@ -8,12 +8,9 @@ using System.Text;
 using System.Windows.Forms;
 using Skimpt3.classes;
 
-namespace Skimpt3.GUI
-{
-    public partial class main : Form
-    {
-        private enum mode
-        {
+namespace Skimpt3.GUI {
+    public partial class main : Form {
+        private enum mode {
             FullScreen,
             CameraMode,
             HighlightMode,
@@ -23,8 +20,9 @@ namespace Skimpt3.GUI
         private mode CurrentMode = mode.FullScreen;
         private Rectangle WindowFrameToCapture;
         private bool RunningInMode;
-        public main()
-        {
+        private bool instanceCreated;
+        private WindowLayer mc;
+        public main() {
             InitializeComponent();
             this.Hide();
             //The following sets up a hook as soon as the program is launched.
@@ -32,99 +30,104 @@ namespace Skimpt3.GUI
             KeyboardHookInstance.KeyIntercepted += new KeyboardEventHandler(KeyboardHookInstance_KeyIntercepted);
         }
 
-        private void KeyboardHookInstance_KeyIntercepted(KeyboardHookEventArgs keyboardEvents)
-        {
+        private void KeyboardHookInstance_KeyIntercepted(KeyboardHookEventArgs keyboardEvents) {
             skImage myImage = null;
             Bitmap i;
-            WindowLayer mc;
-            if (keyboardEvents.PressedKey == Keys.PrintScreen)
-            {
-                switch (CurrentMode)
-                {
+
+            if (keyboardEvents.PressedKey == Keys.PrintScreen) {
+                switch (CurrentMode) {
                     case mode.FullScreen:
                         i = skImageCapture.GetDesktopWindowCaptureAsBitmap();
                         myImage = new skImage(i);
                         break;
                     case mode.CameraMode:
-                        this.Hide();   
-                            mc = new WindowLayer();                     
-                                                  
-                            mc.ShowDialog();
+                        this.Hide();
+                        if (!instanceCreated) {
+                            mc = new WindowLayer();
+                            instanceCreated = true;
+                            mc.Show();                        
+                        } else {
                             WindowFrameToCapture = mc.GetWindowFrame();
-                  
-                      
-                        i = skImageCapture.CaptureDeskTopRectangle(WindowFrameToCapture, WindowFrameToCapture.Width, WindowFrameToCapture.Height);
-                        myImage = new skImage(i);
+                            i = skImageCapture.CaptureDeskTopRectangle(WindowFrameToCapture, WindowFrameToCapture.Width, WindowFrameToCapture.Height);
+                            myImage = new skImage(i);
+                            mc.Dispose();
+                            mc = null;
+                            instanceCreated = false;
+                        }
                         break;
                     case mode.HighlightMode:
-                        this.Hide();                       
-                        mc = new WindowLayer();
-                        mc.ShowDialog();
-                        WindowFrameToCapture = mc.GetWindowFrame();
-                        i = skImageCapture.GetDesktopWindowCaptureAsBitmap();
-                        myImage = new skImage(i, WindowFrameToCapture);
+                        this.Hide();
+                        if (!instanceCreated) {
+                            mc = new WindowLayer();
+                            instanceCreated = true;
+                            mc.Show();
+                        } else {
+                            WindowFrameToCapture = mc.GetWindowFrame();
+                            i = skImageCapture.GetDesktopWindowCaptureAsBitmap();
+                            myImage = new skImage(i, WindowFrameToCapture);
+                            mc.Dispose();
+                            mc = null;
+                            instanceCreated = false;
+                        }
                         break;
                     default:
                         MessageBox.Show("unable to capture screen");
                         break;
                 }
 
-                if (myImage != null)
-                {
+                if (myImage != null) {
                     Common.ShowToastForm(myImage);
                 }
 
             }
         }
 
-        private void main_Resize(object sender, EventArgs e)
-        {
+        private void main_Resize(object sender, EventArgs e) {
             if (FormWindowState.Minimized == WindowState)
                 Hide();
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e) {
             this.Close();
         }
 
-        private void cameraToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        private void cameraToolStripMenuItem_Click(object sender, EventArgs e) {
             cameraToolStripMenuItem.Checked = !cameraToolStripMenuItem.Checked;
-            if (cameraToolStripMenuItem.Checked)
-            {
+            if (cameraToolStripMenuItem.Checked) {
                 highlightToolStripMenuItem.Checked = !cameraToolStripMenuItem.Checked;
-                CurrentMode = mode.CameraMode;                
-            }
-            else
-            {
+                CurrentMode = mode.CameraMode;
+                RunningInMode = true;
+            } else {
                 CurrentMode = mode.FullScreen;
                 RunningInMode = false;
             }
 
         }
 
-        private void highlightToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        private void highlightToolStripMenuItem_Click(object sender, EventArgs e) {
             highlightToolStripMenuItem.Checked = !highlightToolStripMenuItem.Checked;
-            if (highlightToolStripMenuItem.Checked)
-            {
+            if (highlightToolStripMenuItem.Checked) {
                 cameraToolStripMenuItem.Checked = !highlightToolStripMenuItem.Checked;
-                CurrentMode = mode.HighlightMode;                
-            }
-            else
-            {
+                CurrentMode = mode.HighlightMode;
+                RunningInMode = true;
+            } else {
                 CurrentMode = mode.FullScreen;
                 RunningInMode = false;
             }
         }
 
-        private void main_Load(object sender, EventArgs e)
-        {
+        private void main_Load(object sender, EventArgs e) {
             this.Hide();
         }
 
- 
+        private void optionsToolStripMenuItem_Click(object sender, EventArgs e) {
+            using (var i = new Options()) {
+                i.ShowDialog();
+            }
+
+        }
+
+
 
 
     }

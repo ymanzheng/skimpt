@@ -21,7 +21,8 @@
     <DebugType>full</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -49,7 +50,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="classes\ftp.cs" />
     <Compile Include="classes\skCommon.cs" />
     <Compile Include="classes\skAnimator.cs" />
     <Compile Include="classes\photoshop\BinaryReverseReader.cs" />
@@ -60,6 +60,7 @@
     <Compile Include="classes\photoshop\ImageResources\Thumbnail.cs" />
     <Compile Include="classes\photoshop\Layer.cs" />
     <Compile Include="classes\photoshop\PSDFile.cs" />
+    <Compile Include="classes\skContextHandler.cs" />
     <Compile Include="classes\skCustomForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,11 +77,23 @@
     <Compile Include="controls\RibbonButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="GUI\FirstTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FirstTime.Designer.cs">
+      <DependentUpon>FirstTime.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\main.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\main.Designer.cs">
       <DependentUpon>main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Options.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Options.Designer.cs">
+      <DependentUpon>Options.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\test.cs">
       <SubType>Form</SubType>
@@ -103,8 +116,14 @@
     <EmbeddedResource Include="classes\skCustomForm.resx">
       <DependentUpon>skCustomForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FirstTime.resx">
+      <DependentUpon>FirstTime.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\main.resx">
       <DependentUpon>main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Options.resx">
+      <DependentUpon>Options.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\test.resx">
       <DependentUpon>test.cs</DependentUpon>
@@ -144,6 +163,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="apn-Box.ico" />
+    <None Include="Resources\bg4.jpg" />
+    <None Include="Resources\bg3.jpg" />
+    <None Include="Resources\bg2.png" />
+    <None Include="Resources\bg.jpg" />
     <None Include="Resources\apn-Box.ico" />
     <None Include="Resources\progIcon.ico" />
   </ItemGroup>
