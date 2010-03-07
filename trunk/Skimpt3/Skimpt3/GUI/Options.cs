@@ -20,6 +20,7 @@ namespace Skimpt3.GUI {
             maskedTextBox1.Text = (mySettings.ToastFormTimer / 1000).ToString();
             optimizeImageCheckBox.Checked = mySettings.OptimizeImage;
             errorMessagecheckBox.Checked = mySettings.ShowErrorMessageBox;
+            versionLabel.Text = "Running: " + Application.ProductName + " : " + Application.ProductVersion + " " ;
         }
 
         private void button3_Click(object sender, EventArgs e) {
