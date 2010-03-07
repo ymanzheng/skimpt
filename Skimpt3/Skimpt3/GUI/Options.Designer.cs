@@ -37,6 +37,7 @@
             this.optimizeImageCheckBox = new System.Windows.Forms.CheckBox();
             this.button4 = new System.Windows.Forms.Button();
             this.removeContext = new System.Windows.Forms.CheckBox();
+            this.versionLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label4
@@ -180,12 +181,24 @@
             this.removeContext.TabIndex = 18;
             this.removeContext.UseVisualStyleBackColor = true;
             // 
+            // versionLabel
+            // 
+            this.versionLabel.AutoSize = true;
+            this.versionLabel.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.versionLabel.ForeColor = System.Drawing.Color.White;
+            this.versionLabel.Location = new System.Drawing.Point(8, 282);
+            this.versionLabel.Name = "versionLabel";
+            this.versionLabel.Size = new System.Drawing.Size(19, 19);
+            this.versionLabel.TabIndex = 19;
+            this.versionLabel.Text = "[]";
+            // 
             // Options
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(456, 297);
+            this.ClientSize = new System.Drawing.Size(456, 310);
+            this.Controls.Add(this.versionLabel);
             this.Controls.Add(this.removeContext);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.optimizeImageCheckBox);
@@ -223,6 +236,7 @@
         private System.Windows.Forms.CheckBox optimizeImageCheckBox;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.CheckBox removeContext;
+        private System.Windows.Forms.Label versionLabel;
 
 
     }
